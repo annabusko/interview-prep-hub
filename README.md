@@ -1,73 +1,109 @@
-# React + TypeScript + Vite
+# Interview Prep Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+Interview Prep Hub is a frontend pet project designed for structured and practical preparation for technical interviews.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The application helps users study frontend topics, practice interview questions, track weak areas, and switch between different interview levels and languages.
 
-## React Compiler
+This project is intentionally built as a real-world, scalable frontend application rather than a static learning tool.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Core Concept
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The application is centered around two main dimensions:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Interview level: Junior, Middle, Senior  
+- Content language: Russian (RU) and English (EN)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+All content, including topics and questions, adapts based on the selected level and language.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## MVP Scope
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The first version of the application includes:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Level switcher (Junior / Middle / Senior)
+- Language switcher (RU / EN)
+- Topics list with filtering and search
+- Topic details with explanations and key points
+- Topic status tracking (new / learning / strong / weak)
+- Quiz mode for practicing questions
+- Weak spots tracking (mistakes and difficult topics)
+- Local persistence using localStorage
+
+---
+
+## Tech Stack
+
+- React
+- TypeScript
+- Vite
+- React Router
+- Tailwind CSS
+
+---
+
+## Data Model
+
+The application is built around the following core entities:
+
+- Category — grouping of topics
+- Topic — learning unit with explanations and content
+- Question — interview-style questions linked to topics and levels
+- TopicProgress — user learning state per topic
+- QuizAttempt — user answers history
+- UserPreferences — selected level and language
+
+---
+
+## Architecture Principles
+
+- Keep the MVP simple and focused
+- Prefer strongly typed models
+- Avoid overengineering
+- No backend in MVP
+- No authentication in MVP
+- Use localStorage for persistence
+- Use a single source of truth for user preferences
+- Keep components small and reusable
+- Separate domain logic from UI
+
+---
+
+## AI Collaboration Guidelines
+
+This project is actively developed with AI assistance (e.g., Cursor, ChatGPT).
+
+When generating or modifying code, follow these rules:
+
+- Preserve the existing folder structure
+- Do not introduce unnecessary abstractions
+- Do not duplicate types or logic
+- Keep components focused and readable
+- Prefer explicit and simple solutions over clever ones
+- Do not add new libraries unless clearly needed
+- Follow existing naming and routing conventions
+- Respect the MVP scope (no backend, no auth unless explicitly required)
+
+---
+
+## Project Goal
+
+The goal of this project is not only to prepare for interviews, but also to demonstrate:
+
+- solid frontend architecture
+- clean TypeScript usage
+- scalable component design
+- thoughtful state management
+- real product thinking
+
+---
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
