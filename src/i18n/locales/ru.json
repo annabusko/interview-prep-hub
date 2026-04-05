@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "appName": "Interview Prep Hub",
+    "appTagline": "Практика и прогресс",
+    "dashboard": "Обзор",
+    "topics": "Темы",
+    "quiz": "Квиз",
+    "weakSpots": "Слабые места"
+  },
+  "filters": {
+    "level": "Уровень",
+    "language": "Язык",
+    "allLevels": "Все уровни",
+    "junior": "Junior",
+    "middle": "Middle",
+    "senior": "Senior"
+  },
+  "search": {
+    "label": "Поиск",
+    "placeholder": "Поиск по темам…"
+  }
+}

@@ -27,6 +27,8 @@ The first version of the application includes:
 
 - Level switcher (Junior / Middle / Senior)
 - Language switcher (RU / EN)
+- UI translations are handled through i18n JSON files.
+- Learning content is stored as typed domain data with localized ru/en fields.
 - Topics list with filtering and search
 - Topic details with explanations and key points
 - Topic status tracking (new / learning / strong / weak)
@@ -101,6 +103,20 @@ The goal of this project is not only to prepare for interviews, but also to demo
 - real product thinking
 
 ---
+
+## AI Usage Rule
+
+When working with this project, always use this README as the source of truth.
+
+Before implementing any feature:
+- check MVP scope
+- check architecture principles
+- check data model
+
+Do not introduce features, libraries, or architectural changes that are not aligned with this document. 
+Prefer extending existing structures instead of creating new ones
+
+If something is unclear, prefer simple and minimal solutions that fit the current MVP.
 
 ## Getting Started
 
