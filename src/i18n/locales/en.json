@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "appName": "Interview Prep Hub",
+    "appTagline": "Practice & track progress",
+    "dashboard": "Dashboard",
+    "topics": "Topics",
+    "quiz": "Quiz",
+    "weakSpots": "Weak spots"
+  },
+  "filters": {
+    "level": "Level",
+    "language": "Language",
+    "allLevels": "All levels",
+    "junior": "Junior",
+    "middle": "Middle",
+    "senior": "Senior"
+  },
+  "search": {
+    "label": "Search",
+    "placeholder": "Search topics…"
+  }
+}
