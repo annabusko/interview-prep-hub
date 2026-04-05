@@ -5,6 +5,7 @@ export const questions: Question[] = [
     id: 'js-type-coercion-q01',
     topicId: 'js-type-coercion',
     level: 'junior',
+    type: 'single',
     prompt: {
       en: 'What does the expression `[] == ![]` evaluate to in JavaScript?',
       ru: 'К чему приводится выражение `[] == ![]` в JavaScript?',
@@ -37,6 +38,7 @@ export const questions: Question[] = [
     id: 'js-closures-scope-q01',
     topicId: 'js-closures-scope',
     level: 'middle',
+    type: 'single',
     prompt: {
       en: 'In a classic `for (var i = 0; i < 3; i++) { setTimeout(() => console.log(i), 0); }`, what is the usual fix so each timeout logs 0, 1, 2?',
       ru: 'В цикле `for (var i = 0; i < 3; i++) { setTimeout(() => console.log(i), 0); }` как обычно исправляют поведение, чтобы выводились 0, 1, 2?',
@@ -81,6 +83,7 @@ export const questions: Question[] = [
     id: 'js-event-loop-q01',
     topicId: 'js-event-loop',
     level: 'senior',
+    type: 'single',
     prompt: {
       en: 'Given synchronous code, then `setTimeout(() => console.log("A"), 0)`, then `Promise.resolve().then(() => console.log("B"))`, what is a correct log order?',
       ru: 'После синхронного кода идут `setTimeout(() => console.log("A"), 0)` и `Promise.resolve().then(() => console.log("B"))`. Какой порядок логов возможен?',
@@ -113,6 +116,7 @@ export const questions: Question[] = [
     id: 'ts-primitive-typing-q01',
     topicId: 'ts-primitive-typing',
     level: 'junior',
+    type: 'single',
     prompt: {
       en: 'Which statement best describes `unknown` compared to `any`?',
       ru: 'Какое утверждение лучше всего описывает `unknown` по сравнению с `any`?',
@@ -157,6 +161,7 @@ export const questions: Question[] = [
     id: 'ts-generics-q01',
     topicId: 'ts-generics',
     level: 'middle',
+    type: 'single',
     prompt: {
       en: 'What does `<T extends { id: string }>(value: T) => T` guarantee about `value`?',
       ru: 'Что гарантирует сигнатура `<T extends { id: string }>(value: T) => T` для `value`?',
@@ -201,6 +206,7 @@ export const questions: Question[] = [
     id: 'ts-conditional-mapped-q01',
     topicId: 'ts-conditional-mapped',
     level: 'senior',
+    type: 'single',
     prompt: {
       en: 'In `type ElementType<T> = T extends (infer U)[] ? U : never`, what does `infer U` do?',
       ru: 'В типе `type ElementType<T> = T extends (infer U)[] ? U : never` что делает `infer U`?',
@@ -245,6 +251,7 @@ export const questions: Question[] = [
     id: 'react-components-jsx-q01',
     topicId: 'react-components-jsx',
     level: 'junior',
+    type: 'single',
     prompt: {
       en: 'What is the primary purpose of the `key` prop when rendering a list of elements?',
       ru: 'Какова основная роль пропа `key` при рендере списка элементов?',
@@ -289,6 +296,7 @@ export const questions: Question[] = [
     id: 'react-hooks-data-q01',
     topicId: 'react-hooks-data',
     level: 'middle',
+    type: 'single',
     prompt: {
       en: 'What does an empty dependency array `[]` mean in `useEffect(() => { ... }, [])`?',
       ru: 'Что означает пустой массив зависимостей `[]` в `useEffect(() => { ... }, [])`?',
@@ -333,6 +341,7 @@ export const questions: Question[] = [
     id: 'react-concurrent-q01',
     topicId: 'react-concurrent',
     level: 'senior',
+    type: 'single',
     prompt: {
       en: 'What is the main goal of wrapping a state update in `startTransition`?',
       ru: 'Какова основная цель обёртки обновления состояния в `startTransition`?',

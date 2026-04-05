@@ -7,6 +7,9 @@ export type ContentLanguage = 'ru' | 'en'
 /** Per-topic learning state (persisted locally in MVP) */
 export type TopicStatus = 'new' | 'learning' | 'strong' | 'weak'
 
+/** Whether a question expects one or multiple correct answers */
+export type QuestionType = 'single' | 'multiple'
+
 /** Bilingual string fields for learning content and UI-backed labels stored in domain */
 export type LocalizedText = {
   ru: string
@@ -47,6 +50,7 @@ export type Question = {
   id: string
   topicId: string
   level: InterviewLevel
+  type: QuestionType
   prompt: LocalizedText
   explanation: LocalizedText
   options: QuestionOption[]
@@ -57,6 +61,7 @@ export type Question = {
 export type TopicProgress = {
   topicId: string
   status: TopicStatus
+  lastReviewedAt?: string
 }
 
 export type QuizAttempt = {
