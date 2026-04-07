@@ -11,22 +11,18 @@ export function PreferencesProvider({ children }: PropsWithChildren) {
     () => ({
       preferences,
       setSelectedLevel: (selectedLevel) => {
-        setPreferences((current) => {
-          const next: UserPreferences = { ...current, selectedLevel }
-          writeStoredPreferences(next)
-          return next
-        })
+        setPreferences((current) => ({ ...current, selectedLevel }))
       },
       setSelectedLanguage: (selectedLanguage) => {
-        setPreferences((current) => {
-          const next: UserPreferences = { ...current, selectedLanguage }
-          writeStoredPreferences(next)
-          return next
-        })
+        setPreferences((current) => ({ ...current, selectedLanguage }))
       },
     }),
     [preferences],
   )
+
+  useEffect(() => {
+    writeStoredPreferences(preferences)
+  }, [preferences])
 
   useEffect(() => {
     if (i18n.language !== preferences.selectedLanguage) {
