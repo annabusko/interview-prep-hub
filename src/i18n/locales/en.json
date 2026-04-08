@@ -25,5 +25,17 @@
     "description": "Browse interview topics for your selected level. Filter by category and search by topic title.",
     "emptyState": "No topics match your current filters.",
     "openDetails": "Open topic"
+  },
+  "topicDetails": {
+    "missingTopic": "Missing topic.",
+    "notFound": "Topic not found.",
+    "statusLabel": "Learning status",
+    "backToTopics": "Back to topics"
+  },
+  "topicStatus": {
+    "new": "New",
+    "learning": "Learning",
+    "strong": "Strong",
+    "weak": "Weak"
   }
 }
