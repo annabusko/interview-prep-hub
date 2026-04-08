@@ -10,6 +10,8 @@
   "filters": {
     "level": "Уровень",
     "language": "Язык",
+    "category": "Категория",
+    "allCategories": "Все категории",
     "allLevels": "Все уровни",
     "junior": "Junior",
     "middle": "Middle",
@@ -18,5 +20,10 @@
   "search": {
     "label": "Поиск",
     "placeholder": "Поиск по темам…"
+  },
+  "topics": {
+    "description": "Изучайте темы собеседований для выбранного уровня. Фильтруйте по категории и ищите по названию темы.",
+    "emptyState": "По текущим фильтрам темы не найдены.",
+    "openDetails": "Открыть тему"
   }
 }

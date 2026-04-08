@@ -10,6 +10,8 @@
   "filters": {
     "level": "Level",
     "language": "Language",
+    "category": "Category",
+    "allCategories": "All categories",
     "allLevels": "All levels",
     "junior": "Junior",
     "middle": "Middle",
@@ -18,5 +20,10 @@
   "search": {
     "label": "Search",
     "placeholder": "Search topics…"
+  },
+  "topics": {
+    "description": "Browse interview topics for your selected level. Filter by category and search by topic title.",
+    "emptyState": "No topics match your current filters.",
+    "openDetails": "Open topic"
   }
 }

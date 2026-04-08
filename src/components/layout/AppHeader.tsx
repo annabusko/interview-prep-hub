@@ -1,11 +1,20 @@
-import { useMatches } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import { PATHS } from '../../routes/paths'
 
 const FALLBACK_TITLE = 'Interview Prep Hub'
 
+const ROUTE_TITLES: Record<string, string> = {
+  [PATHS.dashboard]: 'Dashboard',
+  [PATHS.topics]: 'Topics',
+  [PATHS.quiz]: 'Quiz',
+  [PATHS.weakSpots]: 'Weak Spots',
+}
+
 export function AppHeader() {
-  const matches = useMatches()
-  const last = matches.at(-1)
-  const title = (last?.handle as { title?: string } | undefined)?.title ?? FALLBACK_TITLE
+  const { pathname } = useLocation()
+  const title =
+    ROUTE_TITLES[pathname] ??
+    (pathname.startsWith(PATHS.topics + '/') ? 'Topic details' : FALLBACK_TITLE)
 
   return (
     <header className="border-b border-slate-200 bg-white px-6 py-4 lg:px-8">
