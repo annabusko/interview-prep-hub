@@ -38,5 +38,15 @@
     "completed": "Quiz complete!",
     "completedMessage": "You answered all {{count}} questions.",
     "restart": "Start again"
+  },
+  "weakSpots": {
+    "description": "Topics to review based on your learning status and quiz mistakes.",
+    "emptyState": "No weak spots for your current level. Keep it up!",
+    "reason": {
+      "weak": "Marked as weak",
+      "mistake": "Quiz mistake",
+      "both": "Marked as weak · Quiz mistake"
+    },
+    "openTopic": "Review topic"
   }
 }
