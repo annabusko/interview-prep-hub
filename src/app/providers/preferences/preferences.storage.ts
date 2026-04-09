@@ -3,15 +3,15 @@ import { DEFAULT_PREFERENCES } from './preferences.defaults'
 
 const PREFERENCES_STORAGE_KEY = 'interview-prep-hub:preferences'
 
-const LEVELS: InterviewLevel[] = ['junior', 'middle', 'senior']
-const LANGUAGES: ContentLanguage[] = ['ru', 'en']
+const LEVELS = new Set<InterviewLevel>(['junior', 'middle', 'senior'])
+const LANGUAGES = new Set<ContentLanguage>(['ru', 'en'])
 
 function isInterviewLevel(value: unknown): value is InterviewLevel {
-  return typeof value === 'string' && LEVELS.includes(value as InterviewLevel)
+  return typeof value === 'string' && LEVELS.has(value as InterviewLevel)
 }
 
 function isContentLanguage(value: unknown): value is ContentLanguage {
-  return typeof value === 'string' && LANGUAGES.includes(value as ContentLanguage)
+  return typeof value === 'string' && LANGUAGES.has(value as ContentLanguage)
 }
 
 function parsePreferences(raw: string): UserPreferences | null {
@@ -36,12 +36,12 @@ function parsePreferences(raw: string): UserPreferences | null {
 }
 
 export function readStoredPreferences(): UserPreferences {
-  if (typeof window === 'undefined') {
+  if (globalThis.window === undefined) {
     return DEFAULT_PREFERENCES
   }
 
   try {
-    const raw = window.localStorage.getItem(PREFERENCES_STORAGE_KEY)
+    const raw = globalThis.localStorage.getItem(PREFERENCES_STORAGE_KEY)
     if (!raw) {
       return DEFAULT_PREFERENCES
     }
@@ -52,12 +52,12 @@ export function readStoredPreferences(): UserPreferences {
 }
 
 export function writeStoredPreferences(preferences: UserPreferences): void {
-  if (typeof window === 'undefined') {
+  if (globalThis.window === undefined) {
     return
   }
 
   try {
-    window.localStorage.setItem(PREFERENCES_STORAGE_KEY, JSON.stringify(preferences))
+    globalThis.localStorage.setItem(PREFERENCES_STORAGE_KEY, JSON.stringify(preferences))
   } catch {
     // Fail silently in private mode or full quota scenarios.
   }

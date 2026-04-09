@@ -25,5 +25,18 @@
     "description": "Browse interview topics for your selected level. Filter by category and search by topic title.",
     "emptyState": "No topics match your current filters.",
     "openDetails": "Open topic"
+  },
+  "quiz": {
+    "description": "Practice interview questions for your selected level. Select an answer and submit to check.",
+    "noQuestions": "No questions available for your current level.",
+    "progress": "Question {{current}} of {{total}}",
+    "submit": "Check answer",
+    "next": "Next question",
+    "finish": "Finish",
+    "correct": "Correct!",
+    "incorrect": "Incorrect",
+    "completed": "Quiz complete!",
+    "completedMessage": "You answered all {{count}} questions.",
+    "restart": "Start again"
   }
 }
