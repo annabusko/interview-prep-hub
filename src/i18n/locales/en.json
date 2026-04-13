@@ -39,6 +39,28 @@
     "completedMessage": "You answered all {{count}} questions.",
     "restart": "Start again"
   },
+  "dashboard": {
+    "description": "Learning progress summary for your selected level.",
+    "summary": {
+      "totalTopics": "Total topics",
+      "newTopics": "New",
+      "learningTopics": "Learning",
+      "strongTopics": "Strong",
+      "weakTopics": "Weak",
+      "quizAttempts": "Quiz attempts"
+    },
+    "needsAttention": {
+      "title": "Needs Attention",
+      "emptyState": "No weak spots for your current level. Keep it up!",
+      "viewAll": "View all weak spots"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "topics": "Topics",
+      "quiz": "Quiz",
+      "weakSpots": "Weak Spots"
+    }
+  },
   "weakSpots": {
     "description": "Topics to review based on your learning status and quiz mistakes.",
     "emptyState": "No weak spots for your current level. Keep it up!",

@@ -39,6 +39,28 @@
     "completedMessage": "Вы ответили на все {{count}} вопросов.",
     "restart": "Начать заново"
   },
+  "dashboard": {
+    "description": "Сводка прогресса обучения для выбранного уровня.",
+    "summary": {
+      "totalTopics": "Всего тем",
+      "newTopics": "Новые",
+      "learningTopics": "В процессе",
+      "strongTopics": "Усвоены",
+      "weakTopics": "Слабые",
+      "quizAttempts": "Попытки квиза"
+    },
+    "needsAttention": {
+      "title": "Требуют внимания",
+      "emptyState": "Слабых мест для текущего уровня нет. Так держать!",
+      "viewAll": "Все слабые места"
+    },
+    "quickActions": {
+      "title": "Быстрые действия",
+      "topics": "Темы",
+      "quiz": "Квиз",
+      "weakSpots": "Слабые места"
+    }
+  },
   "weakSpots": {
     "description": "Темы для повторения на основе статуса обучения и ошибок в квизе.",
     "emptyState": "Слабых мест для текущего уровня нет. Так держать!",
