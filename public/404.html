@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <script>
+      const repo = "/interview-prep-hub";
+      const path = globalThis.location.pathname.replace(repo, "");
+      const search = globalThis.location.search;
+      const hash = globalThis.location.hash;
+
+      globalThis.location.replace(repo + "/#" + path + search + hash);
+    </script>
+  </head>
+</html>
