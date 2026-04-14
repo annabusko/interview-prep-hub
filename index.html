@@ -5,6 +5,21 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Interview Prep Hub</title>
+    <script>
+      (function () {
+        var params = new URLSearchParams(globalThis.location.search);
+        var p = params.get("p");
+        if (p) {
+          var q = params.get("q");
+          var restored =
+            globalThis.location.pathname.replace(/\/$/, "") +
+            decodeURIComponent(p) +
+            (q ? "?" + decodeURIComponent(q) : "") +
+            globalThis.location.hash;
+          globalThis.history.replaceState(null, "", restored);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

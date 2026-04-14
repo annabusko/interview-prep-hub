@@ -1,15 +1,16 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Redirecting...</title>
-    <script>
-      const repo = "/interview-prep-hub";
-      const path = globalThis.location.pathname.replace(repo, "");
-      const search = globalThis.location.search;
-      const hash = globalThis.location.hash;
-
-      globalThis.location.replace(repo + "/#" + path + search + hash);
-    </script>
-  </head>
-</html>
+<script>
+  var l = globalThis.location;
+  var base = "/interview-prep-hub";
+  var rest = l.pathname.slice(base.length) || "/";
+  l.replace(
+    l.protocol +
+      "//" +
+      l.hostname +
+      (l.port ? ":" + l.port : "") +
+      base +
+      "/?p=" +
+      encodeURIComponent(rest) +
+      (l.search ? "&q=" + encodeURIComponent(l.search.slice(1)) : "") +
+      l.hash,
+  );
+</script>

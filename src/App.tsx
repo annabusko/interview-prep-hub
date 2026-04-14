@@ -8,7 +8,7 @@ import { WeakSpotsPage } from './pages/WeakSpotsPage'
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/interview-prep-hub">
       <Routes>
         <Route element={<AppLayout />}>
           <Route index element={<DashboardPage />} handle={{ title: 'Dashboard' }} />
