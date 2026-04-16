@@ -31,7 +31,7 @@ function buildReviewTopics(selectedLevel: string, selectedLanguage: ContentLangu
 
   const topicsWithMistakes = new Set(
     attempts
-      .filter((a) => !a.correct)
+      .filter((a) => !a.correct && a.level === selectedLevel)
       .map((a) => {
         const question = questions.find((q) => q.id === a.questionId)
         return question?.topicId
@@ -110,7 +110,7 @@ export function WeakSpotsPage() {
                     {item.categoryTitle}
                   </span>
                   <span className="rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700">
-                    {item.level}
+                    {t(`filters.${item.level}`)}
                   </span>
                   <span
                     className={`rounded-md px-2 py-1 text-xs font-medium ${REASON_CLASSES[item.reason]}`}

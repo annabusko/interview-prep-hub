@@ -3,14 +3,17 @@ import { useTranslation } from 'react-i18next'
 import { usePreferences } from '../app/providers/preferences/usePreferences'
 import { useQuizAttempts } from '../app/quiz/useQuizAttempts'
 import { questions as allQuestions } from '../data/questions'
+import type { InterviewLevel, ContentLanguage } from '../domain/models'
 
-export function QuizPage() {
+type QuizSessionProps = {
+  filteredQuestions: typeof allQuestions
+  selectedLevel: InterviewLevel
+  selectedLanguage: ContentLanguage
+}
+
+function QuizSession({ filteredQuestions, selectedLevel, selectedLanguage }: Readonly<QuizSessionProps>) {
   const { t } = useTranslation()
-  const { preferences } = usePreferences()
   const { addQuizAttempt } = useQuizAttempts()
-  const { selectedLevel, selectedLanguage } = preferences
-
-  const filteredQuestions = allQuestions.filter((q) => q.level === selectedLevel)
 
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selectedIds, setSelectedIds] = useState<string[]>([])
@@ -57,34 +60,20 @@ export function QuizPage() {
     setSubmitted(false)
   }
 
-  if (filteredQuestions.length === 0) {
-    return (
-      <div className="space-y-4">
-        <p className="max-w-2xl text-slate-600">{t('quiz.description')}</p>
-        <div className="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-500">
-          {t('quiz.noQuestions')}
-        </div>
-      </div>
-    )
-  }
-
   if (isCompleted) {
     return (
-      <div className="space-y-4">
-        <p className="max-w-2xl text-slate-600">{t('quiz.description')}</p>
-        <div className="rounded-xl border border-slate-200 bg-white p-10 text-center shadow-sm">
-          <p className="text-xl font-semibold text-slate-900">{t('quiz.completed')}</p>
-          <p className="mt-2 text-slate-600">
-            {t('quiz.completedMessage', { count: filteredQuestions.length })}
-          </p>
-          <button
-            type="button"
-            onClick={handleRestart}
-            className="mt-6 rounded-lg bg-indigo-600 px-5 py-2 text-sm font-medium text-white hover:bg-indigo-700"
-          >
-            {t('quiz.restart')}
-          </button>
-        </div>
+      <div className="rounded-xl border border-slate-200 bg-white p-10 text-center shadow-sm">
+        <p className="text-xl font-semibold text-slate-900">{t('quiz.completed')}</p>
+        <p className="mt-2 text-slate-600">
+          {t('quiz.completedMessage', { count: filteredQuestions.length })}
+        </p>
+        <button
+          type="button"
+          onClick={handleRestart}
+          className="mt-6 rounded-lg bg-indigo-600 px-5 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+        >
+          {t('quiz.restart')}
+        </button>
       </div>
     )
   }
@@ -95,9 +84,7 @@ export function QuizPage() {
       [...currentQuestion.correctAnswerIds].sort((a, b) => a.localeCompare(b)).join(',')
 
   return (
-    <div className="space-y-6">
-      <p className="max-w-2xl text-slate-600">{t('quiz.description')}</p>
-
+    <>
       <p className="text-sm text-slate-500">
         {t('quiz.progress', { current: currentIndex + 1, total: filteredQuestions.length })}
       </p>
@@ -115,8 +102,7 @@ export function QuizPage() {
             const isWrongSelected =
               submitted && isSelected && !currentQuestion.correctAnswerIds.includes(option.id)
 
-            let optionClass =
-              'w-full rounded-lg border p-4 text-left text-sm transition'
+            let optionClass = 'w-full rounded-lg border p-4 text-left text-sm transition'
             if (submitted) {
               if (isCorrectOption) {
                 optionClass += ' border-green-400 bg-green-50 text-green-900'
@@ -178,6 +164,37 @@ export function QuizPage() {
           )}
         </div>
       </div>
+    </>
+  )
+}
+
+export function QuizPage() {
+  const { t } = useTranslation()
+  const { preferences } = usePreferences()
+  const { selectedLevel, selectedLanguage } = preferences
+
+  const filteredQuestions = allQuestions.filter((q) => q.level === selectedLevel)
+
+  if (filteredQuestions.length === 0) {
+    return (
+      <div className="space-y-4">
+        <p className="max-w-2xl text-slate-600">{t('quiz.description')}</p>
+        <div className="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-500">
+          {t('quiz.noQuestions')}
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="space-y-6">
+      <p className="max-w-2xl text-slate-600">{t('quiz.description')}</p>
+      <QuizSession
+        key={selectedLevel}
+        filteredQuestions={filteredQuestions}
+        selectedLevel={selectedLevel}
+        selectedLanguage={selectedLanguage}
+      />
     </div>
   )
 }

@@ -1,20 +1,21 @@
+import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { PATHS } from '../../routes/paths'
 
-const FALLBACK_TITLE = 'Interview Prep Hub'
-
-const ROUTE_TITLES: Record<string, string> = {
-  [PATHS.dashboard]: 'Dashboard',
-  [PATHS.topics]: 'Topics',
-  [PATHS.quiz]: 'Quiz',
-  [PATHS.weakSpots]: 'Weak Spots',
+const ROUTE_TITLE_KEYS: Record<string, string> = {
+  [PATHS.dashboard]: 'nav.dashboard',
+  [PATHS.topics]: 'nav.topics',
+  [PATHS.quiz]: 'nav.quiz',
+  [PATHS.weakSpots]: 'nav.weakSpots',
 }
 
 export function AppHeader() {
+  const { t } = useTranslation()
   const { pathname } = useLocation()
-  const title =
-    ROUTE_TITLES[pathname] ??
-    (pathname.startsWith(PATHS.topics + '/') ? 'Topic details' : FALLBACK_TITLE)
+  const titleKey =
+    ROUTE_TITLE_KEYS[pathname] ??
+    (pathname.startsWith(PATHS.topics + '/') ? 'topicDetails.pageTitle' : null)
+  const title = titleKey ? t(titleKey) : t('nav.appName')
 
   return (
     <header className="border-b border-slate-200 bg-white px-6 py-4 lg:px-8">

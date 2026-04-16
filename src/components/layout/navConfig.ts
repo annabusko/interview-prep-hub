@@ -8,8 +8,8 @@ export type NavItem = {
 }
 
 export const NAV_ITEMS: readonly NavItem[] = [
-  { to: PATHS.dashboard, label: 'Dashboard', end: true },
-  { to: PATHS.topics, label: 'Topics' },
-  { to: PATHS.quiz, label: 'Quiz' },
-  { to: PATHS.weakSpots, label: 'Weak Spots' },
+  { to: PATHS.dashboard, label: 'nav.dashboard', end: true },
+  { to: PATHS.topics, label: 'nav.topics' },
+  { to: PATHS.quiz, label: 'nav.quiz' },
+  { to: PATHS.weakSpots, label: 'nav.weakSpots' },
 ] as const
