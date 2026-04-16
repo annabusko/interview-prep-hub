@@ -70,5 +70,18 @@
       "both": "Отмечена как слабая · Ошибка в квизе"
     },
     "openTopic": "Повторить тему"
+  },
+  "topicDetails": {
+    "pageTitle": "Детали темы",
+    "statusLabel": "Ваш прогресс",
+    "backToTopics": "Назад к темам",
+    "notFound": "Тема не найдена.",
+    "missingTopic": "Тема не выбрана."
+  },
+  "topicStatus": {
+    "new": "Новая",
+    "learning": "Изучается",
+    "strong": "Усвоена",
+    "weak": "Слабая"
   }
 }

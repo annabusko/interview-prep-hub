@@ -70,5 +70,18 @@
       "both": "Marked as weak · Quiz mistake"
     },
     "openTopic": "Review topic"
+  },
+  "topicDetails": {
+    "pageTitle": "Topic details",
+    "statusLabel": "Your progress",
+    "backToTopics": "Back to topics",
+    "notFound": "Topic not found.",
+    "missingTopic": "No topic selected."
+  },
+  "topicStatus": {
+    "new": "New",
+    "learning": "Learning",
+    "strong": "Strong",
+    "weak": "Weak"
   }
 }
