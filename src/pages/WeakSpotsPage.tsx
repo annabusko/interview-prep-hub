@@ -8,9 +8,11 @@ import { categories } from '../data/categories'
 import { questions } from '../data/questions'
 import { topics } from '../data/topics'
 import type { ContentLanguage } from '../domain/models'
+import type { ReviewReason } from '../domain/reviewReason'
+import { REASON_CLASSES } from '../domain/reviewReason'
 import { PATHS } from '../routes/paths'
-
-type ReviewReason = 'weak' | 'mistake' | 'both'
+import { Badge } from '../components/ui/Badge'
+import { EmptyState } from '../components/ui/EmptyState'
 
 type ReviewTopic = {
   topicId: string
@@ -73,12 +75,6 @@ function buildReviewTopics(selectedLevel: string, selectedLanguage: ContentLangu
   return reviewTopics
 }
 
-const REASON_CLASSES: Record<ReviewReason, string> = {
-  both: 'bg-orange-50 text-orange-700',
-  weak: 'bg-red-50 text-red-700',
-  mistake: 'bg-yellow-50 text-yellow-700',
-}
-
 export function WeakSpotsPage() {
   const { t } = useTranslation()
   const { preferences } = usePreferences()
@@ -94,9 +90,7 @@ export function WeakSpotsPage() {
       <p className="max-w-2xl text-slate-600">{t('weakSpots.description')}</p>
 
       {reviewTopics.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-500">
-          {t('weakSpots.emptyState')}
-        </div>
+        <EmptyState>{t('weakSpots.emptyState')}</EmptyState>
       ) : (
         <ul className="flex flex-col gap-4">
           {reviewTopics.map((item) => (
@@ -106,17 +100,11 @@ export function WeakSpotsPage() {
                 className="block rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-md"
               >
                 <div className="mb-2 flex flex-wrap items-center gap-2">
-                  <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700">
-                    {item.categoryTitle}
-                  </span>
-                  <span className="rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700">
-                    {t(`filters.${item.level}`)}
-                  </span>
-                  <span
-                    className={`rounded-md px-2 py-1 text-xs font-medium ${REASON_CLASSES[item.reason]}`}
-                  >
+                  <Badge className="bg-slate-100 text-slate-700">{item.categoryTitle}</Badge>
+                  <Badge className="bg-indigo-50 text-indigo-700">{t(`filters.${item.level}`)}</Badge>
+                  <Badge className={REASON_CLASSES[item.reason]}>
                     {t(`weakSpots.reason.${item.reason}`)}
-                  </span>
+                  </Badge>
                 </div>
                 <h2 className="text-base font-semibold text-slate-900">{item.title}</h2>
                 <p className="mt-1 line-clamp-2 text-sm text-slate-600">{item.summary}</p>

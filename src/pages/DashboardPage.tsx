@@ -7,9 +7,11 @@ import { readTopicProgress } from '../app/topic-progress/topicProgress.storage'
 import { questions } from '../data/questions'
 import { topics } from '../data/topics'
 import type { ContentLanguage, InterviewLevel } from '../domain/models'
+import type { ReviewReason } from '../domain/reviewReason'
+import { REASON_CLASSES } from '../domain/reviewReason'
 import { PATHS } from '../routes/paths'
-
-type ReviewReason = 'weak' | 'mistake' | 'both'
+import { Badge } from '../components/ui/Badge'
+import { EmptyState } from '../components/ui/EmptyState'
 
 type NeedsAttentionItem = {
   topicId: string
@@ -88,12 +90,6 @@ function buildNeedsAttention(
   return result
 }
 
-const REASON_CLASSES: Record<ReviewReason, string> = {
-  both: 'bg-orange-50 text-orange-700',
-  weak: 'bg-red-50 text-red-700',
-  mistake: 'bg-yellow-50 text-yellow-700',
-}
-
 function SummaryCard({ label, value }: Readonly<{ label: string; value: number }>) {
   return (
     <article className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
@@ -133,9 +129,7 @@ export function DashboardPage() {
         <h2 className="text-base font-semibold text-slate-800">{t('dashboard.needsAttention.title')}</h2>
 
         {needsAttention.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-slate-300 bg-white p-6 text-center text-slate-500">
-            {t('dashboard.needsAttention.emptyState')}
-          </div>
+          <EmptyState>{t('dashboard.needsAttention.emptyState')}</EmptyState>
         ) : (
           <>
             <ul className="space-y-3">
@@ -145,11 +139,9 @@ export function DashboardPage() {
                     <div className="space-y-1">
                       <p className="font-medium text-slate-900">{item.title}</p>
                       <p className="text-sm text-slate-500">{item.summary}</p>
-                      <span
-                        className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${REASON_CLASSES[item.reason]}`}
-                      >
+                      <Badge className={REASON_CLASSES[item.reason]}>
                         {t(`weakSpots.reason.${item.reason}`)}
-                      </span>
+                      </Badge>
                     </div>
                     <Link
                       to={PATHS.topicDetail(item.topicId)}
