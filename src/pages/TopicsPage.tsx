@@ -6,6 +6,8 @@ import { categories } from '../data/categories'
 import { topics } from '../data/topics'
 import type { ContentLanguage, Topic } from '../domain/models'
 import { PATHS } from '../routes/paths'
+import { Badge } from '../components/ui/Badge'
+import { EmptyState } from '../components/ui/EmptyState'
 
 function TopicCard({
   topic,
@@ -27,12 +29,8 @@ function TopicCard({
         className="block rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-md"
       >
         <div className="mb-2 flex flex-wrap items-center gap-2">
-          <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700">
-            {categoryTitle}
-          </span>
-          <span className="rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700">
-            {levelLabel}
-          </span>
+          <Badge className="bg-slate-100 text-slate-700">{categoryTitle}</Badge>
+          <Badge className="bg-indigo-50 text-indigo-700">{levelLabel}</Badge>
         </div>
         <h2 className="text-base font-semibold text-slate-900">{topic.title[language]}</h2>
         <p className="mt-2 line-clamp-3 text-sm text-slate-600">{topic.summary[language]}</p>
@@ -117,9 +115,7 @@ export function TopicsPage() {
           ))}
         </ul>
       ) : (
-        <div className="rounded-xl border border-dashed border-slate-300 bg-white p-6 text-sm text-slate-500">
-          {t('topics.emptyState')}
-        </div>
+        <EmptyState>{t('topics.emptyState')}</EmptyState>
       )}
     </div>
   )

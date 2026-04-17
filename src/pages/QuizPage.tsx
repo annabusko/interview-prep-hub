@@ -4,6 +4,7 @@ import { usePreferences } from '../app/providers/preferences/usePreferences'
 import { useQuizAttempts } from '../app/quiz/useQuizAttempts'
 import { questions as allQuestions } from '../data/questions'
 import type { InterviewLevel, ContentLanguage } from '../domain/models'
+import { EmptyState } from '../components/ui/EmptyState'
 
 type QuizSessionProps = {
   filteredQuestions: typeof allQuestions
@@ -179,9 +180,7 @@ export function QuizPage() {
     return (
       <div className="space-y-4">
         <p className="max-w-2xl text-slate-600">{t('quiz.description')}</p>
-        <div className="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-500">
-          {t('quiz.noQuestions')}
-        </div>
+        <EmptyState>{t('quiz.noQuestions')}</EmptyState>
       </div>
     )
   }

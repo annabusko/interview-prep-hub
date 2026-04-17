@@ -7,6 +7,7 @@ import { useTopicProgress } from '../app/topic-progress/useTopicProgress'
 import { categories } from '../data/categories'
 import { topics } from '../data/topics'
 import { PATHS } from '../routes/paths'
+import { Badge } from '../components/ui/Badge'
 
 const TOPIC_STATUSES: TopicStatus[] = ['new', 'learning', 'strong', 'weak']
 
@@ -61,12 +62,8 @@ export function TopicDetailPage() {
     <div className="space-y-6">
       <div className="space-y-3">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700">
-            {categoryTitle}
-          </span>
-          <span className="rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700">
-            {t(`filters.${topic.level}`)}
-          </span>
+          <Badge className="bg-slate-100 text-slate-700">{categoryTitle}</Badge>
+          <Badge className="bg-indigo-50 text-indigo-700">{t(`filters.${topic.level}`)}</Badge>
         </div>
         <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
           {topic.title[selectedLanguage]}
