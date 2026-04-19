@@ -107,7 +107,7 @@ export function WeakSpotsPage() {
                   </Badge>
                 </div>
                 <h2 className="text-base font-semibold text-slate-900">{item.title}</h2>
-                <p className="mt-1 line-clamp-2 text-sm text-slate-600">{item.summary}</p>
+                <p className="mt-2 line-clamp-2 text-sm text-slate-600">{item.summary}</p>
                 <span className="mt-3 inline-flex text-sm font-medium text-indigo-600">
                   {t('weakSpots.openTopic')} →
                 </span>

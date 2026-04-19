@@ -71,7 +71,7 @@ function QuizSession({ filteredQuestions, selectedLevel, selectedLanguage }: Rea
         <button
           type="button"
           onClick={handleRestart}
-          className="mt-6 rounded-lg bg-indigo-600 px-5 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+          className="mt-6 rounded-lg bg-indigo-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-indigo-700"
         >
           {t('quiz.restart')}
         </button>
@@ -149,7 +149,7 @@ function QuizSession({ filteredQuestions, selectedLevel, selectedLanguage }: Rea
             <button
               type="button"
               onClick={handleNext}
-              className="rounded-lg bg-indigo-600 px-5 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+              className="rounded-lg bg-indigo-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-indigo-700"
             >
               {currentIndex + 1 < filteredQuestions.length ? t('quiz.next') : t('quiz.finish')}
             </button>
@@ -158,7 +158,7 @@ function QuizSession({ filteredQuestions, selectedLevel, selectedLanguage }: Rea
               type="button"
               disabled={selectedIds.length === 0}
               onClick={handleSubmit}
-              className="rounded-lg bg-indigo-600 px-5 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-lg bg-indigo-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {t('quiz.submit')}
             </button>
