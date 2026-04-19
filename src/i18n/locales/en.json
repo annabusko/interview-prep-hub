@@ -40,6 +40,8 @@
     "restart": "Start again"
   },
   "dashboard": {
+    "title": "Your interview prep",
+    "tagline": "Stay consistent — small sessions daily.",
     "description": "Learning progress summary for your selected level.",
     "summary": {
       "totalTopics": "Total topics",
@@ -56,6 +58,7 @@
     },
     "quickActions": {
       "title": "Quick Actions",
+      "startQuiz": "Start Quiz",
       "topics": "Topics",
       "quiz": "Quiz",
       "weakSpots": "Weak Spots"

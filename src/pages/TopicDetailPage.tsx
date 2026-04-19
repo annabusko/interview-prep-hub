@@ -71,7 +71,7 @@ export function TopicDetailPage() {
         <p className="max-w-3xl text-slate-600">{topic.summary[selectedLanguage]}</p>
       </div>
 
-      <section className="space-y-2 rounded-xl border border-slate-200 bg-white p-4">
+      <section className="space-y-3 rounded-xl border border-slate-200 bg-white p-5">
         <p className="text-sm font-medium text-slate-700">{t('topicDetails.statusLabel')}</p>
         <div className="flex flex-wrap gap-2">
           {TOPIC_STATUSES.map((status) => {
