@@ -77,7 +77,7 @@ export function TopicsPage() {
       </div>
 
       <section className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-4">
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2">
           <span className="text-sm font-medium text-slate-700">{t('filters.category')}</span>
           <fieldset className="flex flex-wrap gap-2 border-none p-0 m-0">
             {[{ id: 'all', label: t('filters.allCategories') }, ...categories.map((c) => ({ id: c.id, label: c.title[selectedLanguage] }))].map(({ id, label }) => (
@@ -88,7 +88,7 @@ export function TopicsPage() {
                 className={
                   selectedCategoryId === id
                     ? 'rounded-lg border border-indigo-600 bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white transition-colors'
-                    : 'rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-900'
+                    : 'rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition-colors hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-700'
                 }
               >
                 {label}
@@ -97,13 +97,13 @@ export function TopicsPage() {
           </fieldset>
         </div>
 
-        <label className="flex flex-col gap-1">
+        <label className="flex flex-col gap-2">
           <span className="text-sm font-medium text-slate-700">{t('search.label')}</span>
           <input
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder={t('search.placeholder')}
-            className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-800 outline-none ring-indigo-500 placeholder:text-slate-400 focus:ring"
+            className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-800 outline-none ring-indigo-500 placeholder:text-slate-400 transition-colors hover:border-slate-400 focus:ring"
           />
         </label>
       </section>
