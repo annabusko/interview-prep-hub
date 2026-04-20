@@ -76,7 +76,7 @@ export function TopicsPage() {
         <p className="text-sm text-slate-500">{t('topics.description')}</p>
       </div>
 
-      <section className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <section className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-4">
         <div className="flex flex-col gap-2">
           <span className="text-sm font-medium text-slate-700">{t('filters.category')}</span>
           <fieldset className="flex flex-wrap gap-2 border-none p-0 m-0">
@@ -87,8 +87,8 @@ export function TopicsPage() {
                 onClick={() => setSelectedCategoryId(id)}
                 className={
                   selectedCategoryId === id
-                    ? 'rounded-lg border border-indigo-600 bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white shadow-sm transition-all'
-                    : 'rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 shadow-sm transition-all hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-700'
+                    ? 'rounded-lg border border-indigo-600 bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white transition-colors'
+                    : 'rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition-colors hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-700'
                 }
               >
                 {label}
