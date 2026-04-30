@@ -5,7 +5,9 @@
     "dashboard": "Dashboard",
     "topics": "Topics",
     "quiz": "Quiz",
-    "weakSpots": "Weak spots"
+    "weakSpots": "Weak spots",
+    "tipTitle": "Stay consistent",
+    "tipText": "Small sessions daily build lasting knowledge."
   },
   "filters": {
     "level": "Level",
@@ -44,6 +46,7 @@
     "tagline": "Stay consistent — small sessions daily.",
     "description": "Learning progress summary for your selected level.",
     "summary": {
+      "title": "Progress summary",
       "totalTopics": "Total topics",
       "newTopics": "New",
       "learningTopics": "Learning",

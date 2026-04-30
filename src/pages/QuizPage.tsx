@@ -85,87 +85,87 @@ function QuizSession({ filteredQuestions, selectedLevel, selectedLanguage }: Rea
       [...currentQuestion.correctAnswerIds].sort((a, b) => a.localeCompare(b)).join(',')
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-      <div className="mb-4 flex items-center justify-between">
-        <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+    <div className="space-y-5 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="flex items-center justify-between">
+        <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
           {t('quiz.progress', { current: currentIndex + 1, total: filteredQuestions.length })}
         </p>
       </div>
-      <p className="text-base font-semibold leading-snug text-slate-900">
+      <p className="text-lg font-semibold leading-snug text-slate-900">
         {currentQuestion.prompt[selectedLanguage]}
       </p>
 
-      <ul className="mt-5 flex flex-col gap-3">
-          {currentQuestion.options.map((option) => {
-            const isSelected = selectedIds.includes(option.id)
-            const isCorrectOption =
-              submitted && currentQuestion.correctAnswerIds.includes(option.id)
-            const isWrongSelected =
-              submitted && isSelected && !currentQuestion.correctAnswerIds.includes(option.id)
+      <ul className="flex flex-col gap-3">
+        {currentQuestion.options.map((option) => {
+          const isSelected = selectedIds.includes(option.id)
+          const isCorrectOption =
+            submitted && currentQuestion.correctAnswerIds.includes(option.id)
+          const isWrongSelected =
+            submitted && isSelected && !currentQuestion.correctAnswerIds.includes(option.id)
 
-            let optionClass = 'w-full rounded-xl border p-4 text-left text-sm transition'
-            if (submitted) {
-              if (isCorrectOption) {
-                optionClass += ' border-green-400 bg-green-50 text-green-900 font-medium'
-              } else if (isWrongSelected) {
-                optionClass += ' border-red-400 bg-red-50 text-red-900'
-              } else {
-                optionClass += ' border-slate-200 bg-white text-slate-400'
-              }
+          let optionClass = 'w-full rounded-xl border p-4 text-left text-sm transition-all'
+          if (submitted) {
+            if (isCorrectOption) {
+              optionClass += ' border-green-400 bg-green-50 text-green-900 font-medium'
+            } else if (isWrongSelected) {
+              optionClass += ' border-red-400 bg-red-50 text-red-900'
             } else {
-              optionClass += isSelected
-                ? ' border-slate-900 bg-slate-100 text-slate-900 font-medium cursor-pointer'
-                : ' border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-100 hover:text-slate-900 cursor-pointer'
+              optionClass += ' border-slate-200 bg-white text-slate-400'
             }
+          } else {
+            optionClass += isSelected
+              ? ' cursor-pointer border-slate-900 bg-slate-100 font-medium text-slate-900'
+              : ' cursor-pointer border-slate-200 bg-white text-slate-700 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-slate-50'
+          }
 
-            return (
-              <li key={option.id}>
-                <button
-                  type="button"
-                  disabled={submitted}
-                  onClick={() => handleSelect(option.id)}
-                  className={optionClass}
-                >
-                  {option.text[selectedLanguage]}
-                </button>
-              </li>
-            )
-          })}
-        </ul>
+          return (
+            <li key={option.id}>
+              <button
+                type="button"
+                disabled={submitted}
+                onClick={() => handleSelect(option.id)}
+                className={optionClass}
+              >
+                {option.text[selectedLanguage]}
+              </button>
+            </li>
+          )
+        })}
+      </ul>
 
-        {submitted && (
-          <div
-            className={`mt-5 rounded-lg border p-4 text-sm ${
-              isCorrect
-                ? 'border-green-200 bg-green-50 text-green-800'
-                : 'border-red-200 bg-red-50 text-red-800'
-            }`}
-          >
-            <p className="font-semibold">{isCorrect ? t('quiz.correct') : t('quiz.incorrect')}</p>
-            <p className="mt-1">{currentQuestion.explanation[selectedLanguage]}</p>
-          </div>
-        )}
-
-        <div className="mt-6 flex justify-end">
-          {submitted ? (
-            <button
-              type="button"
-              onClick={handleNext}
-              className="rounded-xl bg-slate-900 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-800"
-            >
-              {currentIndex + 1 < filteredQuestions.length ? t('quiz.next') : t('quiz.finish')}
-            </button>
-          ) : (
-            <button
-              type="button"
-              disabled={selectedIds.length === 0}
-              onClick={handleSubmit}
-              className="rounded-xl bg-slate-900 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-400"
-            >
-              {t('quiz.submit')}
-            </button>
-          )}
+      {submitted && (
+        <div
+          className={`rounded-lg border p-4 text-sm ${
+            isCorrect
+              ? 'border-green-200 bg-green-50 text-green-800'
+              : 'border-red-200 bg-red-50 text-red-800'
+          }`}
+        >
+          <p className="font-semibold">{isCorrect ? t('quiz.correct') : t('quiz.incorrect')}</p>
+          <p className="mt-1">{currentQuestion.explanation[selectedLanguage]}</p>
         </div>
+      )}
+
+      <div className="flex justify-end">
+        {submitted ? (
+          <button
+            type="button"
+            onClick={handleNext}
+            className="rounded-xl bg-slate-900 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-800"
+          >
+            {currentIndex + 1 < filteredQuestions.length ? t('quiz.next') : t('quiz.finish')}
+          </button>
+        ) : (
+          <button
+            type="button"
+            disabled={selectedIds.length === 0}
+            onClick={handleSubmit}
+            className="rounded-xl bg-slate-900 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-500"
+          >
+            {t('quiz.submit')}
+          </button>
+        )}
+      </div>
     </div>
   )
 }
