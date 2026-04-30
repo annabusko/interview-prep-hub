@@ -31,9 +31,9 @@ export function AppSidebar() {
             end={item.end}
             className={() =>
               [
-                'rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                'rounded-xl px-3 py-2 text-sm font-medium transition-colors',
                 navItemIsActive(pathname, item.to, item.end)
-                  ? 'bg-indigo-50 text-indigo-700'
+                  ? 'bg-slate-200 text-slate-900 font-semibold'
                   : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
               ].join(' ')
             }

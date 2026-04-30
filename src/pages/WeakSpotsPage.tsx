@@ -87,28 +87,27 @@ export function WeakSpotsPage() {
 
   return (
     <div className="space-y-6">
-      <p className="max-w-2xl text-slate-600">{t('weakSpots.description')}</p>
+      <p className="text-sm text-slate-500">{t('weakSpots.description')}</p>
 
       {reviewTopics.length === 0 ? (
         <EmptyState>{t('weakSpots.emptyState')}</EmptyState>
       ) : (
-        <ul className="flex flex-col gap-4">
+        <ul className="flex flex-col gap-3">
           {reviewTopics.map((item) => (
             <li key={item.topicId}>
               <Link
                 to={PATHS.topicDetail(item.topicId)}
-                className="block rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-md"
+                className="block rounded-xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
               >
-                <div className="mb-2 flex flex-wrap items-center gap-2">
+                <div className="mb-3 flex flex-wrap items-center gap-2">
                   <Badge className="bg-slate-100 text-slate-700">{item.categoryTitle}</Badge>
-                  <Badge className="bg-indigo-50 text-indigo-700">{t(`filters.${item.level}`)}</Badge>
                   <Badge className={REASON_CLASSES[item.reason]}>
                     {t(`weakSpots.reason.${item.reason}`)}
                   </Badge>
                 </div>
                 <h2 className="text-base font-semibold text-slate-900">{item.title}</h2>
-                <p className="mt-2 line-clamp-2 text-sm text-slate-600">{item.summary}</p>
-                <span className="mt-3 inline-flex text-sm font-medium text-indigo-600">
+                <p className="mt-1.5 line-clamp-2 text-sm text-slate-500">{item.summary}</p>
+                <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-slate-600 transition-all hover:gap-2 hover:text-slate-900">
                   {t('weakSpots.openTopic')} →
                 </span>
               </Link>

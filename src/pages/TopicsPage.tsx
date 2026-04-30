@@ -13,28 +13,25 @@ function TopicCard({
   topic,
   categoryTitle,
   language,
-  levelLabel,
   openDetailsLabel,
 }: Readonly<{
   topic: Topic
   categoryTitle: string
   language: ContentLanguage
-  levelLabel: string
   openDetailsLabel: string
 }>) {
   return (
     <li className="flex">
       <Link
         to={PATHS.topicDetail(topic.id)}
-        className="flex flex-col w-full rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-md"
+        className="flex flex-col w-full rounded-xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
       >
         <div className="mb-3 flex flex-wrap items-center gap-2">
           <Badge className="bg-slate-100 text-slate-700">{categoryTitle}</Badge>
-          <Badge className="bg-indigo-50 text-indigo-700">{levelLabel}</Badge>
         </div>
         <h2 className="text-base font-semibold leading-snug text-slate-900">{topic.title[language]}</h2>
         <p className="mt-1.5 line-clamp-2 text-sm text-slate-500">{topic.summary[language]}</p>
-        <span className="mt-auto pt-4 inline-flex text-sm font-medium text-indigo-600 transition-colors hover:text-indigo-800">{openDetailsLabel} →</span>
+        <span className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-medium text-slate-600 transition-all hover:gap-2 hover:text-slate-900">{openDetailsLabel} →</span>
       </Link>
     </li>
   )
@@ -70,13 +67,10 @@ export function TopicsPage() {
   )
 
   return (
-    <div className="space-y-8">
-      <div className="space-y-1">
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">{t('nav.topics')}</h1>
-        <p className="text-sm text-slate-500">{t('topics.description')}</p>
-      </div>
+    <div className="space-y-6">
+      <p className="text-sm text-slate-500">{t('topics.description')}</p>
 
-      <section className="flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-4">
+      <section className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
           <span className="text-sm font-medium text-slate-700">{t('filters.category')}</span>
           <fieldset className="flex flex-wrap gap-2 border-none p-0 m-0">
@@ -87,8 +81,8 @@ export function TopicsPage() {
                 onClick={() => setSelectedCategoryId(id)}
                 className={
                   selectedCategoryId === id
-                    ? 'rounded-lg border border-indigo-600 bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white transition-colors'
-                    : 'rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition-colors hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-700'
+                    ? 'rounded-xl border border-slate-900 bg-slate-900 px-3 py-1.5 text-sm font-medium text-white transition-colors'
+                    : 'rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:bg-slate-100 hover:text-slate-900'
                 }
               >
                 {label}
@@ -103,20 +97,19 @@ export function TopicsPage() {
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder={t('search.placeholder')}
-            className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-800 outline-none ring-indigo-500 placeholder:text-slate-400 transition-colors hover:border-slate-400 focus:ring"
+            className="rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-800 outline-none ring-slate-400 placeholder:text-slate-400 transition-colors hover:border-slate-400 focus:ring"
           />
         </label>
       </section>
 
       {filteredTopics.length > 0 ? (
-        <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <ul className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {filteredTopics.map((topic) => (
             <TopicCard
               key={topic.id}
               topic={topic}
               categoryTitle={categoryMap.get(topic.categoryId) ?? topic.categoryId}
               language={selectedLanguage}
-              levelLabel={t(`filters.${topic.level}`)}
               openDetailsLabel={t('topics.openDetails')}
             />
           ))}

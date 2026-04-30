@@ -91,7 +91,7 @@ function buildNeedsAttention(
 
 function SummaryCard({ label, value }: Readonly<{ label: string; value: number }>) {
   return (
-    <article className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+    <article className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
       <h2 className="text-sm font-medium text-slate-500">{label}</h2>
       <p className="mt-2 text-3xl font-semibold tabular-nums text-slate-900">{value}</p>
     </article>
@@ -110,56 +110,47 @@ export function DashboardPage() {
   )
 
   return (
-    <div className="space-y-8">
-      {/* Hero */}
-      <div className="space-y-1">
-        <h2 className="text-2xl font-semibold tracking-tight text-slate-900">{t('dashboard.title')}</h2>
-        <p className="text-sm text-slate-500">{t('dashboard.tagline')}</p>
-      </div>
+    <div className="space-y-6">
+      <p className="text-sm text-slate-500">{t('dashboard.description')}</p>
 
       {/* Needs Attention — highest priority */}
       {needsAttention.length > 0 && (
-      <section className="space-y-3">
-        <h2 className="text-base font-semibold text-slate-800">{t('dashboard.needsAttention.title')}</h2>
-
-          <div className="rounded-xl border border-amber-200 bg-amber-50/50 p-5">
-            <ul className="space-y-3">
-              {needsAttention.map((item) => (
-                <li key={item.topicId} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="space-y-1.5">
-                      <p className="font-medium text-slate-900">{item.title}</p>
-                      <p className="text-sm text-slate-600">{item.summary}</p>
-                      <Badge className={REASON_CLASSES[item.reason]}>
-                        {t(`weakSpots.reason.${item.reason}`)}
-                      </Badge>
-                    </div>
-                    <Link
-                      to={PATHS.topicDetail(item.topicId)}
-                      className="shrink-0 text-sm font-medium text-indigo-600 transition-colors hover:text-indigo-800"
-                    >
-                      {t('topics.openDetails')}
-                    </Link>
+        <section className="space-y-3">
+          <h2 className="text-base font-semibold text-slate-800">{t('dashboard.needsAttention.title')}</h2>
+          <ul className="space-y-3">
+            {needsAttention.map((item) => (
+              <li key={item.topicId} className="rounded-xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="space-y-1.5">
+                    <h3 className="font-semibold text-slate-900">{item.title}</h3>
+                    <p className="text-sm text-slate-500">{item.summary}</p>
+                    <Badge className={REASON_CLASSES[item.reason]}>
+                      {t(`weakSpots.reason.${item.reason}`)}
+                    </Badge>
                   </div>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-4">
-              <Link
-                to={PATHS.weakSpots}
-                className="text-sm font-medium text-indigo-600 transition-colors hover:text-indigo-800"
-              >
-                {t('dashboard.needsAttention.viewAll')} →
-              </Link>
-            </div>
-          </div>
+                  <Link
+                    to={PATHS.topicDetail(item.topicId)}
+                    className="shrink-0 inline-flex items-center gap-1 text-sm font-medium text-slate-600 transition-all hover:gap-2 hover:text-slate-900"
+                  >
+                    {t('topics.openDetails')} →
+                  </Link>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <Link
+            to={PATHS.weakSpots}
+            className="inline-flex items-center gap-1 text-sm font-medium text-slate-600 transition-all hover:gap-2 hover:text-slate-900"
+          >
+            {t('dashboard.needsAttention.viewAll')} →
+          </Link>
         </section>
       )}
 
       {/* Progress summary */}
       <section className="space-y-3">
         <h2 className="text-base font-semibold text-slate-800">{t('dashboard.description')}</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <SummaryCard label={t('dashboard.summary.totalTopics')} value={summary.total} />
           <SummaryCard label={t('dashboard.summary.newTopics')} value={summary.newCount} />
           <SummaryCard label={t('dashboard.summary.learningTopics')} value={summary.learningCount} />
@@ -175,19 +166,19 @@ export function DashboardPage() {
         <div className="flex flex-wrap gap-3">
           <Link
             to={PATHS.quiz}
-            className="rounded-lg bg-indigo-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-indigo-700"
+            className="rounded-xl bg-slate-900 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-800"
           >
             {t('dashboard.quickActions.startQuiz')}
           </Link>
           <Link
             to={PATHS.topics}
-            className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:bg-slate-50"
+            className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:bg-slate-50"
           >
             {t('dashboard.quickActions.topics')}
           </Link>
           <Link
             to={PATHS.weakSpots}
-            className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:bg-slate-50"
+            className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition-colors hover:bg-slate-50"
           >
             {t('dashboard.quickActions.weakSpots')}
           </Link>
