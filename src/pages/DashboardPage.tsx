@@ -96,10 +96,43 @@ type SummaryCardProps = Readonly<{
   icon: React.ReactNode
 }>
 
+type RecommendationPanelProps = Readonly<{
+  icon: React.ReactNode
+  label: string
+  heading: string
+  description: string
+  actions: React.ReactNode
+  rightSlot: React.ReactNode
+}>
+
+function RecommendationPanel({ icon, label, heading, description, actions, rightSlot }: RecommendationPanelProps) {
+  return (
+    <div className="grid h-auto grid-cols-1 items-center gap-8 rounded-3xl bg-slate-50 p-8 ring-1 ring-slate-300/60 md:h-[180px] md:grid-cols-[1fr_260px]">
+      {/* Left: icon + content */}
+      <div className="flex min-w-0 items-center gap-6">
+        <div className="flex h-16 w-16 flex-none items-center justify-center rounded-2xl bg-slate-100 text-slate-600">
+          {icon}
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-400">{label}</p>
+          <h2 className="mt-1 truncate text-xl font-semibold text-slate-900">{heading}</h2>
+          <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600 line-clamp-2">{description}</p>
+          <div className="mt-3 flex flex-wrap items-center gap-3">{actions}</div>
+        </div>
+      </div>
+
+      {/* Right: support note */}
+      <div className="hidden max-w-[240px] rounded-2xl bg-white p-5 md:block">
+        {rightSlot}
+      </div>
+    </div>
+  )
+}
+
 function SummaryCard({ label, value, icon }: SummaryCardProps) {
   return (
-    <article className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-slate-100 text-slate-700">
+    <article className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-6">
+      <div className="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-slate-100 text-slate-700">
         {icon}
       </div>
       <div className="flex flex-col justify-center">
@@ -202,7 +235,7 @@ export function DashboardPage() {
         <div className="flex flex-wrap gap-3">
           <Link
             to={PATHS.quiz}
-            className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-medium text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-slate-800"
+            className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-slate-800"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
               <polygon points="5 3 19 12 5 21 5 3" />
@@ -211,7 +244,7 @@ export function DashboardPage() {
           </Link>
           <Link
             to={PATHS.topics}
-            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50"
+            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
               <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
@@ -221,7 +254,7 @@ export function DashboardPage() {
           </Link>
           <Link
             to={PATHS.weakSpots}
-            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50"
+            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
               <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
@@ -238,72 +271,62 @@ export function DashboardPage() {
         {needsAttention.length > 0 ? (() => {
           const item = needsAttention[0]
           return (
-            <div className="grid grid-cols-1 items-center gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-[auto_1fr_auto]">
-              {/* Left visual block */}
-              <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-400">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10">
+            <RecommendationPanel
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-9 w-9">
                   <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
                   <line x1="12" y1="9" x2="12" y2="13" />
                   <line x1="12" y1="17" x2="12.01" y2="17" />
                 </svg>
-              </div>
-
-              {/* Center content */}
-              <div className="space-y-3">
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-wide text-slate-400">{t('dashboard.needsAttention.title')}</p>
-                  <h2 className="mt-1 text-lg font-semibold text-slate-900">{item.title}</h2>
-                  <p className="mt-1 line-clamp-1 text-sm text-slate-500">{item.summary}</p>
-                  <div className="mt-2">
-                    <Badge className={REASON_CLASSES[item.reason]}>
-                      {t(`weakSpots.reason.${item.reason}`)}
-                    </Badge>
-                  </div>
-                </div>
-                <Link
-                  to={PATHS.topicDetail(item.topicId)}
-                  className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-slate-800"
-                >
-                  {t('topics.openDetails')} →
-                </Link>
-              </div>
-
-              {/* Right panel */}
-              <div className="shrink-0 rounded-xl bg-slate-50 p-4 md:w-48">
-                <p className="text-sm font-semibold text-slate-700">{t('dashboard.needsAttention.title')}</p>
-                <p className="mt-1.5 text-xs leading-relaxed text-slate-500">{t('dashboard.needsAttention.reviewTip')}</p>
-                <Link
-                  to={PATHS.weakSpots}
-                  className="mt-3 inline-flex items-center gap-1 text-xs text-slate-400 transition-colors hover:text-slate-600"
-                >
-                  {t('dashboard.needsAttention.viewAll')} →
-                </Link>
-              </div>
-            </div>
+              }
+              label={t('dashboard.needsAttention.title')}
+              heading={item.title}
+              description={item.summary}
+              actions={
+                <>
+                  <Link
+                    to={PATHS.topicDetail(item.topicId)}
+                    className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-slate-800"
+                  >
+                    {t('topics.openDetails')} →
+                  </Link>
+                  <Badge className={REASON_CLASSES[item.reason]}>
+                    {t(`weakSpots.reason.${item.reason}`)}
+                  </Badge>
+                </>
+              }
+              rightSlot={
+                <>
+                  <p className="text-xs font-medium text-slate-600">{t('dashboard.needsAttention.reviewTip')}</p>
+                  <Link
+                    to={PATHS.weakSpots}
+                    className="mt-3 inline-flex items-center gap-1 text-xs text-slate-400 transition-colors hover:text-slate-600"
+                  >
+                    {t('dashboard.needsAttention.viewAll')} →
+                  </Link>
+                </>
+              }
+            />
           )
         })() : (
-          <div className="grid grid-cols-1 items-center gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-[auto_1fr_auto]">
-            {/* Left visual block */}
-            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-400">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10">
+          <RecommendationPanel
+            icon={
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-9 w-9">
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
                 <line x1="9" y1="7" x2="15" y2="7" />
                 <line x1="9" y1="11" x2="15" y2="11" />
                 <line x1="9" y1="15" x2="13" y2="15" />
               </svg>
-            </div>
-
-            {/* Center content */}
-            <div className="space-y-3">
-              <div>
-                <h2 className="text-lg font-semibold text-slate-900">{t('dashboard.continueLearning.title')}</h2>
-                <p className="mt-1 text-sm text-slate-500">{t('dashboard.continueLearning.description')}</p>
-              </div>
-              <div className="flex flex-wrap gap-3">
+            }
+            label={t('dashboard.continueLearning.next')}
+            heading={t('dashboard.continueLearning.title')}
+            description={t('dashboard.continueLearning.description')}
+            actions={
+              <>
                 <Link
                   to={PATHS.topics}
-                  className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-slate-800"
+                  className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-slate-800"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
                     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
@@ -320,21 +343,12 @@ export function DashboardPage() {
                   </svg>
                   {t('dashboard.continueLearning.takeQuiz')}
                 </Link>
-              </div>
-            </div>
-
-            {/* Right progress mini-panel */}
-            <div className="shrink-0 rounded-xl bg-slate-50 p-4 md:w-48">
-              <p className="text-sm font-semibold text-slate-700">{t('dashboard.continueLearning.progressTitle')}</p>
-              <p className="mt-1.5 text-xs leading-relaxed text-slate-500">{t('dashboard.continueLearning.progressText')}</p>
-              <Link
-                to={PATHS.weakSpots}
-                className="mt-3 inline-flex items-center gap-1 text-xs text-slate-400 transition-colors hover:text-slate-600"
-              >
-                {t('dashboard.needsAttention.viewAll')} →
-              </Link>
-            </div>
-          </div>
+              </>
+            }
+            rightSlot={
+              <p className="text-xs leading-relaxed text-slate-600">{t('dashboard.continueLearning.progressText')}</p>
+            }
+          />
         )}
       </section>
     </div>

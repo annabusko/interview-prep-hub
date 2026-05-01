@@ -73,8 +73,8 @@ export function TopicDetailPage() {
       </div>
 
       {/* Status */}
-      <section className="space-y-4 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h2 className="text-base font-semibold text-slate-800">{t('topicDetails.statusLabel')}</h2>
+      <section className="space-y-4 rounded-2xl bg-slate-50 p-6">
+        <h2 className="text-lg font-semibold text-slate-900">{t('topicDetails.statusLabel')}</h2>
         <div className="flex flex-wrap gap-2">
           {TOPIC_STATUSES.map((status) => {
             const isActive = currentStatus === status
@@ -101,8 +101,8 @@ export function TopicDetailPage() {
       </section>
 
       {/* Content */}
-      <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h2 className="mb-4 text-base font-semibold text-slate-800">{t('topicDetails.pageTitle')}</h2>
+      <section className="rounded-2xl bg-slate-50 p-6">
+        <h2 className="mb-4 text-lg font-semibold text-slate-900">{t('topicDetails.pageTitle')}</h2>
         <article className="max-w-prose whitespace-pre-line text-base leading-relaxed text-slate-700">
           {topic.content[selectedLanguage]}
         </article>
