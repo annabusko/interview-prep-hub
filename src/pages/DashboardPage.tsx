@@ -125,40 +125,6 @@ export function DashboardPage() {
     <div className="space-y-8">
       <p className="text-sm text-slate-500">{t('dashboard.description')}</p>
 
-      {/* Needs Attention — highest priority */}
-      {needsAttention.length > 0 && (
-        <section className="space-y-3">
-          <h2 className="text-lg font-semibold text-slate-900">{t('dashboard.needsAttention.title')}</h2>
-          <ul className="space-y-3">
-            {needsAttention.map((item) => (
-              <li key={item.topicId} className="rounded-2xl border border-slate-200 bg-white p-5 transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="space-y-1.5">
-                    <h3 className="font-semibold text-slate-900">{item.title}</h3>
-                    <p className="text-sm text-slate-500">{item.summary}</p>
-                    <Badge className={REASON_CLASSES[item.reason]}>
-                      {t(`weakSpots.reason.${item.reason}`)}
-                    </Badge>
-                  </div>
-                  <Link
-                    to={PATHS.topicDetail(item.topicId)}
-                    className="shrink-0 inline-flex items-center gap-1 text-sm font-medium text-slate-600 transition-all hover:gap-2 hover:text-slate-900"
-                  >
-                    {t('topics.openDetails')} →
-                  </Link>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <Link
-            to={PATHS.weakSpots}
-            className="inline-flex items-center gap-1 text-sm font-medium text-slate-600 transition-all hover:gap-2 hover:text-slate-900"
-          >
-            {t('dashboard.needsAttention.viewAll')} →
-          </Link>
-        </section>
-      )}
-
       {/* Progress summary */}
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-slate-900">{t('dashboard.summary.title')}</h2>
@@ -265,6 +231,111 @@ export function DashboardPage() {
             {t('dashboard.quickActions.weakSpots')}
           </Link>
         </div>
+      </section>
+
+      {/* Recommendation area: Needs Attention when applicable, otherwise Continue Learning */}
+      <section>
+        {needsAttention.length > 0 ? (() => {
+          const item = needsAttention[0]
+          return (
+            <div className="grid grid-cols-1 items-center gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-[auto_1fr_auto]">
+              {/* Left visual block */}
+              <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-400">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                  <line x1="12" y1="9" x2="12" y2="13" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+              </div>
+
+              {/* Center content */}
+              <div className="space-y-3">
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-wide text-slate-400">{t('dashboard.needsAttention.title')}</p>
+                  <h2 className="mt-1 text-lg font-semibold text-slate-900">{item.title}</h2>
+                  <p className="mt-1 line-clamp-1 text-sm text-slate-500">{item.summary}</p>
+                  <div className="mt-2">
+                    <Badge className={REASON_CLASSES[item.reason]}>
+                      {t(`weakSpots.reason.${item.reason}`)}
+                    </Badge>
+                  </div>
+                </div>
+                <Link
+                  to={PATHS.topicDetail(item.topicId)}
+                  className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-slate-800"
+                >
+                  {t('topics.openDetails')} →
+                </Link>
+              </div>
+
+              {/* Right panel */}
+              <div className="shrink-0 rounded-xl bg-slate-50 p-4 md:w-48">
+                <p className="text-sm font-semibold text-slate-700">{t('dashboard.needsAttention.title')}</p>
+                <p className="mt-1.5 text-xs leading-relaxed text-slate-500">{t('dashboard.needsAttention.reviewTip')}</p>
+                <Link
+                  to={PATHS.weakSpots}
+                  className="mt-3 inline-flex items-center gap-1 text-xs text-slate-400 transition-colors hover:text-slate-600"
+                >
+                  {t('dashboard.needsAttention.viewAll')} →
+                </Link>
+              </div>
+            </div>
+          )
+        })() : (
+          <div className="grid grid-cols-1 items-center gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-[auto_1fr_auto]">
+            {/* Left visual block */}
+            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-400">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                <line x1="9" y1="7" x2="15" y2="7" />
+                <line x1="9" y1="11" x2="15" y2="11" />
+                <line x1="9" y1="15" x2="13" y2="15" />
+              </svg>
+            </div>
+
+            {/* Center content */}
+            <div className="space-y-3">
+              <div>
+                <h2 className="text-lg font-semibold text-slate-900">{t('dashboard.continueLearning.title')}</h2>
+                <p className="mt-1 text-sm text-slate-500">{t('dashboard.continueLearning.description')}</p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  to={PATHS.topics}
+                  className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-slate-800"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                  </svg>
+                  {t('dashboard.continueLearning.goToTopics')}
+                </Link>
+                <Link
+                  to={PATHS.quiz}
+                  className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                    <polygon points="5 3 19 12 5 21 5 3" />
+                  </svg>
+                  {t('dashboard.continueLearning.takeQuiz')}
+                </Link>
+              </div>
+            </div>
+
+            {/* Right progress mini-panel */}
+            <div className="shrink-0 rounded-xl bg-slate-50 p-4 md:w-48">
+              <p className="text-sm font-semibold text-slate-700">{t('dashboard.continueLearning.progressTitle')}</p>
+              <p className="mt-1.5 text-xs leading-relaxed text-slate-500">{t('dashboard.continueLearning.progressText')}</p>
+              <Link
+                to={PATHS.weakSpots}
+                className="mt-3 inline-flex items-center gap-1 text-xs text-slate-400 transition-colors hover:text-slate-600"
+              >
+                {t('dashboard.needsAttention.viewAll')} →
+              </Link>
+            </div>
+          </div>
+        )}
       </section>
     </div>
   )

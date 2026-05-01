@@ -57,7 +57,8 @@
     "needsAttention": {
       "title": "Needs Attention",
       "emptyState": "No weak spots for your current level. Keep it up!",
-      "viewAll": "View all weak spots"
+      "viewAll": "View all weak spots",
+      "reviewTip": "Review this topic to strengthen your knowledge."
     },
     "quickActions": {
       "title": "Quick Actions",
@@ -65,6 +66,17 @@
       "topics": "Topics",
       "quiz": "Quiz",
       "weakSpots": "Weak Spots"
+    },
+    "continueLearning": {
+      "title": "Continue Learning",
+      "viewAll": "Browse all topics",
+      "next": "Up next",
+      "description": "Pick up where you left off. Study topics for your level or reinforce knowledge with a quick quiz.",
+      "goToTopics": "Browse topics",
+      "takeQuiz": "Take a quiz",
+      "progressTitle": "Your progress",
+      "progressText": "Keep going — consistent short sessions lead to lasting results.",
+      "viewStats": "View statistics"
     }
   },
   "weakSpots": {
