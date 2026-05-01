@@ -72,7 +72,7 @@ export function TopicsPage() {
 
       <section className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <span className="text-sm font-medium text-slate-700">{t('filters.category')}</span>
+          <span className="text-sm font-medium text-slate-900">{t('filters.category')}</span>
           <fieldset className="flex flex-wrap gap-2 border-none p-0 m-0">
             {[{ id: 'all', label: t('filters.allCategories') }, ...categories.map((c) => ({ id: c.id, label: c.title[selectedLanguage] }))].map(({ id, label }) => (
               <button
@@ -92,7 +92,7 @@ export function TopicsPage() {
         </div>
 
         <label className="flex flex-col gap-2">
-          <span className="text-sm font-medium text-slate-700">{t('search.label')}</span>
+          <span className="text-sm font-medium text-slate-900">{t('search.label')}</span>
           <input
             value={search}
             onChange={(event) => setSearch(event.target.value)}

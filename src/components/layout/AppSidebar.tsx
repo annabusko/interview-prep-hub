@@ -78,12 +78,6 @@ export function AppSidebar() {
           )
         })}
       </nav>
-      <div className="mt-auto pt-6">
-        <div className="rounded-xl bg-slate-100 p-4">
-          <p className="text-sm font-medium text-slate-900">{t('nav.tipTitle')}</p>
-          <p className="mt-1 text-xs text-slate-500">{t('nav.tipText')}</p>
-        </div>
-      </div>
     </aside>
   )
 }

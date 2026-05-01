@@ -71,7 +71,7 @@ function QuizSession({ filteredQuestions, selectedLevel, selectedLanguage }: Rea
         <button
           type="button"
           onClick={handleRestart}
-          className="mt-6 rounded-xl bg-slate-900 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-800"
+          className="mt-6 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-800"
         >
           {t('quiz.restart')}
         </button>
