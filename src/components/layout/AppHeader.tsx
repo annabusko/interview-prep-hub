@@ -41,7 +41,7 @@ export function AppHeader() {
                 className={[
                   'rounded-full px-3 py-1.5 text-sm font-medium transition-all',
                   selectedLevel === level
-                    ? 'bg-white text-slate-900 shadow-sm'
+                    ? 'bg-white text-slate-900'
                     : 'text-slate-300 hover:text-white',
                 ].join(' ')}
               >

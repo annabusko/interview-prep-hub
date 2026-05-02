@@ -63,7 +63,7 @@ function QuizSession({ filteredQuestions, selectedLevel, selectedLanguage }: Rea
 
   if (isCompleted) {
     return (
-      <div className="rounded-xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+      <div className="rounded-2xl bg-slate-50 p-6 text-center">
         <p className="text-lg font-semibold text-slate-900">{t('quiz.completed')}</p>
         <p className="mt-1.5 text-sm text-slate-500">
           {t('quiz.completedMessage', { count: filteredQuestions.length })}
@@ -85,7 +85,7 @@ function QuizSession({ filteredQuestions, selectedLevel, selectedLanguage }: Rea
       [...currentQuestion.correctAnswerIds].sort((a, b) => a.localeCompare(b)).join(',');
 
   return (
-    <div className="space-y-5 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+    <div className="space-y-5 rounded-2xl bg-slate-50 p-6">
       <div className="flex items-center justify-between">
         <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
           {t('quiz.progress', { current: currentIndex + 1, total: filteredQuestions.length })}

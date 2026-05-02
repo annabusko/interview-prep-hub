@@ -98,7 +98,7 @@ export function WeakSpotsPage() {
             <li key={item.topicId}>
               <Link
                 to={PATHS.topicDetail(item.topicId)}
-                className="block rounded-xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+                className="block rounded-xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-slate-300"
               >
                 <div className="mb-3 flex flex-wrap items-center gap-2">
                   <Badge className="bg-slate-100 text-slate-700">{item.categoryTitle}</Badge>

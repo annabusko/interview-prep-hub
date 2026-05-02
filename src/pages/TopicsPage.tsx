@@ -25,7 +25,7 @@ function TopicCard({
     <li className="flex">
       <Link
         to={PATHS.topicDetail(topic.id)}
-        className="flex flex-col w-full rounded-xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+        className="flex flex-col w-full rounded-xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50"
       >
         <div className="mb-3 flex flex-wrap items-center gap-2">
           <Badge className="bg-slate-100 text-slate-700">{categoryTitle}</Badge>
