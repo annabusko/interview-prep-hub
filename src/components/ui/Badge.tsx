@@ -13,5 +13,5 @@ export function Badge({
     >
       {children}
     </span>
-  )
+  );
 }

@@ -5,7 +5,7 @@ import { BookOpenIcon, BookOpenLinesIcon, PlayIcon } from '../icons/DashboardIco
 import { RecommendationPanel } from '../RecommendationPanel/RecommendationPanel';
 
 export function ContinueLearningRecommendation() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <RecommendationPanel
@@ -35,5 +35,5 @@ export function ContinueLearningRecommendation() {
         <p className="text-xs leading-relaxed text-slate-600">{t('dashboard.continueLearning.progressText')}</p>
       }
     />
-  )
+  );
 }

@@ -61,15 +61,15 @@ export function getTopicStatus(topicId: string): TopicStatus {
 }
 
 export function setTopicStatus(topicId: string, status: TopicStatus): void {
-  const progress = readTopicProgress()
-  const now = new Date().toISOString()
-  const existingIndex = progress.findIndex((item) => item.topicId === topicId)
+  const progress = readTopicProgress();
+  const now = new Date().toISOString();
+  const existingIndex = progress.findIndex((item) => item.topicId === topicId);
 
   if (existingIndex === -1) {
-    progress.push({ topicId, status, lastReviewedAt: now })
+    progress.push({ topicId, status, lastReviewedAt: now });
   } else {
-    progress[existingIndex] = { ...progress[existingIndex], status, lastReviewedAt: now }
+    progress[existingIndex] = { ...progress[existingIndex], status, lastReviewedAt: now };
   }
 
-  writeTopicProgress(progress)
+  writeTopicProgress(progress);
 }

@@ -154,4 +154,4 @@ export const topics: Topic[] = [
       en: 'Concurrent React can interrupt and resume rendering of lower-priority work. `startTransition` marks updates as non-urgent. `<Suspense>` shows a fallback while children wait for data or code. Senior interviews explore urgent vs deferred updates and perceived performance.',
     },
   },
-]
+];

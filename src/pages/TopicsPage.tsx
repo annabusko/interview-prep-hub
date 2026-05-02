@@ -35,7 +35,7 @@ function TopicCard({
         <span className="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-medium text-slate-600 transition-all hover:gap-2 hover:text-slate-900">{openDetailsLabel} →</span>
       </Link>
     </li>
-  )
+  );
 }
 
 export function TopicsPage() {

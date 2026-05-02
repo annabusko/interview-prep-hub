@@ -11,5 +11,5 @@ export function SummaryCard({ label, value, icon }: SummaryCardProps) {
         <p className="mt-1 text-3xl font-semibold leading-none tabular-nums text-slate-900">{value}</p>
       </div>
     </article>
-  )
+  );
 }

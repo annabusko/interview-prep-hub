@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Badge } from '../../../../components/ui/Badge';
-import { REASON_CLASSES } from '../../../../domain/reviewReason'
-import { PATHS } from '../../../../routes/paths'
-import { WarningTriangleIcon } from '../icons/DashboardIcons'
-import { RecommendationPanel } from '../RecommendationPanel/RecommendationPanel'
-import type { NeedsAttentionRecommendationProps } from './NeedsAttentionRecommendation.types'
+import { REASON_CLASSES } from '../../../../domain/reviewReason';
+import { PATHS } from '../../../../routes/paths';
+import { WarningTriangleIcon } from '../icons/DashboardIcons';
+import { RecommendationPanel } from '../RecommendationPanel/RecommendationPanel';
+import type { NeedsAttentionRecommendationProps } from './NeedsAttentionRecommendation.types';
 
 export function NeedsAttentionRecommendation({ item }: NeedsAttentionRecommendationProps) {
   const { t } = useTranslation();
