@@ -1,4 +1,4 @@
-import 'react-router'
+import 'react-router';
 
 declare module 'react-router' {
   interface RouteHandle {

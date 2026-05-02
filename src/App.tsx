@@ -1,6 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { AppLayout } from './components/layout/AppLayout'
-import { DashboardPage } from './pages/DashboardPage'
+import { DashboardPage } from './pages/DashboardPage/DashboardPage'
 import { QuizPage } from './pages/QuizPage'
 import { TopicDetailPage } from './pages/TopicDetailPage'
 import { TopicsPage } from './pages/TopicsPage'

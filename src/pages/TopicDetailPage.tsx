@@ -1,37 +1,39 @@
-import { useMemo, useState } from 'react'
-import type { TopicStatus } from '../domain/models'
-import { useTranslation } from 'react-i18next'
-import { Link, useParams } from 'react-router-dom'
-import { usePreferences } from '../app/providers/preferences/usePreferences'
-import { useTopicProgress } from '../app/topic-progress/useTopicProgress'
-import { categories } from '../data/categories'
-import { topics } from '../data/topics'
-import { PATHS } from '../routes/paths'
-import { Badge } from '../components/ui/Badge'
 
-const TOPIC_STATUSES: TopicStatus[] = ['new', 'learning', 'strong', 'weak']
+import { useMemo, useState } from 'react';
+import type { TopicStatus } from '../domain/models';
+import { useTranslation } from 'react-i18next';
+import { Link, useParams } from 'react-router-dom';
+import { usePreferences } from '../app/providers/preferences/usePreferences';
+import { useTopicProgress } from '../app/topic-progress/useTopicProgress';
+import { categories } from '../data/categories';
+import { topics } from '../data/topics';
+import { PATHS } from '../routes/paths';
+import { Badge } from '../components/ui/Badge';
+
+const TOPIC_STATUSES: TopicStatus[] = ['new', 'learning', 'strong', 'weak'];
 
 export function TopicDetailPage() {
-  const { t } = useTranslation()
-  const { topicId } = useParams<{ topicId: string }>()
+
+  const { t } = useTranslation();
+  const { topicId } = useParams<{ topicId: string }>();
   const {
     preferences: { selectedLanguage },
-  } = usePreferences()
-  const { getTopicStatus, setTopicStatus } = useTopicProgress()
+  } = usePreferences();
+  const { getTopicStatus, setTopicStatus } = useTopicProgress();
   const [currentStatus, setCurrentStatus] = useState<TopicStatus>(
     () => (topicId ? getTopicStatus(topicId) : 'new'),
-  )
+  );
 
   const topic = useMemo(
     () => topics.find((item) => item.id === topicId),
     [topicId],
-  )
+  );
 
   const categoryTitle = useMemo(() => {
-    if (!topic) return ''
-    const category = categories.find((item) => item.id === topic.categoryId)
-    return category ? category.title[selectedLanguage] : topic.categoryId
-  }, [selectedLanguage, topic])
+    if (!topic) return '';
+    const category = categories.find((item) => item.id === topic.categoryId);
+    return category ? category.title[selectedLanguage] : topic.categoryId;
+  }, [selectedLanguage, topic]);
 
   if (!topicId) {
     return (
@@ -41,7 +43,7 @@ export function TopicDetailPage() {
           {t('topicDetails.backToTopics')}
         </Link>
       </p>
-    )
+    );
   }
 
   if (!topic) {
@@ -55,7 +57,7 @@ export function TopicDetailPage() {
           {t('topicDetails.backToTopics')}
         </Link>
       </div>
-    )
+    );
   }
 
   return (
@@ -77,14 +79,14 @@ export function TopicDetailPage() {
         <h2 className="text-base font-semibold text-slate-800">{t('topicDetails.statusLabel')}</h2>
         <div className="flex flex-wrap gap-2">
           {TOPIC_STATUSES.map((status) => {
-            const isActive = currentStatus === status
+            const isActive = currentStatus === status;
             return (
               <button
                 key={status}
                 type="button"
                 onClick={() => {
-                  setTopicStatus(topic.id, status)
-                  setCurrentStatus(status)
+                  setTopicStatus(topic.id, status);
+                  setCurrentStatus(status);
                 }}
                 className={[
                   'rounded-xl border px-4 py-2 text-sm font-medium transition-colors',
@@ -95,7 +97,7 @@ export function TopicDetailPage() {
               >
                 {t(`topicStatus.${status}`)}
               </button>
-            )
+            );
           })}
         </div>
       </section>
@@ -115,5 +117,5 @@ export function TopicDetailPage() {
         ← {t('topicDetails.backToTopics')}
       </Link>
     </div>
-  )
+  );
 }

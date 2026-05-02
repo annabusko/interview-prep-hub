@@ -1,4 +1,4 @@
-import type { Question } from '../domain/models'
+import type { Question } from '../domain/models';
 
 export const questions: Question[] = [
   {

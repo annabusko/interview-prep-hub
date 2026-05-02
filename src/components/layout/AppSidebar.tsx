@@ -1,15 +1,16 @@
-import type { ReactNode } from 'react'
-import { useTranslation } from 'react-i18next'
-import { NavLink, useLocation } from 'react-router-dom'
-import { PATHS } from '../../routes/paths'
-import { NAV_ITEMS } from './navConfig'
+
+import type { ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
+import { NavLink, useLocation } from 'react-router-dom';
+import { PATHS } from '../../routes/paths';
+import { NAV_ITEMS } from './navConfig';
 
 function navItemIsActive(pathname: string, to: string, end: boolean | undefined): boolean {
-  if (end) return pathname === to
+  if (end) return pathname === to;
   if (to === PATHS.topics) {
-    return pathname === PATHS.topics || pathname.startsWith(`${PATHS.topics}/`)
+    return pathname === PATHS.topics || pathname.startsWith(`${PATHS.topics}/`);
   }
-  return pathname === to || pathname.startsWith(`${to}/`)
+  return pathname === to || pathname.startsWith(`${to}/`);
 }
 
 const NAV_ICONS: Record<string, ReactNode> = {
@@ -44,8 +45,8 @@ const NAV_ICONS: Record<string, ReactNode> = {
 }
 
 export function AppSidebar() {
-  const { pathname } = useLocation()
-  const { t } = useTranslation()
+  const { pathname } = useLocation();
+  const { t } = useTranslation();
 
   return (
     <aside className="flex w-56 shrink-0 flex-col border-r border-slate-200 bg-slate-50 py-6 px-4">
@@ -57,7 +58,7 @@ export function AppSidebar() {
       </div>
       <nav className="flex flex-1 flex-col gap-1" aria-label="Main">
         {NAV_ITEMS.map((item) => {
-          const isActive = navItemIsActive(pathname, item.to, item.end)
+          const isActive = navItemIsActive(pathname, item.to, item.end);
           return (
             <NavLink
               key={item.to}
@@ -75,9 +76,9 @@ export function AppSidebar() {
               {NAV_ICONS[item.to]}
               {t(item.label)}
             </NavLink>
-          )
+          );
         })}
       </nav>
     </aside>
-  )
+  );
 }

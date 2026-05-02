@@ -1,65 +1,65 @@
-import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { usePreferences } from '../app/providers/preferences/usePreferences'
-import { useQuizAttempts } from '../app/quiz/useQuizAttempts'
-import { questions as allQuestions } from '../data/questions'
-import type { InterviewLevel, ContentLanguage } from '../domain/models'
-import { EmptyState } from '../components/ui/EmptyState'
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { usePreferences } from '../app/providers/preferences/usePreferences';
+import { useQuizAttempts } from '../app/quiz/useQuizAttempts';
+import { questions as allQuestions } from '../data/questions';
+import type { InterviewLevel, ContentLanguage } from '../domain/models';
+import { EmptyState } from '../components/ui/EmptyState';
 
 type QuizSessionProps = {
-  filteredQuestions: typeof allQuestions
-  selectedLevel: InterviewLevel
-  selectedLanguage: ContentLanguage
-}
+  filteredQuestions: typeof allQuestions;
+  selectedLevel: InterviewLevel;
+  selectedLanguage: ContentLanguage;
+};
 
 function QuizSession({ filteredQuestions, selectedLevel, selectedLanguage }: Readonly<QuizSessionProps>) {
-  const { t } = useTranslation()
-  const { addQuizAttempt } = useQuizAttempts()
+  const { t } = useTranslation();
+  const { addQuizAttempt } = useQuizAttempts();
 
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [selectedIds, setSelectedIds] = useState<string[]>([])
-  const [submitted, setSubmitted] = useState(false)
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [submitted, setSubmitted] = useState(false);
 
-  const isCompleted = currentIndex >= filteredQuestions.length
-  const currentQuestion = filteredQuestions[currentIndex]
+  const isCompleted = currentIndex >= filteredQuestions.length;
+  const currentQuestion = filteredQuestions[currentIndex];
 
   const handleSelect = (id: string) => {
-    if (submitted) return
+    if (submitted) return;
     if (currentQuestion.type === 'single') {
-      setSelectedIds([id])
+      setSelectedIds([id]);
     } else {
       setSelectedIds((prev) =>
         prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
-      )
+      );
     }
-  }
+  };
 
   const handleSubmit = () => {
-    if (selectedIds.length === 0) return
+    if (selectedIds.length === 0) return;
     const correct =
       [...selectedIds].sort((a, b) => a.localeCompare(b)).join(',') ===
-      [...currentQuestion.correctAnswerIds].sort((a, b) => a.localeCompare(b)).join(',')
+      [...currentQuestion.correctAnswerIds].sort((a, b) => a.localeCompare(b)).join(',');
     addQuizAttempt({
       questionId: currentQuestion.id,
       topicId: currentQuestion.topicId,
       correct,
       level: selectedLevel,
       shownLanguage: selectedLanguage,
-    })
-    setSubmitted(true)
-  }
+    });
+    setSubmitted(true);
+  };
 
   const handleNext = () => {
-    setCurrentIndex((i) => i + 1)
-    setSelectedIds([])
-    setSubmitted(false)
-  }
+    setCurrentIndex((i) => i + 1);
+    setSelectedIds([]);
+    setSubmitted(false);
+  };
 
   const handleRestart = () => {
-    setCurrentIndex(0)
-    setSelectedIds([])
-    setSubmitted(false)
-  }
+    setCurrentIndex(0);
+    setSelectedIds([]);
+    setSubmitted(false);
+  };
 
   if (isCompleted) {
     return (
@@ -76,13 +76,13 @@ function QuizSession({ filteredQuestions, selectedLevel, selectedLanguage }: Rea
           {t('quiz.restart')}
         </button>
       </div>
-    )
+    );
   }
 
   const isCorrect =
     submitted &&
     [...selectedIds].sort((a, b) => a.localeCompare(b)).join(',') ===
-      [...currentQuestion.correctAnswerIds].sort((a, b) => a.localeCompare(b)).join(',')
+      [...currentQuestion.correctAnswerIds].sort((a, b) => a.localeCompare(b)).join(',');
 
   return (
     <div className="space-y-5 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -97,25 +97,25 @@ function QuizSession({ filteredQuestions, selectedLevel, selectedLanguage }: Rea
 
       <ul className="flex flex-col gap-3">
         {currentQuestion.options.map((option) => {
-          const isSelected = selectedIds.includes(option.id)
+          const isSelected = selectedIds.includes(option.id);
           const isCorrectOption =
-            submitted && currentQuestion.correctAnswerIds.includes(option.id)
+            submitted && currentQuestion.correctAnswerIds.includes(option.id);
           const isWrongSelected =
-            submitted && isSelected && !currentQuestion.correctAnswerIds.includes(option.id)
+            submitted && isSelected && !currentQuestion.correctAnswerIds.includes(option.id);
 
-          let optionClass = 'w-full rounded-xl border p-4 text-left text-sm transition-all'
+          let optionClass = 'w-full rounded-xl border p-4 text-left text-sm transition-all';
           if (submitted) {
             if (isCorrectOption) {
-              optionClass += ' border-green-400 bg-green-50 text-green-900 font-medium'
+              optionClass += ' border-green-400 bg-green-50 text-green-900 font-medium';
             } else if (isWrongSelected) {
-              optionClass += ' border-red-400 bg-red-50 text-red-900'
+              optionClass += ' border-red-400 bg-red-50 text-red-900';
             } else {
-              optionClass += ' border-slate-200 bg-white text-slate-400'
+              optionClass += ' border-slate-200 bg-white text-slate-400';
             }
           } else {
             optionClass += isSelected
               ? ' cursor-pointer border-slate-900 bg-slate-100 font-medium text-slate-900'
-              : ' cursor-pointer border-slate-200 bg-white text-slate-700 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-slate-50'
+              : ' cursor-pointer border-slate-200 bg-white text-slate-700 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-slate-50';
           }
 
           return (
@@ -129,7 +129,7 @@ function QuizSession({ filteredQuestions, selectedLevel, selectedLanguage }: Rea
                 {option.text[selectedLanguage]}
               </button>
             </li>
-          )
+          );
         })}
       </ul>
 
@@ -167,15 +167,15 @@ function QuizSession({ filteredQuestions, selectedLevel, selectedLanguage }: Rea
         )}
       </div>
     </div>
-  )
+  );
 }
 
 export function QuizPage() {
-  const { t } = useTranslation()
-  const { preferences } = usePreferences()
-  const { selectedLevel, selectedLanguage } = preferences
+  const { t } = useTranslation();
+  const { preferences } = usePreferences();
+  const { selectedLevel, selectedLanguage } = preferences;
 
-  const filteredQuestions = allQuestions.filter((q) => q.level === selectedLevel)
+  const filteredQuestions = allQuestions.filter((q) => q.level === selectedLevel);
 
   if (filteredQuestions.length === 0) {
     return (
@@ -183,7 +183,7 @@ export function QuizPage() {
         <p className="text-sm text-slate-500">{t('quiz.description')}</p>
         <EmptyState>{t('quiz.noQuestions')}</EmptyState>
       </div>
-    )
+    );
   }
 
   return (
@@ -196,5 +196,5 @@ export function QuizPage() {
         selectedLanguage={selectedLanguage}
       />
     </div>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import type { Category } from '../domain/models'
+import type { Category } from '../domain/models';
 
 export const categories: Category[] = [
   {
@@ -22,4 +22,4 @@ export const categories: Category[] = [
       en: 'React',
     },
   },
-]
+];
