@@ -1,22 +1,22 @@
-import type { TopicProgress, TopicStatus } from '../../domain/models'
+import type { TopicProgress, TopicStatus } from '../../domain/models';
 
-const TOPIC_PROGRESS_STORAGE_KEY = 'interview-prep-hub:topic-progress'
-const TOPIC_STATUSES = new Set<TopicStatus>(['new', 'learning', 'strong', 'weak'])
+const TOPIC_PROGRESS_STORAGE_KEY = 'interview-prep-hub:topic-progress';
+const TOPIC_STATUSES = new Set<TopicStatus>(['new', 'learning', 'strong', 'weak']);
 
 function isTopicStatus(value: unknown): value is TopicStatus {
-  return typeof value === 'string' && TOPIC_STATUSES.has(value as TopicStatus)
+  return typeof value === 'string' && TOPIC_STATUSES.has(value as TopicStatus);
 }
 
 function parseTopicProgress(raw: string): TopicProgress[] {
   try {
-    const parsed: unknown = JSON.parse(raw)
-    if (!Array.isArray(parsed)) return []
+    const parsed: unknown = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
 
     return parsed.flatMap((item) => {
-      if (!item || typeof item !== 'object') return []
+      if (!item || typeof item !== 'object') return [];
 
-      const candidate = item as Partial<TopicProgress>
-      if (typeof candidate.topicId !== 'string' || !isTopicStatus(candidate.status)) return []
+      const candidate = item as Partial<TopicProgress>;
+      if (typeof candidate.topicId !== 'string' || !isTopicStatus(candidate.status)) return [];
 
       return [
         {
@@ -25,39 +25,39 @@ function parseTopicProgress(raw: string): TopicProgress[] {
           lastReviewedAt:
             typeof candidate.lastReviewedAt === 'string' ? candidate.lastReviewedAt : undefined,
         },
-      ]
-    })
+      ];
+    });
   } catch {
-    return []
+    return [];
   }
 }
 
 export function readTopicProgress(): TopicProgress[] {
-  if (globalThis.window === undefined) return []
+  if (globalThis.window === undefined) return [];
 
   try {
-    const raw = globalThis.localStorage.getItem(TOPIC_PROGRESS_STORAGE_KEY)
-    if (!raw) return []
-    return parseTopicProgress(raw)
+    const raw = globalThis.localStorage.getItem(TOPIC_PROGRESS_STORAGE_KEY);
+    if (!raw) return [];
+    return parseTopicProgress(raw);
   } catch {
-    return []
+    return [];
   }
 }
 
 export function writeTopicProgress(progress: TopicProgress[]): void {
-  if (globalThis.window === undefined) return
+  if (globalThis.window === undefined) return;
 
   try {
-    globalThis.localStorage.setItem(TOPIC_PROGRESS_STORAGE_KEY, JSON.stringify(progress))
+    globalThis.localStorage.setItem(TOPIC_PROGRESS_STORAGE_KEY, JSON.stringify(progress));
   } catch {
     // Fail silently in private mode or if storage quota is exceeded.
   }
 }
 
 export function getTopicStatus(topicId: string): TopicStatus {
-  const progress = readTopicProgress()
-  const entry = progress.find((item) => item.topicId === topicId)
-  return entry?.status ?? 'new'
+  const progress = readTopicProgress();
+  const entry = progress.find((item) => item.topicId === topicId);
+  return entry?.status ?? 'new';
 }
 
 export function setTopicStatus(topicId: string, status: TopicStatus): void {

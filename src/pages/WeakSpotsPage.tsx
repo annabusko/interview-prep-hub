@@ -1,65 +1,66 @@
-import { useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
-import { usePreferences } from '../app/providers/preferences/usePreferences'
-import { readQuizAttempts } from '../app/quiz/quizAttempts.storage'
-import { readTopicProgress } from '../app/topic-progress/topicProgress.storage'
-import { categories } from '../data/categories'
-import { questions } from '../data/questions'
-import { topics } from '../data/topics'
-import type { ContentLanguage } from '../domain/models'
-import type { ReviewReason } from '../domain/reviewReason'
-import { REASON_CLASSES } from '../domain/reviewReason'
-import { PATHS } from '../routes/paths'
-import { Badge } from '../components/ui/Badge'
-import { EmptyState } from '../components/ui/EmptyState'
+
+import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { usePreferences } from '../app/providers/preferences/usePreferences';
+import { readQuizAttempts } from '../app/quiz/quizAttempts.storage';
+import { readTopicProgress } from '../app/topic-progress/topicProgress.storage';
+import { categories } from '../data/categories';
+import { questions } from '../data/questions';
+import { topics } from '../data/topics';
+import type { ContentLanguage } from '../domain/models';
+import type { ReviewReason } from '../domain/reviewReason';
+import { REASON_CLASSES } from '../domain/reviewReason';
+import { PATHS } from '../routes/paths';
+import { Badge } from '../components/ui/Badge';
+import { EmptyState } from '../components/ui/EmptyState';
 
 type ReviewTopic = {
-  topicId: string
-  title: string
-  summary: string
-  categoryTitle: string
-  level: string
-  reason: ReviewReason
-}
+  topicId: string;
+  title: string;
+  summary: string;
+  categoryTitle: string;
+  level: string;
+  reason: ReviewReason;
+};
 
 function buildReviewTopics(selectedLevel: string, selectedLanguage: ContentLanguage): ReviewTopic[] {
-  const progress = readTopicProgress()
-  const attempts = readQuizAttempts()
+  const progress = readTopicProgress();
+  const attempts = readQuizAttempts();
 
   const weakTopicIds = new Set(
     progress.filter((p) => p.status === 'weak').map((p) => p.topicId),
-  )
+  );
 
   const topicsWithMistakes = new Set(
     attempts
       .filter((a) => !a.correct && a.level === selectedLevel)
       .map((a) => {
-        const question = questions.find((q) => q.id === a.questionId)
-        return question?.topicId
+        const question = questions.find((q) => q.id === a.questionId);
+        return question?.topicId;
       })
       .filter((id): id is string => id !== undefined),
-  )
+  );
 
-  const categoryMap = new Map(categories.map((c) => [c.id, c.title[selectedLanguage]]))
+  const categoryMap = new Map(categories.map((c) => [c.id, c.title[selectedLanguage]]));
 
-  const reviewTopics: ReviewTopic[] = []
+  const reviewTopics: ReviewTopic[] = [];
 
   for (const topic of topics) {
-    if (topic.level !== selectedLevel) continue
+    if (topic.level !== selectedLevel) continue;
 
-    const isWeak = weakTopicIds.has(topic.id)
-    const hasMistake = topicsWithMistakes.has(topic.id)
+    const isWeak = weakTopicIds.has(topic.id);
+    const hasMistake = topicsWithMistakes.has(topic.id);
 
-    if (!isWeak && !hasMistake) continue
+    if (!isWeak && !hasMistake) continue;
 
-    let reason: ReviewReason
+    let reason: ReviewReason;
     if (isWeak && hasMistake) {
-      reason = 'both'
+      reason = 'both';
     } else if (isWeak) {
-      reason = 'weak'
+      reason = 'weak';
     } else {
-      reason = 'mistake'
+      reason = 'mistake';
     }
 
     reviewTopics.push({
@@ -69,21 +70,21 @@ function buildReviewTopics(selectedLevel: string, selectedLanguage: ContentLangu
       categoryTitle: categoryMap.get(topic.categoryId) ?? topic.categoryId,
       level: topic.level,
       reason,
-    })
+    });
   }
 
-  return reviewTopics
+  return reviewTopics;
 }
 
 export function WeakSpotsPage() {
-  const { t } = useTranslation()
-  const { preferences } = usePreferences()
-  const { selectedLevel, selectedLanguage } = preferences
+  const { t } = useTranslation();
+  const { preferences } = usePreferences();
+  const { selectedLevel, selectedLanguage } = preferences;
 
   const reviewTopics = useMemo(
     () => buildReviewTopics(selectedLevel, selectedLanguage),
     [selectedLevel, selectedLanguage],
-  )
+  );
 
   return (
     <div className="space-y-6">
@@ -116,5 +117,5 @@ export function WeakSpotsPage() {
         </ul>
       )}
     </div>
-  )
+  );
 }

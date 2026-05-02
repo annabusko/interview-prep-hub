@@ -1,4 +1,4 @@
-import type { Topic } from '../domain/models'
+import type { Topic } from '../domain/models';
 
 export const topics: Topic[] = [
   {

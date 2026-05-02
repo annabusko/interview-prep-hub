@@ -1,13 +1,14 @@
-import { useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
-import { usePreferences } from '../app/providers/preferences/usePreferences'
-import { categories } from '../data/categories'
-import { topics } from '../data/topics'
-import type { ContentLanguage, Topic } from '../domain/models'
-import { PATHS } from '../routes/paths'
-import { Badge } from '../components/ui/Badge'
-import { EmptyState } from '../components/ui/EmptyState'
+
+import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { usePreferences } from '../app/providers/preferences/usePreferences';
+import { categories } from '../data/categories';
+import { topics } from '../data/topics';
+import type { ContentLanguage, Topic } from '../domain/models';
+import { PATHS } from '../routes/paths';
+import { Badge } from '../components/ui/Badge';
+import { EmptyState } from '../components/ui/EmptyState';
 
 function TopicCard({
   topic,
@@ -15,10 +16,10 @@ function TopicCard({
   language,
   openDetailsLabel,
 }: Readonly<{
-  topic: Topic
-  categoryTitle: string
-  language: ContentLanguage
-  openDetailsLabel: string
+  topic: Topic;
+  categoryTitle: string;
+  language: ContentLanguage;
+  openDetailsLabel: string;
 }>) {
   return (
     <li className="flex">
@@ -38,12 +39,12 @@ function TopicCard({
 }
 
 export function TopicsPage() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const {
     preferences: { selectedLanguage, selectedLevel },
-  } = usePreferences()
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string>('all')
-  const [search, setSearch] = useState<string>('')
+  } = usePreferences();
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string>('all');
+  const [search, setSearch] = useState<string>('');
 
   const categoryMap = useMemo(
     () =>
@@ -51,20 +52,20 @@ export function TopicsPage() {
         categories.map((category) => [category.id, category.title[selectedLanguage]]),
       ),
     [selectedLanguage],
-  )
+  );
 
-  const normalizedSearch = search.trim().toLocaleLowerCase()
+  const normalizedSearch = search.trim().toLocaleLowerCase();
 
   const filteredTopics = useMemo(
     () =>
       topics.filter((topic) => {
-        if (topic.level !== selectedLevel) return false
-        if (selectedCategoryId !== 'all' && topic.categoryId !== selectedCategoryId) return false
-        if (!normalizedSearch) return true
-        return topic.title[selectedLanguage].toLocaleLowerCase().includes(normalizedSearch)
+        if (topic.level !== selectedLevel) return false;
+        if (selectedCategoryId !== 'all' && topic.categoryId !== selectedCategoryId) return false;
+        if (!normalizedSearch) return true;
+        return topic.title[selectedLanguage].toLocaleLowerCase().includes(normalizedSearch);
       }),
     [normalizedSearch, selectedCategoryId, selectedLanguage, selectedLevel],
-  )
+  );
 
   return (
     <div className="space-y-6">
@@ -118,5 +119,5 @@ export function TopicsPage() {
         <EmptyState>{t('topics.emptyState')}</EmptyState>
       )}
     </div>
-  )
+  );
 }

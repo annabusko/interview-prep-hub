@@ -1,5 +1,11 @@
 # Interview Prep Hub
 
+## Code Style
+
+- Use semicolons consistently at the end of imports, exports, variable declarations, and expressions in all TypeScript and TSX files.
+- Do **not** add semicolons after interface or function declarations where TypeScript syntax does not allow them (e.g., after `export interface X { ... }` or `function foo() { ... }`).
+# Interview Prep Hub
+
 ## Overview
 
 Interview Prep Hub is a frontend-focused application designed for structured and practical preparation for technical interviews.
@@ -78,6 +84,7 @@ Core entities:
 
 - Keep the MVP simple and focused  
 - Prefer strongly typed models  
+- Use semicolons consistently at the end of statements and declarations
 - Avoid overengineering  
 - No backend in MVP  
 - No authentication in MVP  
