@@ -9,7 +9,7 @@ export const RecommendationPanel = ({
   rightSlot,
 }: RecommendationPanelProps) => {
   return (
-    <div className="grid h-auto grid-cols-1 items-center gap-8 rounded-3xl bg-slate-50 p-8 ring-1 ring-slate-300/60 md:h-[180px] md:grid-cols-[1fr_260px]">
+    <div className="grid h-auto grid-cols-1 items-center gap-8 rounded-3xl bg-white p-8 ring-1 ring-slate-200/70 md:h-[180px] md:grid-cols-[1fr_260px]">
       {/* Left: icon + content */}
       <div className="flex min-w-0 items-center gap-6">
         <div className="flex h-16 w-16 flex-none items-center justify-center rounded-2xl bg-slate-100 text-slate-600">
@@ -32,7 +32,7 @@ export const RecommendationPanel = ({
       </div>
 
       {/* Right: support note */}
-      <div className="hidden max-w-[240px] rounded-2xl bg-white p-5 md:block">
+      <div className="relative z-10 hidden max-w-[240px] rounded-2xl bg-white p-5 ring-1 ring-slate-200 md:block">
         {rightSlot}
       </div>
     </div>

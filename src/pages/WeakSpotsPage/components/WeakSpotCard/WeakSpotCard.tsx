@@ -19,7 +19,7 @@ export const WeakSpotCard = ({ item }: Readonly<WeakSpotCardProps>) => {
         className="block rounded-xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-slate-300"
       >
         <div className="mb-3 flex flex-wrap items-center gap-2">
-          <Badge className="bg-slate-100 text-slate-700">
+          <Badge className="bg-slate-200 text-slate-700 ring-1 ring-slate-300/50">
             {item.categoryTitle}
           </Badge>
           <Badge className={REASON_CLASSES[item.reason]}>
