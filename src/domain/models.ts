@@ -35,6 +35,8 @@ export type Topic = {
   summary: LocalizedText;
   /** Long-form study material; pick `ru` or `en` from `UserPreferences.selectedLanguage` in UI */
   content: LocalizedText;
+  keyPoints?: LocalizedTextList;
+  interviewTips?: LocalizedTextList;
 }
 
 export type QuestionOption = {
