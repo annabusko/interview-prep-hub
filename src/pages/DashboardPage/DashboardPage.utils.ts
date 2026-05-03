@@ -6,7 +6,7 @@ import type { ContentLanguage, InterviewLevel } from '../../domain/models';
 import type { ReviewReason } from '../../domain/reviewReason';
 import type { DashboardSummary, NeedsAttentionItem } from './DashboardPage.types';
 
-export function buildSummary(selectedLevel: InterviewLevel): DashboardSummary {
+export const buildSummary = (selectedLevel: InterviewLevel): DashboardSummary  => {
   const levelTopics = topics.filter((t) => t.level === selectedLevel);
   const progress = readTopicProgress();
   const attempts = readQuizAttempts();
@@ -29,12 +29,12 @@ export function buildSummary(selectedLevel: InterviewLevel): DashboardSummary {
   const quizAttempts = attempts.filter((a) => a.level === selectedLevel).length;
 
   return { total: levelTopics.length, newCount, learningCount, strongCount, weakCount, quizAttempts };
-}
+};
 
-export function buildNeedsAttention(
+export const buildNeedsAttention = (
   selectedLevel: InterviewLevel,
   selectedLanguage: ContentLanguage,
-): NeedsAttentionItem[] {
+): NeedsAttentionItem[] => {
   const progress = readTopicProgress();
   const attempts = readQuizAttempts();
 
@@ -74,4 +74,4 @@ export function buildNeedsAttention(
   }
 
   return result;
-}
+};

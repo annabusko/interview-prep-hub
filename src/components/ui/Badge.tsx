@@ -1,17 +1,16 @@
+import type { ReactNode } from "react";
 
-import type { ReactNode } from 'react';
-
-export function Badge({
+export const Badge = ({
   children,
   className,
-}: Readonly<{ children: ReactNode; className?: string }>) {
+}: Readonly<{ children: ReactNode; className?: string }>) => {
   return (
     <span
-      className={['rounded-md px-2 py-1 text-xs font-medium', className]
+      className={["rounded-md px-2 py-1 text-xs font-medium", className]
         .filter(Boolean)
-        .join(' ')}
+        .join(" ")}
     >
       {children}
     </span>
   );
-}
+};

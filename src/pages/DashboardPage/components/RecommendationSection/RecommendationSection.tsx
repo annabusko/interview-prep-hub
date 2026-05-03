@@ -1,9 +1,10 @@
+import { ContinueLearningRecommendation } from "../ContinueLearningRecommendation/ContinueLearningRecommendation";
+import { NeedsAttentionRecommendation } from "../NeedsAttentionRecommendation/NeedsAttentionRecommendation";
+import type { RecommendationSectionProps } from "./RecommendationSection.types";
 
-import { ContinueLearningRecommendation } from '../ContinueLearningRecommendation/ContinueLearningRecommendation';
-import { NeedsAttentionRecommendation } from '../NeedsAttentionRecommendation/NeedsAttentionRecommendation';
-import type { RecommendationSectionProps } from './RecommendationSection.types';
-
-export function RecommendationSection({ needsAttention }: RecommendationSectionProps) {
+export const RecommendationSection = ({
+  needsAttention,
+}: RecommendationSectionProps) => {
   return (
     <section>
       {needsAttention.length > 0 ? (
@@ -13,4 +14,4 @@ export function RecommendationSection({ needsAttention }: RecommendationSectionP
       )}
     </section>
   );
-}
+};

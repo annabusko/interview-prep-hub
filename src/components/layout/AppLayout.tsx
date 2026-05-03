@@ -1,9 +1,8 @@
+import { Outlet } from "react-router-dom";
+import { AppHeader } from "./AppHeader";
+import { AppSidebar } from "./AppSidebar";
 
-import { Outlet } from 'react-router-dom';
-import { AppHeader } from './AppHeader';
-import { AppSidebar } from './AppSidebar';
-
-export function AppLayout() {
+export const AppLayout = () => {
   return (
     <div className="flex min-h-screen bg-slate-50 text-slate-900">
       <AppSidebar />
@@ -15,4 +14,4 @@ export function AppLayout() {
       </div>
     </div>
   );
-}
+};

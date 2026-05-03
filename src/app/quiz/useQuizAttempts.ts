@@ -1,10 +1,10 @@
-import { useCallback } from 'react';
-import type { QuizAttempt } from '../../domain/models';
-import { readQuizAttempts, writeQuizAttempts } from './quizAttempts.storage';
+import { useCallback } from "react";
+import type { QuizAttempt } from "../../domain/models";
+import { readQuizAttempts, writeQuizAttempts } from "./quizAttempts.storage";
 
-type NewQuizAttempt = Omit<QuizAttempt, 'id' | 'answeredAt'>;
+type NewQuizAttempt = Omit<QuizAttempt, "id" | "answeredAt">;
 
-export function useQuizAttempts() {
+export const useQuizAttempts = () => {
   const addQuizAttempt = useCallback((attempt: NewQuizAttempt) => {
     const record: QuizAttempt = {
       ...attempt,
@@ -16,4 +16,4 @@ export function useQuizAttempts() {
   }, []);
 
   return { addQuizAttempt };
-}
+};

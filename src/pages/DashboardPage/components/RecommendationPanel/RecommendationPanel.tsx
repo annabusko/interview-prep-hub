@@ -1,13 +1,13 @@
-import type { RecommendationPanelProps } from './RecommendationPanel.types';
+import type { RecommendationPanelProps } from "./RecommendationPanel.types";
 
-export function RecommendationPanel({
+export const RecommendationPanel = ({
   icon,
   label,
   heading,
   description,
   actions,
   rightSlot,
-}: RecommendationPanelProps) {
+}: RecommendationPanelProps) => {
   return (
     <div className="grid h-auto grid-cols-1 items-center gap-8 rounded-3xl bg-slate-50 p-8 ring-1 ring-slate-300/60 md:h-[180px] md:grid-cols-[1fr_260px]">
       {/* Left: icon + content */}
@@ -16,10 +16,18 @@ export function RecommendationPanel({
           {icon}
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-xs font-medium uppercase tracking-wide text-slate-400">{label}</p>
-          <h2 className="mt-1 truncate text-xl font-semibold text-slate-900">{heading}</h2>
-          <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600 line-clamp-2">{description}</p>
-          <div className="mt-3 flex flex-wrap items-center gap-3">{actions}</div>
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+            {label}
+          </p>
+          <h2 className="mt-1 truncate text-xl font-semibold text-slate-900">
+            {heading}
+          </h2>
+          <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600 line-clamp-2">
+            {description}
+          </p>
+          <div className="mt-3 flex flex-wrap items-center gap-3">
+            {actions}
+          </div>
         </div>
       </div>
 
@@ -29,4 +37,4 @@ export function RecommendationPanel({
       </div>
     </div>
   );
-}
+};

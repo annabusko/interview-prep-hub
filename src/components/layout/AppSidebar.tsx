@@ -5,13 +5,13 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { PATHS } from '../../routes/paths';
 import { NAV_ITEMS } from './navConfig';
 
-function navItemIsActive(pathname: string, to: string, end: boolean | undefined): boolean {
+const navItemIsActive = (pathname: string, to: string, end: boolean | undefined): boolean => {
   if (end) return pathname === to;
   if (to === PATHS.topics) {
     return pathname === PATHS.topics || pathname.startsWith(`${PATHS.topics}/`);
   }
   return pathname === to || pathname.startsWith(`${to}/`);
-}
+};
 
 const NAV_ICONS: Record<string, ReactNode> = {
   [PATHS.dashboard]: (
@@ -44,7 +44,7 @@ const NAV_ICONS: Record<string, ReactNode> = {
   ),
 };
 
-export function AppSidebar() {
+export const AppSidebar = () => {
   const { pathname } = useLocation();
   const { t } = useTranslation();
 
@@ -81,4 +81,4 @@ export function AppSidebar() {
       </nav>
     </aside>
   );
-}
+};
