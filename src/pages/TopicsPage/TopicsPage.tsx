@@ -26,8 +26,8 @@ export const TopicsPage = () => {
   );
 
   return (
-    <div className="space-y-6">
-      <p className="text-sm text-slate-500">{t("topics.description")}</p>
+    <div className="space-y-8 bg-slate-50">
+      <p className="bg-gradient-to-r from-slate-900 to-slate-800 bg-clip-text text-sm text-transparent">{t("topics.description")}</p>
       <TopicFilters
         selectedLanguage={selectedLanguage}
         selectedCategoryId={selectedCategoryId}

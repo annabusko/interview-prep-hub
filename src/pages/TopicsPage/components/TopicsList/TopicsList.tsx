@@ -21,7 +21,7 @@ export const TopicsList = ({
   }
 
   return (
-    <ul className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+    <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
       {topics.map((topic) => (
         <TopicCard
           key={topic.id}
