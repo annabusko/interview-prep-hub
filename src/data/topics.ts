@@ -17,6 +17,28 @@ export const topics: Topic[] = [
       ru: 'В JavaScript сравнение с нестрогим равенством (`==`) запускает алгоритм Abstract Equality Comparison: операнды приводятся к общему типу. Строгое равенство (`===`) сравнивает без приведения. Пустой массив в логическом контексте истинен, а `![]` даёт `false`, после чего сравнение снова идёт через приведение. На собеседованиях часто спрашивают про таблицу falsy-значений и разницу между `null` и `undefined`.',
       en: 'In JavaScript, loose equality (`==`) runs the Abstract Equality Comparison algorithm, coercing operands to a common type. Strict equality (`===`) compares without coercion. An empty array is truthy, while `![]` is `false`, and comparing `[]` to `false` triggers numeric coercion. Interviewers often probe falsy values and the distinction between `null` and `undefined`.',
     },
+    keyPoints: {
+      ru: [
+        '`===` не приводит типы, `==` пытается привести операнды.',
+        'Falsy-значения: `false`, `0`, `""`, `null`, `undefined`, `NaN`.',
+        'Массивы и объекты в логическом контексте обычно truthy.',
+      ],
+      en: [
+        '`===` compares without coercion, while `==` coerces operands.',
+        'Falsy values are `false`, `0`, `""`, `null`, `undefined`, and `NaN`.',
+        'Arrays and objects are typically truthy in boolean contexts.',
+      ],
+    },
+    interviewTips: {
+      ru: [
+        'Сначала проговаривайте шаги приведения типов вслух.',
+        'Для продакшн-кода подчёркивайте предпочтение `===`.',
+      ],
+      en: [
+        'Explain coercion step by step out loud before giving the final result.',
+        'For production code, explicitly state a preference for `===`.',
+      ],
+    },
   },
   {
     id: 'js-closures-scope',
@@ -68,6 +90,28 @@ export const topics: Topic[] = [
       ru: 'TypeScript добавляет статическую типизацию поверх JavaScript: объявляйте формы объектов через `interface` или `type`. `unknown` безопаснее `any`: перед использованием нужно сузить тип. `readonly` и опциональные поля делают намерения явными. На интервью часто сравнивают `interface` и `type` для объектов и обсуждают структурную типизацию.',
       en: 'TypeScript layers static types on JavaScript: describe object shapes with `interface` or `type`. `unknown` is safer than `any` because you must narrow before use. `readonly` and optional properties document intent. Interviews often compare `interface` vs `type` for objects and touch on structural typing.',
     },
+    keyPoints: {
+      ru: [
+        '`unknown` безопаснее `any`, потому что требует сужения типа.',
+        '`interface` и `type` часто взаимозаменяемы для описания объектов.',
+        '`readonly` и `?` помогают явно описать контракт данных.',
+      ],
+      en: [
+        '`unknown` is safer than `any` because it forces narrowing before usage.',
+        '`interface` and `type` are often interchangeable for object shapes.',
+        '`readonly` and optional properties make API contracts explicit.',
+      ],
+    },
+    interviewTips: {
+      ru: [
+        'Приведите короткий пример, где `unknown` предотвращает баг.',
+        'Объясняйте различия `interface`/`type` через реальные use case.',
+      ],
+      en: [
+        'Provide a short example where `unknown` prevents a runtime bug.',
+        'Explain `interface` vs `type` using concrete use cases, not rules only.',
+      ],
+    },
   },
   {
     id: 'ts-generics',
@@ -118,6 +162,28 @@ export const topics: Topic[] = [
     content: {
       ru: 'Компонент — функция, возвращающая дерево React-элементов. JSX компилируется в вызовы `createElement`. Props неизменяемы на уровне соглашения. `key` в списках помогает согласовать идентичность элементов между рендерами. Условный рендер обычно делают через `&&`, тернарник или ранний `return`.',
       en: 'A component is a function that returns a tree of React elements. JSX compiles to `createElement` calls. Props are treated as immutable. `key` in lists helps React match element identity across renders. Conditional rendering typically uses `&&`, ternaries, or early `return`.',
+    },
+    keyPoints: {
+      ru: [
+        'JSX — синтаксический сахар над `createElement`.',
+        '`key` нужен для стабильной идентичности элементов в списках.',
+        'Props считаются неизменяемыми внутри компонента.',
+      ],
+      en: [
+        'JSX is syntax sugar over `createElement` calls.',
+        '`key` ensures stable identity for list items between renders.',
+        'Props should be treated as immutable inside a component.',
+      ],
+    },
+    interviewTips: {
+      ru: [
+        'Поясняйте, почему индекс массива как key рискован при перестановках.',
+        'Покажите два способа условного рендера и когда какой удобнее.',
+      ],
+      en: [
+        'Explain why using array index as key is risky for reordering lists.',
+        'Show two conditional rendering patterns and when each is preferable.',
+      ],
     },
   },
   {

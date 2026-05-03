@@ -2,7 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AppLayout } from './components/layout/AppLayout';
 import { DashboardPage } from './pages/DashboardPage/DashboardPage';
 import { QuizPage } from './pages/QuizPage/QuizPage';
-import { TopicDetailPage } from './pages/TopicDetailPage';
+import { TopicDetailPage } from './pages/TopicDetailPage/TopicDetailPage';
 import { TopicsPage } from './pages/TopicsPage/TopicsPage';
 import { WeakSpotsPage } from './pages/WeakSpotsPage/WeakSpotsPage';
 
