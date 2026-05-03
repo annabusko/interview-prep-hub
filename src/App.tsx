@@ -1,10 +1,10 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { AppLayout } from './components/layout/AppLayout'
-import { DashboardPage } from './pages/DashboardPage/DashboardPage'
-import { QuizPage } from './pages/QuizPage'
-import { TopicDetailPage } from './pages/TopicDetailPage'
-import { TopicsPage } from './pages/TopicsPage'
-import { WeakSpotsPage } from './pages/WeakSpotsPage'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { AppLayout } from './components/layout/AppLayout';
+import { DashboardPage } from './pages/DashboardPage/DashboardPage';
+import { QuizPage } from './pages/QuizPage';
+import { TopicDetailPage } from './pages/TopicDetailPage';
+import { TopicsPage } from './pages/TopicsPage';
+import { WeakSpotsPage } from './pages/WeakSpotsPage';
 
 export default function App() {
   return (
@@ -24,5 +24,5 @@ export default function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }

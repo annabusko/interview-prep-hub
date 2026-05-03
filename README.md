@@ -3,7 +3,19 @@
 ## Code Style
 
 - Use semicolons consistently at the end of imports, exports, variable declarations, and expressions in all TypeScript and TSX files.
+
 - Do **not** add semicolons after interface or function declarations where TypeScript syntax does not allow them (e.g., after `export interface X { ... }` or `function foo() { ... }`).
+
+- Prefer arrow functions for React components and local functions:
+
+  ```ts
+
+  const MyComponent = () => {};
+
+- Do not use function declarations for React components.
+- Use function only when hoisting is explicitly required.
+- Keep function and component definitions consistent across the project.
+  
 # Interview Prep Hub
 
 ## Overview

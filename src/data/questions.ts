@@ -382,4 +382,4 @@ export const questions: Question[] = [
     ],
     correctAnswerIds: ['b'],
   },
-]
+];
