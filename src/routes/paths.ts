@@ -6,5 +6,6 @@ export const PATHS = {
   topics: '/topics',
   topicDetail: (id: string) => `/topics/${id}`,
   quiz: '/quiz',
+  quizSession: '/quiz/session',
   weakSpots: '/weak-spots',
 } as const;
