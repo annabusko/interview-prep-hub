@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AppLayout } from './components/layout/AppLayout';
 import { DashboardPage } from './pages/DashboardPage/DashboardPage';
+import { QuizGeneralPage } from './pages/QuizGeneralPage/QuizGeneralPage';
 import { QuizPage } from './pages/QuizPage/QuizPage';
 import { TopicDetailPage } from './pages/TopicDetailPage/TopicDetailPage';
 import { TopicsPage } from './pages/TopicsPage/TopicsPage';
@@ -18,7 +19,8 @@ export default function App() {
             element={<TopicDetailPage />}
             handle={{ title: 'Topic details' }}
           />
-          <Route path="quiz" element={<QuizPage />} handle={{ title: 'Quiz' }} />
+          <Route path="quiz" element={<QuizGeneralPage />} handle={{ title: 'Quiz' }} />
+          <Route path="quiz/session" element={<QuizPage />} handle={{ title: 'Quiz session' }} />
           <Route path="weak-spots" element={<WeakSpotsPage />} handle={{ title: 'Weak Spots' }} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
