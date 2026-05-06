@@ -22,7 +22,7 @@ export const QuizSession = ({
   filteredQuestions,
   selectedLevel,
   selectedLanguage,
-  onCompletionChange,
+  onCompleted,
 }: Readonly<QuizSessionProps>) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -56,9 +56,14 @@ export const QuizSession = ({
   const correctCount = Object.values(answeredResults).filter(Boolean).length;
   const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100);
 
+
   useEffect(() => {
-    onCompletionChange?.(isCompleted);
-  }, [isCompleted, onCompletionChange]);
+    if (isCompleted) {
+      onCompleted?.();
+    }
+    // Only call onCompleted when completed, not on every render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isCompleted]);
 
   const handleSelect = (id: string) => {
     if (submitted || isTimeExpired) return;
