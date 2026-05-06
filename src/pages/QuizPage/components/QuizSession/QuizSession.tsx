@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuizAttempts } from "../../../../app/quiz/useQuizAttempts";
+import { PATHS } from "../../../../routes/paths";
 import type { QuizSessionProps } from "../../QuizPage.types";
 import { isAnswerCorrect } from "../../QuizPage.utils";
 import { QuizCompletedState } from "../QuizCompletedState/QuizCompletedState";
@@ -20,8 +22,10 @@ export const QuizSession = ({
   filteredQuestions,
   selectedLevel,
   selectedLanguage,
+  onCompletionChange,
 }: Readonly<QuizSessionProps>) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { addQuizAttempt } = useQuizAttempts();
 
   const sessionQuestions = filteredQuestions.slice(0, MAX_QUESTIONS);
@@ -31,6 +35,7 @@ export const QuizSession = ({
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(TOTAL_SECONDS);
+  const [answeredResults, setAnsweredResults] = useState<boolean[]>([]);
 
   useEffect(() => {
     if (secondsLeft <= 0) return;
@@ -41,13 +46,21 @@ export const QuizSession = ({
   }, [secondsLeft]);
 
   const isCompleted = currentIndex >= total;
+  const isTimeExpired = secondsLeft <= 0;
   const currentQuestion = sessionQuestions[currentIndex];
   const answeredCount = Math.min(submitted ? currentIndex + 1 : currentIndex, total);
   const progress = total > 0 ? (answeredCount / total) * 100 : 0;
   const timeDisplay = formatTime(secondsLeft);
+  const answeredTotal = Math.min(answeredResults.length, total);
+  const correctCount = answeredResults.filter(Boolean).length;
+  const accuracy = answeredTotal > 0 ? Math.round((correctCount / answeredTotal) * 100) : 0;
+
+  useEffect(() => {
+    onCompletionChange?.(isCompleted);
+  }, [isCompleted, onCompletionChange]);
 
   const handleSelect = (id: string) => {
-    if (submitted) return;
+    if (submitted || isTimeExpired) return;
     if (currentQuestion.type === "single") {
       setSelectedIds([id]);
     } else {
@@ -60,6 +73,11 @@ export const QuizSession = ({
   const handleSubmit = () => {
     if (selectedIds.length === 0) return;
     const correct = isAnswerCorrect(selectedIds, currentQuestion.correctAnswerIds);
+    setAnsweredResults((prev) => {
+      const next = [...prev];
+      next[currentIndex] = correct;
+      return next;
+    });
     addQuizAttempt({
       questionId: currentQuestion.id,
       topicId: currentQuestion.topicId,
@@ -88,12 +106,16 @@ export const QuizSession = ({
     setSelectedIds([]);
     setSubmitted(false);
     setSecondsLeft(TOTAL_SECONDS);
+    setAnsweredResults([]);
   };
 
   if (isCompleted) {
     return (
       <QuizCompletedState
+        answeredCount={answeredTotal}
         questionCount={total}
+        correctCount={correctCount}
+        accuracy={accuracy}
         onRestart={handleRestart}
       />
     );
@@ -127,7 +149,7 @@ export const QuizSession = ({
                 <circle cx="12" cy="12" r="10" />
                 <polyline points="12 6 12 12 16 14" />
               </svg>
-              <span className="tabular-nums">{t("quiz.timerLeft", { time: timeDisplay })}</span>
+              <span className={`tabular-nums${isTimeExpired ? " text-red-600" : ""}`}>{t("quiz.timerLeft", { time: timeDisplay })}</span>
             </span>
           </span>
         </div>
@@ -157,34 +179,59 @@ export const QuizSession = ({
       </div>
 
       {/* Actions footer */}
-      <div className="flex items-center justify-end gap-3 border-t border-slate-200/50 pt-4">
-        <button
-          type="button"
-          onClick={handlePrevious}
-          disabled={currentIndex === 0}
-          className="rounded-xl bg-white px-5 py-2.5 text-sm font-medium text-slate-700 ring-1 ring-slate-200 transition-colors hover:bg-slate-50 hover:ring-slate-300 cursor-pointer disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
-        >
-          {t("quiz.previous")}
-        </button>
-        {submitted ? (
+      {isTimeExpired ? (
+        <div className="rounded-2xl bg-red-50/60 ring-1 ring-red-200 p-4">
+          <p className="text-sm font-semibold text-red-700">{t("quiz.timeUp")}</p>
+          <p className="mt-1 text-sm text-red-600">
+            {t("quiz.timeUpDescription", { answered: answeredCount, total })}
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <button
+              type="button"
+              disabled
+              className="rounded-xl px-4 py-2 text-sm font-medium ring-1 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 disabled:ring-slate-200"
+            >
+              {t("quiz.reviewAnswers")}
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate(PATHS.quiz)}
+              className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 cursor-pointer"
+            >
+              {t("quiz.finish")}
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="flex items-center justify-end gap-3 border-t border-slate-200/50 pt-4">
           <button
             type="button"
-            onClick={handleNext}
-            className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-800 cursor-pointer"
+            onClick={handlePrevious}
+            disabled={currentIndex === 0}
+            className="rounded-xl bg-white px-5 py-2.5 text-sm font-medium text-slate-700 ring-1 ring-slate-200 transition-colors hover:bg-slate-50 hover:ring-slate-300 cursor-pointer disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
           >
-            {currentIndex + 1 < total ? t("quiz.next") : t("quiz.finish")}
+            {t("quiz.previous")}
           </button>
-        ) : (
-          <button
-            type="button"
-            disabled={selectedIds.length === 0}
-            onClick={handleSubmit}
-            className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-800 cursor-pointer disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-500"
-          >
-            {t("quiz.submit")}
-          </button>
-        )}
-      </div>
+          {submitted ? (
+            <button
+              type="button"
+              onClick={handleNext}
+              className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-800 cursor-pointer"
+            >
+              {currentIndex + 1 < total ? t("quiz.next") : t("quiz.finish")}
+            </button>
+          ) : (
+            <button
+              type="button"
+              disabled={selectedIds.length === 0}
+              onClick={handleSubmit}
+              className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-800 cursor-pointer disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-500"
+            >
+              {t("quiz.submit")}
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 };

@@ -40,11 +40,17 @@
     "finish": "Завершить",
     "correct": "Правильно!",
     "incorrect": "Неправильно",
-    "completed": "Квиз завершён!",
-    "completedMessage": "Вы ответили на все {{count}} вопросов.",
+    "completed": "Квиз завершён",
+    "completedMessage": "Вы ответили на {{answered}} из {{total}} вопросов.",
     "backToQuizList": "Вернуться к квизам",
     "restart": "Начать заново",
-    "timerLeft": "{{time}} осталось"
+    "timerLeft": "{{time}} осталось",
+    "timeUp": "Время вышло",
+    "timeUpDescription": "Вы ответили на {{answered}} из {{total}} вопросов.",
+    "reviewAnswers": "Просмотреть ответы",
+    "summaryAnswered": "Отвечено",
+    "summaryCorrect": "Верно",
+    "summaryAccuracy": "Точность"
   },
   "dashboard": {
     "title": "Подготовка к интервью",

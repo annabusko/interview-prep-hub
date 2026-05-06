@@ -40,11 +40,17 @@
     "finish": "Finish",
     "correct": "Correct!",
     "incorrect": "Incorrect",
-    "completed": "Quiz complete!",
-    "completedMessage": "You answered all {{count}} questions.",
+    "completed": "Quiz complete",
+    "completedMessage": "You answered {{answered}} of {{total}} questions.",
     "backToQuizList": "Back to quiz list",
     "restart": "Start again",
-    "timerLeft": "{{time}} left"
+    "timerLeft": "{{time}} left",
+    "timeUp": "Time is up",
+    "timeUpDescription": "You answered {{answered}} of {{total}} questions.",
+    "reviewAnswers": "Review answers",
+    "summaryAnswered": "Answered",
+    "summaryCorrect": "Correct",
+    "summaryAccuracy": "Accuracy"
   },
   "dashboard": {
     "title": "Your interview prep",

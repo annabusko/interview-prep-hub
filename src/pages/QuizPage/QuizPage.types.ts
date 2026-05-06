@@ -4,4 +4,5 @@ export type QuizSessionProps = {
   filteredQuestions: Question[];
   selectedLevel: InterviewLevel;
   selectedLanguage: ContentLanguage;
+  onCompletionChange?: (completed: boolean) => void;
 };
