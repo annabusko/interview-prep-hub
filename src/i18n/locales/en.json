@@ -43,7 +43,8 @@
     "completed": "Quiz complete!",
     "completedMessage": "You answered all {{count}} questions.",
     "backToQuizList": "Back to quiz list",
-    "restart": "Start again"
+    "restart": "Start again",
+    "timerLeft": "{{time}} left"
   },
   "dashboard": {
     "title": "Your interview prep",

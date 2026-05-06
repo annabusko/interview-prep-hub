@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useQuizAttempts } from "../../../../app/quiz/useQuizAttempts";
 import type { QuizSessionProps } from "../../QuizPage.types";
@@ -8,6 +8,13 @@ import { QuestionCard } from "../QuestionCard/QuestionCard";
 import { QuizFeedback } from "../QuizFeedback/QuizFeedback";
 
 const MAX_QUESTIONS = 10;
+const TOTAL_SECONDS = MAX_QUESTIONS * 120; // 20 minutes
+
+const formatTime = (seconds: number): string => {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+};
 
 export const QuizSession = ({
   filteredQuestions,
@@ -23,11 +30,21 @@ export const QuizSession = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
+  const [secondsLeft, setSecondsLeft] = useState(TOTAL_SECONDS);
+
+  useEffect(() => {
+    if (secondsLeft <= 0) return;
+    const id = setInterval(() => {
+      setSecondsLeft((s) => Math.max(0, s - 1));
+    }, 1000);
+    return () => clearInterval(id);
+  }, [secondsLeft]);
 
   const isCompleted = currentIndex >= total;
   const currentQuestion = sessionQuestions[currentIndex];
   const answeredCount = Math.min(submitted ? currentIndex + 1 : currentIndex, total);
   const progress = total > 0 ? (answeredCount / total) * 100 : 0;
+  const timeDisplay = formatTime(secondsLeft);
 
   const handleSelect = (id: string) => {
     if (submitted) return;
@@ -70,6 +87,7 @@ export const QuizSession = ({
     setCurrentIndex(0);
     setSelectedIds([]);
     setSubmitted(false);
+    setSecondsLeft(TOTAL_SECONDS);
   };
 
   if (isCompleted) {
@@ -83,23 +101,42 @@ export const QuizSession = ({
 
   return (
     <div className="space-y-5 rounded-3xl bg-white p-6 ring-1 ring-slate-200/80">
-      {/* Progress header */}
-      <div className="flex items-center justify-between border-b border-slate-200/50 pb-3">
-        <p className="text-sm font-medium text-slate-600">
-          {t("quiz.progress", { current: currentIndex + 1, total })}
-        </p>
-        <p className="text-sm font-medium text-slate-600">
-          {answeredCount} / {total}{" "}
-          <span className="text-slate-500">{t("quiz.answered")}</span>
-        </p>
-      </div>
-
-      {/* Progress bar */}
-      <div className="h-2 w-full rounded-full bg-slate-200">
-        <div
-          className="h-2 rounded-full bg-slate-900 transition-all duration-300"
-          style={{ width: `${progress}%` }}
-        />
+      {/* Compact status bar */}
+      <div className="rounded-2xl bg-white px-5 py-4 ring-1 ring-slate-200/80">
+        <div className="flex items-center justify-between gap-4">
+          <span className="text-sm font-semibold text-slate-700">
+            {t("quiz.progress", { current: currentIndex + 1, total })}
+          </span>
+          <span className="inline-flex items-center gap-2 text-sm font-medium text-slate-500">
+            {answeredCount} / {total} {t("quiz.answered")}
+            <span aria-hidden="true">·</span>
+            <span className="inline-flex items-center justify-end gap-1.5 min-w-[88px]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-slate-400 flex-shrink-0"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              <span className="tabular-nums">{t("quiz.timerLeft", { time: timeDisplay })}</span>
+            </span>
+          </span>
+        </div>
+        <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-200">
+          <div
+            className="h-full rounded-full bg-slate-900 transition-all duration-300"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
       </div>
 
       {/* Question and answers */}
@@ -120,7 +157,7 @@ export const QuizSession = ({
       </div>
 
       {/* Actions footer */}
-      <div className="flex items-center justify-end gap-3 border-t border-slate-200/50 pt-3">
+      <div className="flex items-center justify-end gap-3 border-t border-slate-200/50 pt-4">
         <button
           type="button"
           onClick={handlePrevious}

@@ -43,7 +43,8 @@
     "completed": "Квиз завершён!",
     "completedMessage": "Вы ответили на все {{count}} вопросов.",
     "backToQuizList": "Вернуться к квизам",
-    "restart": "Начать заново"
+    "restart": "Начать заново",
+    "timerLeft": "{{time}} осталось"
   },
   "dashboard": {
     "title": "Подготовка к интервью",
