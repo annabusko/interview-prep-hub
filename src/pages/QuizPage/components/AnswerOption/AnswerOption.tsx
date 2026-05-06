@@ -19,20 +19,20 @@ export const AnswerOption = ({
   submitted,
   onSelect,
 }: Readonly<AnswerOptionProps>) => {
-  let optionClass = "w-full rounded-xl border p-4 text-left text-sm transition-all";
+  let optionClass = "w-full rounded-2xl px-4 py-3 text-left text-sm transition-all cursor-pointer";
 
   if (submitted) {
     if (isCorrectOption) {
-      optionClass += " border-green-400 bg-green-50 text-green-900 font-medium";
+      optionClass += " bg-slate-100 text-slate-900 ring-1 ring-slate-300";
     } else if (isWrongSelected) {
-      optionClass += " border-red-400 bg-red-50 text-red-900";
+      optionClass += " bg-red-50 text-red-700 ring-1 ring-red-200";
     } else {
-      optionClass += " border-slate-200 bg-white text-slate-400";
+      optionClass += " bg-white text-slate-500 ring-1 ring-slate-200/80";
     }
   } else {
     optionClass += isSelected
-      ? " cursor-pointer border-slate-900 bg-slate-100 font-medium text-slate-900"
-      : " cursor-pointer border-slate-200 bg-white text-slate-700 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-slate-50";
+      ? " bg-slate-100 text-slate-900 ring-2 ring-slate-900"
+      : " bg-white text-slate-700 ring-1 ring-slate-200/80 hover:bg-slate-50 hover:ring-slate-300";
   }
 
   return (

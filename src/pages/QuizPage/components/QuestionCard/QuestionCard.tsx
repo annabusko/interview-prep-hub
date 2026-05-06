@@ -18,10 +18,10 @@ export const QuestionCard = ({
 }: Readonly<QuestionCardProps>) => {
   return (
     <>
-      <p className="text-lg font-semibold leading-snug text-slate-900">
+      <p className="text-xl font-semibold leading-7 text-slate-900">
         {question.prompt[selectedLanguage]}
       </p>
-      <ul className="flex flex-col gap-3">
+      <ul className="space-y-3">
         {question.options.map((option) => {
           const isSelected = selectedIds.includes(option.id);
           const isCorrectOption = submitted && question.correctAnswerIds.includes(option.id);
