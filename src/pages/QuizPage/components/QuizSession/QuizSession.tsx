@@ -59,6 +59,13 @@ export const QuizSession = ({
     setSubmitted(false);
   };
 
+  const handlePrevious = () => {
+    if (currentIndex === 0) return;
+    setCurrentIndex((i) => Math.max(0, i - 1));
+    setSelectedIds([]);
+    setSubmitted(false);
+  };
+
   const handleRestart = () => {
     setCurrentIndex(0);
     setSelectedIds([]);
@@ -112,13 +119,21 @@ export const QuizSession = ({
         )}
       </div>
 
-      {/* Actions footer - buttons only */}
-      <div className="flex justify-end border-t border-slate-200/50 pt-3">
+      {/* Actions footer */}
+      <div className="flex items-center justify-end gap-3 border-t border-slate-200/50 pt-3">
+        <button
+          type="button"
+          onClick={handlePrevious}
+          disabled={currentIndex === 0}
+          className="rounded-xl bg-white px-5 py-2.5 text-sm font-medium text-slate-700 ring-1 ring-slate-200 transition-colors hover:bg-slate-50 hover:ring-slate-300 cursor-pointer disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+        >
+          {t("quiz.previous")}
+        </button>
         {submitted ? (
           <button
             type="button"
             onClick={handleNext}
-            className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-800"
+            className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-800 cursor-pointer"
           >
             {currentIndex + 1 < total ? t("quiz.next") : t("quiz.finish")}
           </button>
@@ -127,7 +142,7 @@ export const QuizSession = ({
             type="button"
             disabled={selectedIds.length === 0}
             onClick={handleSubmit}
-            className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-500"
+            className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-800 cursor-pointer disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-500"
           >
             {t("quiz.submit")}
           </button>
