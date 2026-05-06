@@ -32,6 +32,8 @@
     "description": "Practice interview questions for your selected level. Select an answer and submit to check.",
     "noQuestions": "No questions available for your current level.",
     "progress": "Question {{current}} of {{total}}",
+    "progressLabel": "Progress",
+    "answered": "answered",
     "submit": "Check answer",
     "next": "Next question",
     "finish": "Finish",
@@ -39,6 +41,7 @@
     "incorrect": "Incorrect",
     "completed": "Quiz complete!",
     "completedMessage": "You answered all {{count}} questions.",
+    "backToQuizList": "Back to quiz list",
     "restart": "Start again"
   },
   "dashboard": {

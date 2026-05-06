@@ -13,10 +13,10 @@ export const QuizFeedback = ({
 
   return (
     <div
-      className={`rounded-lg border p-4 text-sm ${
+      className={`rounded-2xl p-3 text-sm ${
         isCorrect
-          ? "border-green-200 bg-green-50 text-green-800"
-          : "border-red-200 bg-red-50 text-red-800"
+          ? "bg-slate-50 ring-1 ring-slate-200 text-slate-700"
+          : "bg-red-50 ring-1 ring-red-200 text-red-700"
       }`}
     >
       <p className="font-semibold">
