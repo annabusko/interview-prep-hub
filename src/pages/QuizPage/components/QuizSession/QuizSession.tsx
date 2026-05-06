@@ -32,10 +32,10 @@ export const QuizSession = ({
   const total = sessionQuestions.length;
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedIds, setSelectedIds] = useState<string[]>([]);
-  const [submitted, setSubmitted] = useState(false);
+  const [answersByQuestion, setAnswersByQuestion] = useState<Record<number, string[]>>({});
+  const [submittedByQuestion, setSubmittedByQuestion] = useState<Record<number, boolean>>({});
+  const [answeredResults, setAnsweredResults] = useState<Record<number, boolean>>({});
   const [secondsLeft, setSecondsLeft] = useState(TOTAL_SECONDS);
-  const [answeredResults, setAnsweredResults] = useState<boolean[]>([]);
 
   useEffect(() => {
     if (secondsLeft <= 0) return;
@@ -48,12 +48,13 @@ export const QuizSession = ({
   const isCompleted = currentIndex >= total;
   const isTimeExpired = secondsLeft <= 0;
   const currentQuestion = sessionQuestions[currentIndex];
-  const answeredCount = Math.min(submitted ? currentIndex + 1 : currentIndex, total);
+  const selectedIds = answersByQuestion[currentIndex] ?? [];
+  const submitted = submittedByQuestion[currentIndex] ?? false;
+  const answeredCount = Object.keys(submittedByQuestion).length;
   const progress = total > 0 ? (answeredCount / total) * 100 : 0;
   const timeDisplay = formatTime(secondsLeft);
-  const answeredTotal = Math.min(answeredResults.length, total);
-  const correctCount = answeredResults.filter(Boolean).length;
-  const accuracy = answeredTotal > 0 ? Math.round((correctCount / answeredTotal) * 100) : 0;
+  const correctCount = Object.values(answeredResults).filter(Boolean).length;
+  const accuracy = answeredCount === 0 ? 0 : Math.round((correctCount / answeredCount) * 100);
 
   useEffect(() => {
     onCompletionChange?.(isCompleted);
@@ -62,22 +63,21 @@ export const QuizSession = ({
   const handleSelect = (id: string) => {
     if (submitted || isTimeExpired) return;
     if (currentQuestion.type === "single") {
-      setSelectedIds([id]);
+      setAnswersByQuestion((prev) => ({ ...prev, [currentIndex]: [id] }));
     } else {
-      setSelectedIds((prev) =>
-        prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
-      );
+      setAnswersByQuestion((prev) => {
+        const cur = prev[currentIndex] ?? [];
+        const next = cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id];
+        return { ...prev, [currentIndex]: next };
+      });
     }
   };
 
   const handleSubmit = () => {
-    if (selectedIds.length === 0) return;
+    if (selectedIds.length === 0 || submitted) return;
     const correct = isAnswerCorrect(selectedIds, currentQuestion.correctAnswerIds);
-    setAnsweredResults((prev) => {
-      const next = [...prev];
-      next[currentIndex] = correct;
-      return next;
-    });
+    setSubmittedByQuestion((prev) => ({ ...prev, [currentIndex]: true }));
+    setAnsweredResults((prev) => ({ ...prev, [currentIndex]: correct }));
     addQuizAttempt({
       questionId: currentQuestion.id,
       topicId: currentQuestion.topicId,
@@ -85,34 +85,29 @@ export const QuizSession = ({
       level: selectedLevel,
       shownLanguage: selectedLanguage,
     });
-    setSubmitted(true);
   };
 
   const handleNext = () => {
     setCurrentIndex((i) => i + 1);
-    setSelectedIds([]);
-    setSubmitted(false);
   };
 
   const handlePrevious = () => {
     if (currentIndex === 0) return;
     setCurrentIndex((i) => Math.max(0, i - 1));
-    setSelectedIds([]);
-    setSubmitted(false);
   };
 
   const handleRestart = () => {
     setCurrentIndex(0);
-    setSelectedIds([]);
-    setSubmitted(false);
+    setAnswersByQuestion({});
+    setSubmittedByQuestion({});
+    setAnsweredResults({});
     setSecondsLeft(TOTAL_SECONDS);
-    setAnsweredResults([]);
   };
 
   if (isCompleted) {
     return (
       <QuizCompletedState
-        answeredCount={answeredTotal}
+        answeredCount={answeredCount}
         questionCount={total}
         correctCount={correctCount}
         accuracy={accuracy}
