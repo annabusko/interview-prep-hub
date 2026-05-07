@@ -1,4 +1,5 @@
-import { categories } from "../../../../data/categories";
+import { useTranslation } from "react-i18next";
+import { CategoryFilterBar } from "../../../../components/ui/CategoryFilterBar";
 import type { QuizFiltersProps } from "../../QuizGeneralPage.types";
 
 export const QuizFilters = ({
@@ -8,46 +9,16 @@ export const QuizFilters = ({
   search,
   onSearchChange,
 }: Readonly<QuizFiltersProps>) => {
+  const { t } = useTranslation();
+
   return (
     <section className="flex flex-wrap items-center gap-4">
-      <div className="flex flex-wrap items-center gap-3">
-        <fieldset className="flex flex-wrap gap-3 border-none p-0 m-0">
-          {[
-            { id: "all", label: "All categories" },
-            ...categories.map((c) => ({
-              id: c.id,
-              label: c.title[selectedLanguage],
-            })),
-          ].map(({ id, label }) => {
-            const isRealCategory = id !== "all";
-            let dotColor = "bg-slate-400";
-            if (id === "javascript") dotColor = "bg-amber-300";
-            else if (id === "typescript") dotColor = "bg-blue-400";
-            else if (id === "react") dotColor = "bg-teal-300";
-            const base = "rounded-lg px-3 py-1 text-sm font-medium transition-all cursor-pointer inline-flex items-center gap-1.5";
-            const active = "bg-slate-900 text-white hover:bg-slate-800 hover:scale-[1.02]";
-            const inactive = "bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900";
-            return (
-              <button
-                key={id}
-                type="button"
-                onClick={() => onCategoryChange(id)}
-                className={base + " " + (selectedCategoryId === id ? active : inactive)}
-              >
-                {isRealCategory && (
-                  <span
-                    className={
-                      "h-1.5 w-1.5 rounded-full opacity-80 " +
-                      (selectedCategoryId === id ? "bg-white/80" : dotColor)
-                    }
-                  />
-                )}
-                {label}
-              </button>
-            );
-          })}
-        </fieldset>
-      </div>
+      <CategoryFilterBar
+        selectedLanguage={selectedLanguage}
+        selectedCategoryId={selectedCategoryId}
+        onCategoryChange={onCategoryChange}
+        allCategoriesLabel={t("filters.allCategories")}
+      />
 
       <label className="ml-auto flex w-64 max-w-sm flex-col gap-1">
         <span className="sr-only">Search topics</span>

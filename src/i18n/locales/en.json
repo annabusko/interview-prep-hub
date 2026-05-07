@@ -93,12 +93,37 @@
   "weakSpots": {
     "description": "Topics to review based on your learning status and quiz mistakes.",
     "emptyState": "No weak spots for your current level. Keep it up!",
+    "emptyTitle": "No weak spots yet",
+    "emptyHint": "Complete quizzes to track difficult topics.",
+    "startQuiz": "Start quiz",
+    "continueLearning": "Continue learning",
+    "retryQuiz": "Retry quiz",
     "reason": {
       "weak": "Marked as weak",
-      "mistake": "Quiz mistake",
-      "both": "Marked as weak · Quiz mistake"
+      "mistake": "Quiz mistakes",
+      "both": "Weak + Mistakes"
     },
-    "openTopic": "Review topic"
+    "openTopic": "Review topic",
+    "summary": {
+      "weakTopics": "Weak topics",
+      "weakTopicsLabel": "topics",
+      "quizMistakes": "Quiz mistakes",
+      "incorrectAnswers": "incorrect answers",
+      "needsReview": "Needs review",
+      "staleTopics": "topics"
+    },
+    "metrics": {
+      "accuracy": "Accuracy",
+      "accuracyShort": "accuracy",
+      "mistakesShort": "{{count}} mistakes",
+      "needsPractice": "Needs practice",
+      "mistakes": "Mistakes",
+      "lastReviewed": "Last reviewed",
+      "daysAgo": "Last reviewed {{days}}d ago",
+      "neverReviewed": "Never reviewed",
+      "never": "Never",
+      "noData": "—"
+    }
   },
   "topicDetails": {
     "pageTitle": "Topic details",
