@@ -93,12 +93,37 @@
   "weakSpots": {
     "description": "Темы для повторения на основе статуса обучения и ошибок в квизе.",
     "emptyState": "Слабых мест для текущего уровня нет. Так держать!",
+    "emptyTitle": "Слабых мест пока нет",
+    "emptyHint": "Пройдите квизы, чтобы отслеживать сложные темы.",
+    "startQuiz": "Начать квиз",
+    "continueLearning": "Продолжить изучение",
+    "retryQuiz": "Повторить квиз",
     "reason": {
       "weak": "Отмечена как слабая",
-      "mistake": "Ошибка в квизе",
-      "both": "Отмечена как слабая · Ошибка в квизе"
+      "mistake": "Ошибки в квизе",
+      "both": "Слабая + Ошибки"
     },
-    "openTopic": "Повторить тему"
+    "openTopic": "Повторить тему",
+    "summary": {
+      "weakTopics": "Слабые темы",
+      "weakTopicsLabel": "темы",
+      "quizMistakes": "Ошибки квиза",
+      "incorrectAnswers": "неверных ответов",
+      "needsReview": "Требуют повторения",
+      "staleTopics": "темы"
+    },
+    "metrics": {
+      "accuracy": "Точность",
+      "accuracyShort": "точность",
+      "mistakesShort": "{{count}} ошибок",
+      "needsPractice": "Нужна практика",
+      "mistakes": "Ошибки",
+      "lastReviewed": "Последнее повторение",
+      "daysAgo": "Последнее повторение {{days}}д назад",
+      "neverReviewed": "Ещё не повторялись",
+      "never": "Никогда",
+      "noData": "—"
+    }
   },
   "topicDetails": {
     "pageTitle": "Детали темы",

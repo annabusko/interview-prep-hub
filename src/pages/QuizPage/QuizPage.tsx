@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { usePreferences } from "../../app/providers/preferences/usePreferences";
@@ -11,11 +11,11 @@ export const QuizPage = () => {
   const { t } = useTranslation();
   const { preferences } = usePreferences();
   const { selectedLevel, selectedLanguage } = preferences;
-  const [isSessionCompleted, setIsSessionCompleted] = useState(false);
 
-  useEffect(() => {
-    setIsSessionCompleted(false);
-  }, [selectedLevel]);
+  // Use a session key to reset session state on selectedLevel change
+  const [completedSessionKey, setCompletedSessionKey] = useState<string | null>(null);
+  const sessionKey = selectedLevel;
+  const isSessionCompleted = completedSessionKey === sessionKey;
 
   const filteredQuestions = allQuestions.filter(
     (q) => q.level === selectedLevel,
@@ -34,11 +34,11 @@ export const QuizPage = () => {
     <div className="space-y-6">
       <p className="text-sm text-slate-500">{t("quiz.description")}</p>
       <QuizSession
-        key={selectedLevel}
+        key={sessionKey}
         filteredQuestions={filteredQuestions}
         selectedLevel={selectedLevel}
         selectedLanguage={selectedLanguage}
-        onCompletionChange={setIsSessionCompleted}
+        onCompleted={() => setCompletedSessionKey(sessionKey)}
       />
       {!isSessionCompleted && (
         <Link
