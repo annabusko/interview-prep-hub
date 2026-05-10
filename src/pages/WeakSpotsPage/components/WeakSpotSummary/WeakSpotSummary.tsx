@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import type { WeakSpotsSummary } from "../../WeakSpotsPage.types";
+import type { WeakSpotsSummary } from "@/pages/WeakSpotsPage/WeakSpotsPage.types";
 
 type WeakSpotSummaryProps = {
   summary: WeakSpotsSummary;

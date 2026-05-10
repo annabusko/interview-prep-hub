@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import type { TopicStatus } from "../../../../domain/models";
-import type { TopicProgressProps } from "../../TopicDetailPage.types";
+import type { TopicStatus } from "@/domain/models";
+import type { TopicProgressProps } from "@/pages/TopicDetailPage/TopicDetailPage.types";
 
 const TOPIC_STATUSES: TopicStatus[] = ["new", "learning", "strong", "weak"];
 

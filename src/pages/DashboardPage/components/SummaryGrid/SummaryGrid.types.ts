@@ -1,4 +1,4 @@
-import type { DashboardSummary } from '../../DashboardPage.types';
+import type { DashboardSummary } from '@/pages/DashboardPage/DashboardPage.types';
 
 export type SummaryGridProps = Readonly<{
   summary: DashboardSummary;

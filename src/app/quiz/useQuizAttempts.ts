@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import type { QuizAttempt } from "../../domain/models";
+import type { QuizAttempt } from "@/domain/models";
 import { readQuizAttempts, writeQuizAttempts } from "./quizAttempts.storage";
 
 type NewQuizAttempt = Omit<QuizAttempt, "id" | "answeredAt">;

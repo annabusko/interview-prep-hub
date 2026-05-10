@@ -1,9 +1,10 @@
-import { readQuizAttempts } from '../../app/quiz/quizAttempts.storage';
-import { readTopicProgress } from '../../app/topic-progress/topicProgress.storage';
-import { questions } from '../../data/questions';
-import { topics } from '../../data/topics';
-import type { ContentLanguage, InterviewLevel } from '../../domain/models';
-import type { ReviewReason } from '../../domain/reviewReason';
+import { readQuizAttempts } from '@/app/quiz/quizAttempts.storage';
+import { readTopicProgress } from '@/app/topic-progress/topicProgress.storage';
+import { categories } from '@/data/categories';
+import { questions } from '@/data/questions';
+import { topics } from '@/data/topics';
+import type { ContentLanguage, InterviewLevel } from '@/domain/models';
+import type { ReviewReason } from '@/domain/reviewReason';
 import type { DashboardSummary, NeedsAttentionItem } from './DashboardPage.types';
 
 export const buildSummary = (selectedLevel: InterviewLevel): DashboardSummary  => {
@@ -37,6 +38,9 @@ export const buildNeedsAttention = (
 ): NeedsAttentionItem[] => {
   const progress = readTopicProgress();
   const attempts = readQuizAttempts();
+  const categoryMap = new Map(
+    categories.map((c) => [c.id, c.title[selectedLanguage]]),
+  );
 
   const weakTopicIds = new Set(
     progress.filter((p) => p.status === 'weak').map((p) => p.topicId),
@@ -67,6 +71,8 @@ export const buildNeedsAttention = (
 
     result.push({
       topicId: topic.id,
+      categoryId: topic.categoryId,
+      categoryTitle: categoryMap.get(topic.categoryId) ?? topic.categoryId,
       title: topic.title[selectedLanguage],
       summary: topic.summary[selectedLanguage],
       reason,

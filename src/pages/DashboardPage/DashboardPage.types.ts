@@ -1,7 +1,9 @@
-import type { ReviewReason } from '../../domain/reviewReason';
+import type { ReviewReason } from '@/domain/reviewReason';
 
 export type NeedsAttentionItem = {
   topicId: string;
+  categoryId: string;
+  categoryTitle: string;
   title: string;
   summary: string;
   reason: ReviewReason;

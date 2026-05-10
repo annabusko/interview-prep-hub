@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { PATHS } from "../../../../routes/paths";
+import { PATHS } from "@/routes/paths";
 
 export const WeakSpotEmptyState = () => {
   const { t } = useTranslation();

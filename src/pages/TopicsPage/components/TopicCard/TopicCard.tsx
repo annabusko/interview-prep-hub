@@ -1,10 +1,10 @@
 
 import { Link } from "react-router-dom";
-import { Badge } from "../../../../components/ui/Badge";
-import { TopicCardShell } from "../../../../components/ui/TopicCardShell/TopicCardShell";
-import { getCategoryAccent } from "../../../../components/ui/TopicCardShell/topicCardAccent";
-import { PATHS } from "../../../../routes/paths";
-import type { TopicCardProps } from "../../TopicsPage.types";
+import { Badge } from "@/components/ui/Badge";
+import { TopicCardShell } from "@/components/ui/TopicCardShell/TopicCardShell";
+import { getCategoryAccent } from "@/components/ui/TopicCardShell/topicCardAccent";
+import { PATHS } from "@/routes/paths";
+import type { TopicCardProps } from "@/pages/TopicsPage/TopicsPage.types";
 
 export const TopicCard = ({
   topic,

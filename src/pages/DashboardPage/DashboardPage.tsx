@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { usePreferences } from "../../app/providers/preferences/usePreferences";
+import { usePreferences } from "@/app/providers/preferences/usePreferences";
 import { QuickActions } from "./components/QuickActions/QuickActions";
 import { RecommendationSection } from "./components/RecommendationSection/RecommendationSection";
 import { SummaryGrid } from "./components/SummaryGrid/SummaryGrid";

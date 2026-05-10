@@ -1,4 +1,4 @@
-import type { TopicProgress, TopicStatus } from "../../domain/models";
+import type { TopicProgress, TopicStatus } from "@/domain/models";
 
 const TOPIC_PROGRESS_STORAGE_KEY = "interview-prep-hub:topic-progress";
 const TOPIC_STATUSES = new Set<TopicStatus>([

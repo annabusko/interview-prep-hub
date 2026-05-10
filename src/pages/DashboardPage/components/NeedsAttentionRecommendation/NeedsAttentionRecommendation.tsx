@@ -1,49 +1,54 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Badge } from "../../../../components/ui/Badge";
-import { REASON_CLASSES } from "../../../../domain/reviewReason";
-import { PATHS } from "../../../../routes/paths";
-import { WarningTriangleIcon } from "../icons/DashboardIcons";
-import { RecommendationPanel } from "../RecommendationPanel/RecommendationPanel";
+import { Badge } from "@/components/ui/Badge";
+import { TopicCardShell } from "@/components/ui/TopicCardShell/TopicCardShell";
+import { getCategoryAccent } from "@/components/ui/TopicCardShell/topicCardAccent";
+import { PATHS } from "@/routes/paths";
 import type { NeedsAttentionRecommendationProps } from "./NeedsAttentionRecommendation.types";
 
 export const NeedsAttentionRecommendation = ({
   item,
 }: NeedsAttentionRecommendationProps) => {
   const { t } = useTranslation();
+  const { dot, border } = getCategoryAccent(item.categoryId);
 
   return (
-    <RecommendationPanel
-      icon={<WarningTriangleIcon className="h-9 w-9" strokeWidth={1.5} />}
-      label={t("dashboard.needsAttention.title")}
-      heading={item.title}
-      description={item.summary}
-      actions={
-        <>
-          <Link
-            to={PATHS.topicDetail(item.topicId)}
-            className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-slate-800"
-          >
-            {t("topics.openDetails")} →
-          </Link>
-          <Badge className={REASON_CLASSES[item.reason]}>
-            {t(`weakSpots.reason.${item.reason}`)}
-          </Badge>
-        </>
-      }
-      rightSlot={
-        <>
-          <p className="text-xs font-medium text-slate-600">
-            {t("dashboard.needsAttention.reviewTip")}
-          </p>
-          <Link
-            to={PATHS.weakSpots}
-            className="mt-3 inline-flex items-center gap-1 text-xs text-slate-400 transition-colors hover:text-slate-600"
-          >
-            {t("dashboard.needsAttention.viewAll")} →
-          </Link>
-        </>
-      }
-    />
+    <TopicCardShell density="rich" accentClassName={border}>
+      {/* Top: category + signal badge */}
+      <div className="flex flex-wrap items-center gap-2">
+        <Badge className="rounded-xl px-3 py-1 text-xs font-medium bg-slate-50 text-slate-700 ring-1 ring-slate-200/70">
+          <span className="inline-flex items-center gap-1.5">
+            <span className={`h-1.5 w-1.5 rounded-full opacity-80 ${dot}`} />
+            {item.categoryTitle}
+          </span>
+        </Badge>
+        <Badge className="bg-slate-100 text-slate-700 ring-1 ring-slate-200/70">
+          {t(`weakSpots.reason.${item.reason}`)}
+        </Badge>
+      </div>
+
+      {/* Title + summary */}
+      <div>
+        <h2 className="text-base font-semibold text-slate-900">{item.title}</h2>
+        <p className="mt-1 line-clamp-2 text-sm text-slate-500">{item.summary}</p>
+      </div>
+
+      {/* Actions */}
+      <div className="flex flex-wrap items-center gap-3">
+        <Link
+          to={PATHS.topicDetail(item.topicId)}
+          className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-800"
+        >
+          {t("weakSpots.continueLearning")}
+        </Link>
+        <Link
+          to={PATHS.weakSpots}
+          className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-slate-700 ring-1 ring-slate-200 transition-colors hover:bg-slate-50 hover:ring-slate-300"
+        >
+          {t("dashboard.needsAttention.viewAll")}
+        </Link>
+      </div>
+    </TopicCardShell>
   );
 };
+

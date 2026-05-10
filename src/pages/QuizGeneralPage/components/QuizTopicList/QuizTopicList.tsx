@@ -1,5 +1,5 @@
 import { QuizTopicCard } from "../QuizTopicCard/QuizTopicCard";
-import type { QuizTopicListProps } from "../../QuizGeneralPage.types";
+import type { QuizTopicListProps } from "@/pages/QuizGeneralPage/QuizGeneralPage.types";
 
 export const QuizTopicList = ({
   topics,

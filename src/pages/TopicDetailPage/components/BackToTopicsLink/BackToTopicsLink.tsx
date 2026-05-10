@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { PATHS } from "../../../../routes/paths";
+import { PATHS } from "@/routes/paths";
 
 export const BackToTopicsLink = () => {
   const { t } = useTranslation();

@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useQuizAttempts } from "../../../../app/quiz/useQuizAttempts";
-import { PATHS } from "../../../../routes/paths";
-import type { QuizSessionProps } from "../../QuizPage.types";
-import { isAnswerCorrect } from "../../QuizPage.utils";
+import { useQuizAttempts } from "@/app/quiz/useQuizAttempts";
+import { PATHS } from "@/routes/paths";
+import clockIcon from "@/assets/icons/clock.svg";
+import type { QuizSessionProps } from "@/pages/QuizPage/QuizPage.types";
+import { isAnswerCorrect } from "@/pages/QuizPage/QuizPage.utils";
 import { QuizCompletedState } from "../QuizCompletedState/QuizCompletedState";
 import { QuestionCard } from "../QuestionCard/QuestionCard";
 import { QuizFeedback } from "../QuizFeedback/QuizFeedback";
@@ -16,6 +17,25 @@ const formatTime = (seconds: number): string => {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
   return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+};
+
+const ClockIcon = ({ className }: { className?: string }) => {
+  return (
+    <span
+      aria-hidden="true"
+      className={["inline-block bg-current", className].filter(Boolean).join(" ")}
+      style={{
+        WebkitMaskImage: `url(${clockIcon})`,
+        maskImage: `url(${clockIcon})`,
+        WebkitMaskRepeat: "no-repeat",
+        maskRepeat: "no-repeat",
+        WebkitMaskPosition: "center",
+        maskPosition: "center",
+        WebkitMaskSize: "100% 100%",
+        maskSize: "100% 100%",
+      }}
+    />
+  );
 };
 
 export const QuizSession = ({
@@ -133,22 +153,7 @@ export const QuizSession = ({
             {answeredCount} / {total} {t("quiz.answered")}
             <span aria-hidden="true">·</span>
             <span className="inline-flex items-center justify-end gap-1.5 min-w-[88px]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-slate-400 flex-shrink-0"
-                aria-hidden="true"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
+              <ClockIcon className="h-4 w-4 text-slate-400 flex-shrink-0" />
               <span className={`tabular-nums${isTimeExpired ? " text-red-600" : ""}`}>{t("quiz.timerLeft", { time: timeDisplay })}</span>
             </span>
           </span>

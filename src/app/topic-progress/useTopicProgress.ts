@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import type { TopicStatus } from "../../domain/models";
+import type { TopicStatus } from "@/domain/models";
 import {
   getTopicStatus as getTopicStatusFromStorage,
   setTopicStatus as setTopicStatusInStorage,

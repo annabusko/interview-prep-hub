@@ -1,4 +1,4 @@
-import type { QuizAttempt } from "../../domain/models";
+import type { QuizAttempt } from "@/domain/models";
 
 const QUIZ_ATTEMPTS_KEY = "interview-prep-hub:quiz-attempts";
 

@@ -1,4 +1,4 @@
-import type { ContentLanguage, Topic } from "../../domain/models";
+import type { ContentLanguage, Topic } from "@/domain/models";
 
 export type TopicCardProps = {
   topic: Topic;

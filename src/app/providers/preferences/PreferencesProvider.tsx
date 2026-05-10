@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type PropsWithChildren } from "react";
-import type { UserPreferences } from "../../../domain/models";
-import { i18n } from "../../../i18n";
+import type { UserPreferences } from "@/domain/models";
+import { i18n } from "@/i18n";
 import {
   PreferencesContext,
   type PreferencesContextValue,

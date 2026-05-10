@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import type { TopicContentProps } from "../../TopicDetailPage.types";
+import type { TopicContentProps } from "@/pages/TopicDetailPage/TopicDetailPage.types";
 
 export const TopicContent = ({ topic, language }: Readonly<TopicContentProps>) => {
   const { t } = useTranslation();

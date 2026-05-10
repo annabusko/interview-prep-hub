@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import type { ContentLanguage } from "../../../../domain/models";
-import { CategoryFilterBar } from "../../../../components/ui/CategoryFilterBar";
+import type { ContentLanguage } from "@/domain/models";
+import { CategoryFilterBar } from "@/components/ui/CategoryFilterBar";
 
 type WeakSpotFiltersProps = {
   selectedLanguage: ContentLanguage;

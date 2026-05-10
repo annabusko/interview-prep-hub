@@ -1,4 +1,4 @@
-import type { ReviewReason } from "../../domain/reviewReason";
+import type { ReviewReason } from "@/domain/reviewReason";
 
 export type ReviewTopicMetrics = {
   mistakeCount: number;

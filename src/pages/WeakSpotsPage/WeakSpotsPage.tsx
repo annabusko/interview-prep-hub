@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { usePreferences } from "../../app/providers/preferences/usePreferences";
+import { usePreferences } from "@/app/providers/preferences/usePreferences";
 import { WeakSpotEmptyState } from "./components/WeakSpotEmptyState/WeakSpotEmptyState";
 import { WeakSpotFilters } from "./components/WeakSpotFilters/WeakSpotFilters";
 import { WeakSpotSummary } from "./components/WeakSpotSummary/WeakSpotSummary";

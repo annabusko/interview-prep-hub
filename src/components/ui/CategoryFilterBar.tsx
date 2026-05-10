@@ -1,5 +1,5 @@
-import { categories } from "../../data/categories";
-import type { ContentLanguage } from "../../domain/models";
+import { categories } from "@/data/categories";
+import type { ContentLanguage } from "@/domain/models";
 
 
 type CategoryFilterBarProps = {
