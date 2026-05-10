@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Badge } from "../../../../components/ui/Badge";
-import { TopicCardShell } from "../../../../components/ui/TopicCardShell/TopicCardShell";
-import { getCategoryAccent } from "../../../../components/ui/TopicCardShell/topicCardAccent";
-import { PATHS } from "../../../../routes/paths";
-import type { ReviewTopic } from "../../WeakSpotsPage.types";
+import { Badge } from "@/components/ui/Badge";
+import { TopicCardShell } from "@/components/ui/TopicCardShell/TopicCardShell";
+import { getCategoryAccent } from "@/components/ui/TopicCardShell/topicCardAccent";
+import { PATHS } from "@/routes/paths";
+import type { ReviewTopic } from "@/pages/WeakSpotsPage/WeakSpotsPage.types";
 
 type WeakSpotCardProps = {
   item: ReviewTopic;

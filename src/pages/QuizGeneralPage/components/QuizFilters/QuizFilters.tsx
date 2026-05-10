@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { CategoryFilterBar } from "../../../../components/ui/CategoryFilterBar";
-import type { QuizFiltersProps } from "../../QuizGeneralPage.types";
+import { CategoryFilterBar } from "@/components/ui/CategoryFilterBar";
+import type { QuizFiltersProps } from "@/pages/QuizGeneralPage/QuizGeneralPage.types";
 
 export const QuizFilters = ({
   selectedLanguage,

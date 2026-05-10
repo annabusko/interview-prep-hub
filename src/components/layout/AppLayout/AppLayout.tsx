@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { AppHeader } from "./AppHeader";
-import { AppSidebar } from "./AppSidebar";
+import { AppHeader } from "../AppHeader/AppHeader";
+import { AppSidebar } from "../AppSidebar/AppSidebar";
 
 export const AppLayout = () => {
   return (

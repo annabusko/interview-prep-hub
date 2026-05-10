@@ -1,6 +1,6 @@
-import { categories } from "../../data/categories";
-import { topics } from "../../data/topics";
-import type { ContentLanguage, InterviewLevel, Topic } from "../../domain/models";
+import { categories } from "@/data/categories";
+import { topics } from "@/data/topics";
+import type { ContentLanguage, InterviewLevel, Topic } from "@/domain/models";
 
 export const buildCategoryMap = (selectedLanguage: ContentLanguage): Map<string, string> =>
   new Map(categories.map((category) => [category.id, category.title[selectedLanguage]]));

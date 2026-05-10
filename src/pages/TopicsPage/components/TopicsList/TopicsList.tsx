@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { EmptyState } from "../../../../components/ui/EmptyState";
-import type { ContentLanguage, Topic } from "../../../../domain/models";
+import { EmptyState } from "@/components/ui/EmptyState";
+import type { ContentLanguage, Topic } from "@/domain/models";
 import { TopicCard } from "../TopicCard/TopicCard";
 
 type TopicsListProps = {

@@ -1,5 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { AppLayout } from './components/layout/AppLayout';
+import { AppLayout } from './components/layout/AppLayout/AppLayout';
 import { DashboardPage } from './pages/DashboardPage/DashboardPage';
 import { QuizGeneralPage } from './pages/QuizGeneralPage/QuizGeneralPage';
 import { QuizPage } from './pages/QuizPage/QuizPage';

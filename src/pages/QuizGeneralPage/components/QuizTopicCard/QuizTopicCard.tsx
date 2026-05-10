@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { Badge } from "../../../../components/ui/Badge";
-import { TopicCardShell } from "../../../../components/ui/TopicCardShell/TopicCardShell";
-import { getCategoryAccent } from "../../../../components/ui/TopicCardShell/topicCardAccent";
-import { PATHS } from "../../../../routes/paths";
-import type { QuizTopicCardProps } from "../../QuizGeneralPage.types";
+import { Badge } from "@/components/ui/Badge";
+import { TopicCardShell } from "@/components/ui/TopicCardShell/TopicCardShell";
+import { getCategoryAccent } from "@/components/ui/TopicCardShell/topicCardAccent";
+import { PATHS } from "@/routes/paths";
+import type { QuizTopicCardProps } from "@/pages/QuizGeneralPage/QuizGeneralPage.types";
 
 export const QuizTopicCard = ({
   topic,

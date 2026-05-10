@@ -1,10 +1,10 @@
-import { readQuizAttempts } from "../../app/quiz/quizAttempts.storage";
-import { readTopicProgress } from "../../app/topic-progress/topicProgress.storage";
-import { categories } from "../../data/categories";
-import { questions } from "../../data/questions";
-import { topics } from "../../data/topics";
-import type { ContentLanguage } from "../../domain/models";
-import type { ReviewReason } from "../../domain/reviewReason";
+import { readQuizAttempts } from "@/app/quiz/quizAttempts.storage";
+import { readTopicProgress } from "@/app/topic-progress/topicProgress.storage";
+import { categories } from "@/data/categories";
+import { questions } from "@/data/questions";
+import { topics } from "@/data/topics";
+import type { ContentLanguage } from "@/domain/models";
+import type { ReviewReason } from "@/domain/reviewReason";
 import type { ReviewTopic, WeakSpotsSummary } from "./WeakSpotsPage.types";
 
 type TopicAttemptStats = { correct: number; total: number };

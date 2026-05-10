@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { PATHS } from "../../../../routes/paths";
+import { PATHS } from "@/routes/paths";
 
 type QuizCompletedStateProps = {
   answeredCount: number;

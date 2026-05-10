@@ -1,4 +1,4 @@
-import type { UserPreferences } from '../../../domain/models';
+import type { UserPreferences } from '@/domain/models';
 
 export const DEFAULT_PREFERENCES: UserPreferences = {
   selectedLevel: 'junior',

@@ -1,4 +1,4 @@
-import type { ContentLanguage, Topic, TopicStatus } from "../../domain/models";
+import type { ContentLanguage, Topic, TopicStatus } from "@/domain/models";
 
 export type TopicHeroProps = {
   topic: Topic;

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { usePreferences } from "../../app/providers/preferences/usePreferences";
+import { usePreferences } from "@/app/providers/preferences/usePreferences";
 import { QuizFilters } from "./components/QuizFilters/QuizFilters";
 import { QuizTopicList } from "./components/QuizTopicList/QuizTopicList";
 import { buildQuizCategoryMap, filterQuizTopics } from "./QuizGeneralPage.utils";

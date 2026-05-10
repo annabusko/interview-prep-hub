@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { Badge } from "../../../../components/ui/Badge";
-import { getCategoryDotColor } from "../../TopicDetailPage.utils";
-import type { TopicHeroProps } from "../../TopicDetailPage.types";
+import { Badge } from "@/components/ui/Badge";
+import { getCategoryDotColor } from "@/pages/TopicDetailPage/TopicDetailPage.utils";
+import type { TopicHeroProps } from "@/pages/TopicDetailPage/TopicDetailPage.types";
 
 export const TopicHero = ({ topic, categoryTitle, language }: Readonly<TopicHeroProps>) => {
   const { t } = useTranslation();

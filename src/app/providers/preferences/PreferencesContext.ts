@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import type { ContentLanguage, InterviewLevel, UserPreferences } from '../../../domain/models';
+import type { ContentLanguage, InterviewLevel, UserPreferences } from '@/domain/models';
 
 export type PreferencesContextValue = {
   preferences: UserPreferences;

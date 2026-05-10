@@ -1,4 +1,4 @@
-import type { ReviewTopic } from "../../WeakSpotsPage.types";
+import type { ReviewTopic } from "@/pages/WeakSpotsPage/WeakSpotsPage.types";
 import { WeakSpotCard } from "../WeakSpotCard/WeakSpotCard";
 
 type WeakSpotsListProps = {

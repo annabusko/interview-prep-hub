@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { usePreferences } from "../../app/providers/preferences/usePreferences";
+import { usePreferences } from "@/app/providers/preferences/usePreferences";
 import { TopicFilters } from "./components/TopicFilters/TopicFilters";
 import { TopicsList } from "./components/TopicsList/TopicsList";
 import { buildCategoryMap, filterTopics } from "./TopicsPage.utils";

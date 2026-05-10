@@ -2,7 +2,7 @@ import type {
   ContentLanguage,
   InterviewLevel,
   UserPreferences,
-} from "../../../domain/models";
+} from "@/domain/models";
 import { DEFAULT_PREFERENCES } from "./preferences.defaults";
 
 const PREFERENCES_STORAGE_KEY = "interview-prep-hub:preferences";

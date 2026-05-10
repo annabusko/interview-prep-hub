@@ -1,4 +1,4 @@
-import type { ContentLanguage, Question } from "../../../../domain/models";
+import type { ContentLanguage, Question } from "@/domain/models";
 import { AnswerOption } from "../AnswerOption/AnswerOption";
 
 type QuestionCardProps = {

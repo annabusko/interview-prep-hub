@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
-import type { TopicStatus } from "../../domain/models";
-import { usePreferences } from "../../app/providers/preferences/usePreferences";
-import { useTopicProgress } from "../../app/topic-progress/useTopicProgress";
-import { PATHS } from "../../routes/paths";
+import type { TopicStatus } from "@/domain/models";
+import { usePreferences } from "@/app/providers/preferences/usePreferences";
+import { useTopicProgress } from "@/app/topic-progress/useTopicProgress";
+import { PATHS } from "@/routes/paths";
 import { findTopic, getCategoryTitle } from "./TopicDetailPage.utils";
 import { TopicHero } from "./components/TopicHero/TopicHero";
 import { TopicProgress } from "./components/TopicProgress/TopicProgress";

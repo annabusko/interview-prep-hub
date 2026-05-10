@@ -1,4 +1,4 @@
-import type { ContentLanguage, QuestionOption } from "../../../../domain/models";
+import type { ContentLanguage, QuestionOption } from "@/domain/models";
 
 type AnswerOptionProps = {
   option: QuestionOption;

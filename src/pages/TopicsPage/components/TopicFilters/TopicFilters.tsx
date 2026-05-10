@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { CategoryFilterBar } from "../../../../components/ui/CategoryFilterBar";
-import type { ContentLanguage } from "../../../../domain/models";
+import { CategoryFilterBar } from "@/components/ui/CategoryFilterBar";
+import type { ContentLanguage } from "@/domain/models";
 
 type TopicFiltersProps = {
   selectedLanguage: ContentLanguage;
