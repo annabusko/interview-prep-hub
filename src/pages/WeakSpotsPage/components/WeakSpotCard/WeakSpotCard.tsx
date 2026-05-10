@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Badge } from "../../../../components/ui/Badge";
+import { TopicCardShell } from "../../../../components/ui/TopicCardShell/TopicCardShell";
+import { getCategoryAccent } from "../../../../components/ui/TopicCardShell/topicCardAccent";
 import { PATHS } from "../../../../routes/paths";
 import type { ReviewTopic } from "../../WeakSpotsPage.types";
 
@@ -11,13 +13,6 @@ type WeakSpotCardProps = {
 const getDaysAgo = (isoString: string): number => {
   const then = new Date(isoString).getTime();
   return Math.floor((Date.now() - then) / (1000 * 60 * 60 * 24));
-};
-
-const getCategoryAccent = (categoryId: string): { dot: string; border: string } => {
-  if (categoryId === "javascript") return { dot: "bg-amber-300", border: "border-l-[3px] border-amber-200" };
-  if (categoryId === "typescript") return { dot: "bg-blue-300", border: "border-l-[3px] border-blue-200" };
-  if (categoryId === "react") return { dot: "bg-teal-300", border: "border-l-[3px] border-teal-200" };
-  return { dot: "bg-slate-400", border: "border-l-[3px] border-slate-200" };
 };
 
 export const WeakSpotCard = ({ item }: Readonly<WeakSpotCardProps>) => {
@@ -41,7 +36,7 @@ export const WeakSpotCard = ({ item }: Readonly<WeakSpotCardProps>) => {
   const signalBadge = getSignalBadge();
 
   return (
-    <div className={`flex flex-col gap-3 rounded-3xl bg-white p-5 ring-1 ring-slate-200/80 ${border}`}>
+    <TopicCardShell density="rich" accentClassName={border}>
       {/* Top: category + signal badge */}
       <div className="flex flex-wrap items-center gap-2">
         <Badge className="rounded-xl px-3 py-1 text-xs font-medium bg-slate-50 text-slate-700 ring-1 ring-slate-200/70">
@@ -79,6 +74,6 @@ export const WeakSpotCard = ({ item }: Readonly<WeakSpotCardProps>) => {
           {t("weakSpots.retryQuiz")}
         </Link>
       </div>
-    </div>
+    </TopicCardShell>
   );
 };
