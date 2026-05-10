@@ -1,65 +1,70 @@
-import bookIcon from "@/assets/icons/topics.svg";
-import bookLinesIcon from "@/assets/icons/book-lines.svg";
-import checkIcon from "@/assets/icons/check.svg";
-import dashboardIcon from "@/assets/icons/dashboard.svg";
-import pencilIcon from "@/assets/icons/pencil.svg";
-import playIcon from "@/assets/icons/play.svg";
-import plusCircleIcon from "@/assets/icons/plus-circle.svg";
-import questionIcon from "@/assets/icons/quiz.svg";
-import warningIcon from "@/assets/icons/weak-spots.svg";
+import BookSvg from "@/assets/icons/topics.svg?react";
+import BookLinesSvg from "@/assets/icons/book-lines.svg?react";
+import CheckSvg from "@/assets/icons/check.svg?react";
+import DashboardSvg from "@/assets/icons/dashboard.svg?react";
+import PencilSvg from "@/assets/icons/pencil.svg?react";
+import PlaySvg from "@/assets/icons/play.svg?react";
+import PlusCircleSvg from "@/assets/icons/plus-circle.svg?react";
+import QuizSvg from "@/assets/icons/quiz.svg?react";
+import WeakSpotsSvg from "@/assets/icons/weak-spots.svg?react";
+
+type IconComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
 type IconProps = Readonly<{
   className?: string;
-  strokeWidth?: number;
 }>;
 
-const IconAsset = ({ className, src }: { className?: string; src: string }) => {
+type IconAssetProps = Readonly<{
+  className?: string;
+  Icon: IconComponent;
+}>;
+
+const IconAsset = ({ className, Icon }: IconAssetProps) => {
   return (
-    <img
-      src={src}
-      alt=""
+    <Icon
       aria-hidden="true"
-      className={["inline-block shrink-0", className].filter(Boolean).join(" ")}
+      className={["h-4 w-4 shrink-0", className].filter(Boolean).join(" ")}
+      focusable="false"
     />
   );
 };
 
 export const GridIcon = ({ className }: IconProps) => {
-  return <IconAsset className={className} src={dashboardIcon} />;
+  return <IconAsset className={className} Icon={DashboardSvg} />;
 };
 
 export const PlusCircleIcon = ({ className }: IconProps) => {
-  return <IconAsset className={className} src={plusCircleIcon} />;
+  return <IconAsset className={className} Icon={PlusCircleSvg} />;
 };
 
 export const PencilIcon = ({ className }: IconProps) => {
-  return <IconAsset className={className} src={pencilIcon} />;
+  return <IconAsset className={className} Icon={PencilSvg} />;
 };
 
 export const CheckIcon = ({ className }: IconProps) => {
-  return <IconAsset className={className} src={checkIcon} />;
+  return <IconAsset className={className} Icon={CheckSvg} />;
 };
 
 export const WarningTriangleIcon = ({
   className,
 }: IconProps) => {
-  return <IconAsset className={className} src={warningIcon} />;
+  return <IconAsset className={className} Icon={WeakSpotsSvg} />;
 };
 
 export const QuizCircleIcon = ({ className }: IconProps) => {
-  return <IconAsset className={className} src={questionIcon} />;
+  return <IconAsset className={className} Icon={QuizSvg} />;
 };
 
 export const PlayIcon = ({ className }: IconProps) => {
-  return <IconAsset className={className} src={playIcon} />;
+  return <IconAsset className={className} Icon={PlaySvg} />;
 };
 
 export const BookOpenIcon = ({ className }: IconProps) => {
-  return <IconAsset className={className} src={bookIcon} />;
+  return <IconAsset className={className} Icon={BookSvg} />;
 };
 
 export const BookOpenLinesIcon = ({
   className,
 }: IconProps) => {
-  return <IconAsset className={className} src={bookLinesIcon} />;
+  return <IconAsset className={className} Icon={BookLinesSvg} />;
 };
