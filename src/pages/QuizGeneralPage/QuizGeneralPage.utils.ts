@@ -15,10 +15,3 @@ export const filterQuizTopics = (
     if (!normalizedSearch) return true;
     return topic.title[language].toLocaleLowerCase().includes(normalizedSearch);
   });
-
-export const getCategoryDotColor = (categoryId: string): string => {
-  if (categoryId === "javascript") return "bg-amber-300";
-  if (categoryId === "typescript") return "bg-blue-400";
-  if (categoryId === "react") return "bg-teal-300";
-  return "bg-slate-400";
-};

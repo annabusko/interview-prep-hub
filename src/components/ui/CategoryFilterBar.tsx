@@ -1,35 +1,30 @@
-import { categories } from "@/data/categories";
-import type { ContentLanguage } from "@/domain/models";
+export type CategoryFilterItem = Readonly<{
+  id: string;
+  label: string;
+  dotClassName?: string;
+}>;
 
-
-type CategoryFilterBarProps = {
-  selectedLanguage: ContentLanguage;
-  selectedCategoryId: string;
-  onCategoryChange: (id: string) => void;
-  allCategoriesLabel: string;
-};
+type CategoryFilterBarProps = Readonly<{
+  items: CategoryFilterItem[];
+  selectedId: string;
+  onChange: (id: string) => void;
+  allLabel: string;
+  allId?: string;
+}>;
 
 export const CategoryFilterBar = ({
-  selectedLanguage,
-  selectedCategoryId,
-  onCategoryChange,
-  allCategoriesLabel,
-}: Readonly<CategoryFilterBarProps>) => {
+  items,
+  selectedId,
+  onChange,
+  allLabel,
+  allId = "all",
+}: CategoryFilterBarProps) => {
   return (
     <fieldset className="flex flex-wrap gap-3 border-none p-0 m-0">
       {[
-        { id: "all", label: allCategoriesLabel },
-        ...categories.map((c) => ({
-          id: c.id,
-          label: c.title[selectedLanguage],
-        })),
-      ].map(({ id, label }) => {
-        const isRealCategory = id !== "all";
-        let dotColor = "bg-slate-400";
-        if (id === "javascript") dotColor = "bg-amber-300";
-        else if (id === "typescript") dotColor = "bg-blue-300";
-        else if (id === "react") dotColor = "bg-teal-300";
-
+        { id: allId, label: allLabel, dotClassName: undefined },
+        ...items,
+      ].map(({ id, label, dotClassName }) => {
         const base =
           "rounded-lg px-3 py-1 text-sm font-medium transition-all cursor-pointer inline-flex items-center gap-1.5";
         const active = "bg-slate-900 text-white hover:bg-slate-800 hover:scale-[1.02]";
@@ -40,14 +35,14 @@ export const CategoryFilterBar = ({
           <button
             key={id}
             type="button"
-            onClick={() => onCategoryChange(id)}
-            className={base + " " + (selectedCategoryId === id ? active : inactive)}
+            onClick={() => onChange(id)}
+            className={base + " " + (selectedId === id ? active : inactive)}
           >
-            {isRealCategory && (
+            {dotClassName && (
               <span
                 className={
                   "h-1.5 w-1.5 rounded-full opacity-80 " +
-                  (selectedCategoryId === id ? "bg-white/80" : dotColor)
+                  (selectedId === id ? "bg-white/80" : dotClassName)
                 }
               />
             )}
