@@ -7,7 +7,7 @@ import { TopicDetailPage } from './pages/TopicDetailPage/TopicDetailPage';
 import { TopicsPage } from './pages/TopicsPage/TopicsPage';
 import { WeakSpotsPage } from './pages/WeakSpotsPage/WeakSpotsPage';
 
-export default function App() {
+const App = () => {
   return (
     <BrowserRouter basename="/interview-prep-hub">
       <Routes>
@@ -27,4 +27,6 @@ export default function App() {
       </Routes>
     </BrowserRouter>
   );
-}
+};
+
+export default App;

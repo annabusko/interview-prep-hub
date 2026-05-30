@@ -1,10 +1,12 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { usePreferences } from "@/app/providers/preferences/usePreferences";
 import { QuizFilters } from "./components/QuizFilters/QuizFilters";
 import { QuizTopicList } from "./components/QuizTopicList/QuizTopicList";
 import { buildQuizCategoryMap, filterQuizTopics } from "./QuizGeneralPage.utils";
 
 export const QuizGeneralPage = () => {
+  const { t } = useTranslation();
   const {
     preferences: { selectedLanguage },
   } = usePreferences();
@@ -27,7 +29,7 @@ export const QuizGeneralPage = () => {
   return (
     <div className="space-y-6">
       <p className="text-sm text-slate-600">
-        Choose a topic or start a quick practice session.
+        {t("quiz.generalDescription")}
       </p>
       <QuizFilters
         selectedLanguage={selectedLanguage}

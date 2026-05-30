@@ -61,7 +61,7 @@ export const TopicDetailPage = () => {
               to={PATHS.topics}
               className="rounded px-1.5 py-1 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900"
             >
-              Topics
+              {t("topicDetails.breadcrumbTopics")}
             </Link>
           </li>
           <li className="text-slate-300">/</li>
