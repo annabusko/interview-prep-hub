@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { QuizTopicCard } from "../QuizTopicCard/QuizTopicCard";
 import type { QuizTopicListProps } from "@/pages/QuizGeneralPage/QuizGeneralPage.types";
 
@@ -6,9 +7,11 @@ export const QuizTopicList = ({
   categoryMap,
   language,
 }: Readonly<QuizTopicListProps>) => {
+  const { t } = useTranslation();
+
   if (topics.length === 0) {
     return (
-      <p className="text-sm text-slate-500">No topics found.</p>
+      <p className="text-sm text-slate-500">{t("quiz.noTopicsFound")}</p>
     );
   }
 

@@ -30,6 +30,11 @@
   },
   "quiz": {
     "description": "Практикуйтесь на вопросах для собеседований вашего уровня. Выберите ответ и нажмите «Проверить».",
+    "generalDescription": "Выберите тему или начните быструю тренировку.",
+    "startQuiz": "Начать квиз",
+    "browseTopics": "Перейти к темам",
+    "practiceWeakSpots": "Отработать слабые места",
+    "noTopicsFound": "Темы не найдены.",
     "noQuestions": "Вопросов для текущего уровня нет.",
     "progress": "Вопрос {{current}} из {{total}}",
     "progressLabel": "Прогресс",
@@ -129,6 +134,9 @@
     "pageTitle": "Детали темы",
     "statusLabel": "Ваш прогресс",
     "backToTopics": "Назад к темам",
+    "breadcrumbTopics": "Темы",
+    "keyPoints": "Ключевые моменты",
+    "interviewTips": "Советы для собеседования",
     "notFound": "Тема не найдена.",
     "missingTopic": "Тема не выбрана."
   },

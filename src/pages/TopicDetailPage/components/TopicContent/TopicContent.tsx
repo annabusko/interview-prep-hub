@@ -18,7 +18,7 @@ export const TopicContent = ({ topic, language }: Readonly<TopicContentProps>) =
       {keyPoints.length > 0 && (
         <div>
           <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Key points
+            {t("topicDetails.keyPoints")}
           </h3>
           <ul className="mt-3 space-y-2">
             {keyPoints.map((item) => (
@@ -34,7 +34,7 @@ export const TopicContent = ({ topic, language }: Readonly<TopicContentProps>) =
       {interviewTips.length > 0 && (
         <div>
           <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Interview tips
+            {t("topicDetails.interviewTips")}
           </h3>
           <ul className="mt-3 space-y-2">
             {interviewTips.map((item) => (

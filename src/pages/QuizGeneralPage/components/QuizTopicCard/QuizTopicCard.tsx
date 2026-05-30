@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/Badge";
 import { TopicCardShell } from "@/components/ui/TopicCardShell/TopicCardShell";
@@ -10,6 +11,7 @@ export const QuizTopicCard = ({
   categoryTitle,
   language,
 }: Readonly<QuizTopicCardProps>) => {
+  const { t } = useTranslation();
   const { dot, border } = getCategoryAccent(topic.categoryId);
 
   return (
@@ -41,7 +43,7 @@ export const QuizTopicCard = ({
         </p>
         <div className="group relative z-10 inline-flex items-center gap-1">
           <span className="inline-flex items-center gap-1 text-sm font-medium text-slate-700 transition-colors hover:text-slate-900">
-            Start quiz
+            {t("quiz.startQuiz")}
           </span>
           <span className="transition-transform group-hover:translate-x-0.5">→</span>
         </div>

@@ -30,6 +30,11 @@
   },
   "quiz": {
     "description": "Practice interview questions for your selected level. Select an answer and submit to check.",
+    "generalDescription": "Choose a topic or start a quick practice session.",
+    "startQuiz": "Start quiz",
+    "browseTopics": "Browse topics",
+    "practiceWeakSpots": "Practice weak spots",
+    "noTopicsFound": "No topics found.",
     "noQuestions": "No questions available for your current level.",
     "progress": "Question {{current}} of {{total}}",
     "progressLabel": "Progress",
@@ -129,6 +134,9 @@
     "pageTitle": "Topic details",
     "statusLabel": "Your progress",
     "backToTopics": "Back to topics",
+    "breadcrumbTopics": "Topics",
+    "keyPoints": "Key points",
+    "interviewTips": "Interview tips",
     "notFound": "Topic not found.",
     "missingTopic": "No topic selected."
   },
