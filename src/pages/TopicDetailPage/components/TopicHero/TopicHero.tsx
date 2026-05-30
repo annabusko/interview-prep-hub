@@ -1,11 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { Badge } from "@/components/ui/Badge";
-import { getCategoryDotColor } from "@/pages/TopicDetailPage/TopicDetailPage.utils";
+import { getCategoryAccent } from "@/components/ui/TopicCardShell/topicCardAccent";
 import type { TopicHeroProps } from "@/pages/TopicDetailPage/TopicDetailPage.types";
 
 export const TopicHero = ({ topic, categoryTitle, language }: Readonly<TopicHeroProps>) => {
   const { t } = useTranslation();
-  const dotColor = getCategoryDotColor(topic.categoryId);
+  const { dot: dotColor } = getCategoryAccent(topic.categoryId);
 
   return (
     <section className="mb-6 space-y-3">

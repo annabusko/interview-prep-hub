@@ -1,5 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { CategoryFilterBar } from "@/components/ui/CategoryFilterBar";
+import type { CategoryFilterItem } from "@/components/ui/CategoryFilterBar";
+import { categories } from "@/data/categories";
+import { getCategoryAccent } from "@/components/ui/TopicCardShell/topicCardAccent";
 import type { QuizFiltersProps } from "@/pages/QuizGeneralPage/QuizGeneralPage.types";
 
 export const QuizFilters = ({
@@ -11,13 +14,19 @@ export const QuizFilters = ({
 }: Readonly<QuizFiltersProps>) => {
   const { t } = useTranslation();
 
+  const categoryItems: CategoryFilterItem[] = categories.map((c) => ({
+    id: c.id,
+    label: c.title[selectedLanguage],
+    dotClassName: getCategoryAccent(c.id).dot,
+  }));
+
   return (
     <section className="flex flex-wrap items-center gap-4">
       <CategoryFilterBar
-        selectedLanguage={selectedLanguage}
-        selectedCategoryId={selectedCategoryId}
-        onCategoryChange={onCategoryChange}
-        allCategoriesLabel={t("filters.allCategories")}
+        items={categoryItems}
+        selectedId={selectedCategoryId}
+        onChange={onCategoryChange}
+        allLabel={t("filters.allCategories")}
       />
 
       <label className="ml-auto flex w-64 max-w-sm flex-col gap-1">

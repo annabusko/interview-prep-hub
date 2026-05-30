@@ -1,6 +1,9 @@
 import { useTranslation } from "react-i18next";
-import type { ContentLanguage } from "@/domain/models";
 import { CategoryFilterBar } from "@/components/ui/CategoryFilterBar";
+import type { CategoryFilterItem } from "@/components/ui/CategoryFilterBar";
+import { categories } from "@/data/categories";
+import type { ContentLanguage } from "@/domain/models";
+import { getCategoryAccent } from "@/components/ui/TopicCardShell/topicCardAccent";
 
 type WeakSpotFiltersProps = {
   selectedLanguage: ContentLanguage;
@@ -15,12 +18,18 @@ export const WeakSpotFilters = ({
 }: Readonly<WeakSpotFiltersProps>) => {
   const { t } = useTranslation();
 
+  const categoryItems: CategoryFilterItem[] = categories.map((c) => ({
+    id: c.id,
+    label: c.title[selectedLanguage],
+    dotClassName: getCategoryAccent(c.id).dot,
+  }));
+
   return (
     <CategoryFilterBar
-      selectedLanguage={selectedLanguage}
-      selectedCategoryId={selectedCategoryId}
-      onCategoryChange={onCategoryChange}
-      allCategoriesLabel={t("filters.allCategories")}
+      items={categoryItems}
+      selectedId={selectedCategoryId}
+      onChange={onCategoryChange}
+      allLabel={t("filters.allCategories")}
     />
   );
 };
