@@ -2,9 +2,17 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/Badge";
 import { TopicCardShell } from "@/components/ui/TopicCardShell/TopicCardShell";
-import { getCategoryAccent } from "@/components/ui/TopicCardShell/topicCardAccent";
+import type { ReviewReason } from "@/domain/reviewReason";
 import { PATHS } from "@/routes/paths";
+import { getCategoryAccent } from "@/styles/categoryAccent";
+import type { BadgeVariant } from "@/styles/badgeVariants";
 import type { NeedsAttentionRecommendationProps } from "./NeedsAttentionRecommendation.types";
+
+const REASON_BADGE_VARIANT: Record<ReviewReason, BadgeVariant> = {
+  both: 'emphasis',
+  mistake: 'muted',
+  weak: 'muted',
+};
 
 export const NeedsAttentionRecommendation = ({
   item,
@@ -16,13 +24,13 @@ export const NeedsAttentionRecommendation = ({
     <TopicCardShell density="rich" accentClassName={border}>
       {/* Top: category + signal badge */}
       <div className="flex flex-wrap items-center gap-2">
-        <Badge className="rounded-xl px-3 py-1 text-xs font-medium bg-slate-50 text-slate-700 ring-1 ring-slate-200/70">
+        <Badge variant="subtle">
           <span className="inline-flex items-center gap-1.5">
             <span className={`h-1.5 w-1.5 rounded-full opacity-80 ${dot}`} />
             {item.categoryTitle}
           </span>
         </Badge>
-        <Badge className="bg-slate-100 text-slate-700 ring-1 ring-slate-200/70">
+        <Badge variant={REASON_BADGE_VARIANT[item.reason]}>
           {t(`weakSpots.reason.${item.reason}`)}
         </Badge>
       </div>

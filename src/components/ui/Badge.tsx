@@ -1,14 +1,22 @@
 import type { ReactNode } from "react";
+import type { BadgeVariant } from "@/styles/badgeVariants";
+import { BADGE_VARIANT_CLASSES } from "@/styles/badgeVariants";
 
-export const Badge = ({
-  children,
-  className,
-}: Readonly<{ children: ReactNode; className?: string }>) => {
+type BadgeProps = Readonly<{
+  children: ReactNode;
+  variant?: BadgeVariant;
+  className?: string;
+}>;
+
+export const Badge = ({ children, variant, className }: BadgeProps) => {
+  const base = "text-xs font-medium";
+  const variantOrFallback = variant
+    ? BADGE_VARIANT_CLASSES[variant]
+    : "rounded-md px-2 py-1";
+
   return (
     <span
-      className={["rounded-md px-2 py-1 text-xs font-medium", className]
-        .filter(Boolean)
-        .join(" ")}
+      className={[base, variantOrFallback, className].filter(Boolean).join(" ")}
     >
       {children}
     </span>

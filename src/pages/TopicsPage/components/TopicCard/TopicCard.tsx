@@ -2,8 +2,8 @@
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/Badge";
 import { TopicCardShell } from "@/components/ui/TopicCardShell/TopicCardShell";
-import { getCategoryAccent } from "@/components/ui/TopicCardShell/topicCardAccent";
 import { PATHS } from "@/routes/paths";
+import { getCategoryAccent } from "@/styles/categoryAccent";
 import type { TopicCardProps } from "@/pages/TopicsPage/TopicsPage.types";
 
 export const TopicCard = ({
@@ -28,7 +28,7 @@ export const TopicCard = ({
           aria-label={topic.title[language]}
         />
         <div className="relative z-10 flex flex-wrap items-center gap-2">
-          <Badge className="rounded-xl px-3 py-1 text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200">
+          <Badge variant="outline">
             <span className="inline-flex items-center gap-1.5">
               <span className={`h-1.5 w-1.5 rounded-full opacity-80 ${dot}`} />
               {categoryTitle}
