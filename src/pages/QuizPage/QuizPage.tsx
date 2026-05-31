@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { usePreferences } from "@/app/providers/preferences/usePreferences";
+import { ButtonLink } from "@/components/ui/Button/ButtonLink";
 import { questions as allQuestions } from "@/data/questions";
 import { PATHS } from "@/routes/paths";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -41,12 +41,9 @@ export const QuizPage = () => {
         onCompleted={() => setCompletedSessionKey(sessionKey)}
       />
       {!isSessionCompleted && (
-        <Link
-          to={PATHS.quiz}
-          className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
-        >
+        <ButtonLink to={PATHS.quiz} variant="ghost" size="sm" className="inline-flex items-center gap-2">
           ← {t("quiz.backToQuizList")}
-        </Link>
+        </ButtonLink>
       )}
     </div>
   );

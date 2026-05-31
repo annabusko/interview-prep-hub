@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuizAttempts } from "@/app/quiz/useQuizAttempts";
+import { Button } from "@/components/ui/Button/Button";
 import { PATHS } from "@/routes/paths";
 import clockIcon from "@/assets/icons/clock.svg";
 import type { QuizSessionProps } from "@/pages/QuizPage/QuizPage.types";
@@ -191,49 +192,48 @@ export const QuizSession = ({
             {t("quiz.timeUpDescription", { answered: answeredCount, total })}
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
-            <button
+            <Button
               type="button"
               disabled
-              className="rounded-xl px-4 py-2 text-sm font-medium ring-1 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 disabled:ring-slate-200"
+              variant="secondary"
+              size="sm"
             >
               {t("quiz.reviewAnswers")}
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
               onClick={() => navigate(PATHS.quiz)}
-              className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 cursor-pointer"
+              size="sm"
             >
               {t("quiz.finish")}
-            </button>
+            </Button>
           </div>
         </div>
       ) : (
         <div className="flex items-center justify-end gap-3 border-t border-slate-200/50 pt-4">
-          <button
+          <Button
             type="button"
+            variant="secondary"
             onClick={handlePrevious}
             disabled={currentIndex === 0}
-            className="rounded-xl bg-white px-5 py-2.5 text-sm font-medium text-slate-700 ring-1 ring-slate-200 transition-colors hover:bg-slate-50 hover:ring-slate-300 cursor-pointer disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
           >
             {t("quiz.previous")}
-          </button>
+          </Button>
           {submitted ? (
-            <button
+            <Button
               type="button"
               onClick={handleNext}
-              className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-800 cursor-pointer"
             >
               {currentIndex + 1 < total ? t("quiz.next") : t("quiz.finish")}
-            </button>
+            </Button>
           ) : (
-            <button
+            <Button
               type="button"
               disabled={selectedIds.length === 0}
               onClick={handleSubmit}
-              className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-800 cursor-pointer disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-500"
             >
               {t("quiz.submit")}
-            </button>
+            </Button>
           )}
         </div>
       )}

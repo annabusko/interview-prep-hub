@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/Badge";
+import { ButtonLink } from "@/components/ui/Button/ButtonLink";
 import { TopicCardShell } from "@/components/ui/TopicCardShell/TopicCardShell";
 import { PATHS } from "@/routes/paths";
 import { getCategoryAccent } from "@/theme";
@@ -61,18 +61,12 @@ export const WeakSpotCard = ({ item }: Readonly<WeakSpotCardProps>) => {
 
       {/* Actions */}
       <div className="flex flex-wrap items-center gap-3">
-        <Link
-          to={PATHS.topicDetail(item.topicId)}
-          className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-800"
-        >
+        <ButtonLink to={PATHS.topicDetail(item.topicId)} size="sm">
           {t("weakSpots.continueLearning")}
-        </Link>
-        <Link
-          to={PATHS.quizSession}
-          className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-slate-700 ring-1 ring-slate-200 transition-colors hover:bg-slate-50 hover:ring-slate-300"
-        >
+        </ButtonLink>
+        <ButtonLink to={PATHS.quizSession} variant="secondary" size="sm">
           {t("weakSpots.retryQuiz")}
-        </Link>
+        </ButtonLink>
       </div>
     </TopicCardShell>
   );

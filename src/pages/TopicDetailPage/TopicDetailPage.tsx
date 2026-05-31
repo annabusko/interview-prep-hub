@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import type { TopicStatus } from "@/domain/models";
 import { usePreferences } from "@/app/providers/preferences/usePreferences";
 import { useTopicProgress } from "@/app/topic-progress/useTopicProgress";
+import { ButtonLink } from "@/components/ui/Button/ButtonLink";
 import { PATHS } from "@/routes/paths";
 import { findTopic, getCategoryTitle } from "./TopicDetailPage.utils";
 import { TopicHero } from "./components/TopicHero/TopicHero";
@@ -73,12 +74,9 @@ export const TopicDetailPage = () => {
       <TopicHero topic={topic} categoryTitle={categoryTitle} language={selectedLanguage} />
       <TopicProgress currentStatus={currentStatus} onStatusChange={handleStatusChange} />
       <TopicContent topic={topic} language={selectedLanguage} />
-      <Link
-        to={PATHS.topics}
-        className="mt-6 inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
-      >
+      <ButtonLink to={PATHS.topics} variant="ghost" size="sm" className="mt-6 inline-flex items-center gap-2">
         ← {t("topicDetails.backToTopics")}
-      </Link>
+      </ButtonLink>
     </div>
   );
 };

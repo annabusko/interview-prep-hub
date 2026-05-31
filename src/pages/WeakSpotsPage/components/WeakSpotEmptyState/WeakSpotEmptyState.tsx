@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { ButtonLink } from "@/components/ui/Button/ButtonLink";
 import { PATHS } from "@/routes/paths";
 
 export const WeakSpotEmptyState = () => {
@@ -14,12 +14,9 @@ export const WeakSpotEmptyState = () => {
         {t("weakSpots.emptyHint")}
       </p>
       <div className="mt-6">
-        <Link
-          to={PATHS.quiz}
-          className="inline-flex items-center rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-800"
-        >
+        <ButtonLink to={PATHS.quiz}>
           {t("weakSpots.startQuiz")}
-        </Link>
+        </ButtonLink>
       </div>
     </div>
   );
