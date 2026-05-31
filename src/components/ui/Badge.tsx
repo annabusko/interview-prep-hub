@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import type { BadgeVariant } from "@/styles/badgeVariants";
-import { BADGE_VARIANT_CLASSES } from "@/styles/badgeVariants";
+import type { BadgeVariant } from "@/theme";
+import { BADGE_VARIANT_CLASSES } from "@/theme";
 
 type BadgeProps = Readonly<{
   children: ReactNode;

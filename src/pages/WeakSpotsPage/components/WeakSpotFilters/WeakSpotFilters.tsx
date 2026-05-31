@@ -3,7 +3,7 @@ import { CategoryFilterBar } from "@/components/ui/CategoryFilterBar";
 import type { CategoryFilterItem } from "@/components/ui/CategoryFilterBar";
 import { categories } from "@/data/categories";
 import type { ContentLanguage } from "@/domain/models";
-import { getCategoryAccent } from "@/styles/categoryAccent";
+import { getCategoryAccent } from "@/theme";
 
 type WeakSpotFiltersProps = {
   selectedLanguage: ContentLanguage;

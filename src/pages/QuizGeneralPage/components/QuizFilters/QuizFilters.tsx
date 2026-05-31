@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { CategoryFilterBar } from "@/components/ui/CategoryFilterBar";
 import type { CategoryFilterItem } from "@/components/ui/CategoryFilterBar";
 import { categories } from "@/data/categories";
-import { getCategoryAccent } from "@/styles/categoryAccent";
+import { getCategoryAccent } from "@/theme";
 import type { QuizFiltersProps } from "@/pages/QuizGeneralPage/QuizGeneralPage.types";
 
 export const QuizFilters = ({

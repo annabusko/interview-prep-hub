@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/Badge";
 import { TopicCardShell } from "@/components/ui/TopicCardShell/TopicCardShell";
 import { PATHS } from "@/routes/paths";
-import { getCategoryAccent } from "@/styles/categoryAccent";
+import { getCategoryAccent } from "@/theme";
 import type { ReviewTopic } from "@/pages/WeakSpotsPage/WeakSpotsPage.types";
 
 type WeakSpotCardProps = {
