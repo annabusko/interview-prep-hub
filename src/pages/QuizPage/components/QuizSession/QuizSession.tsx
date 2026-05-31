@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useQuizAttempts } from "@/app/quiz/useQuizAttempts";
 import { Button } from "@/components/ui/Button/Button";
+import { Surface } from "@/components/ui/Surface/Surface";
 import { PATHS } from "@/routes/paths";
 import clockIcon from "@/assets/icons/clock.svg";
 import type { QuizSessionProps } from "@/pages/QuizPage/QuizPage.types";
@@ -143,7 +144,7 @@ export const QuizSession = ({
   }
 
   return (
-    <div className="space-y-5 rounded-3xl bg-white p-6 ring-1 ring-slate-200/80">
+    <Surface padding="lg" className="space-y-5">
       {/* Compact status bar */}
       <div className="rounded-2xl bg-white px-5 py-4 ring-1 ring-slate-200/80">
         <div className="flex items-center justify-between gap-4">
@@ -237,6 +238,6 @@ export const QuizSession = ({
           )}
         </div>
       )}
-    </div>
+    </Surface>
   );
 };

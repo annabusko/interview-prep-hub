@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Surface } from "@/components/ui/Surface/Surface";
 import type { WeakSpotsSummary } from "@/pages/WeakSpotsPage/WeakSpotsPage.types";
 
 type WeakSpotSummaryProps = {
@@ -9,7 +10,7 @@ export const WeakSpotSummary = ({ summary }: Readonly<WeakSpotSummaryProps>) => 
   const { t } = useTranslation();
 
   return (
-    <div className="w-full rounded-2xl bg-white px-5 py-3 ring-1 ring-slate-200/70">
+    <Surface variant="panel" radius="2xl" padding="none" className="w-full px-5 py-3">
       <div className="flex items-center gap-10">
         {/* Primary: Quiz mistakes */}
         <div>
@@ -50,6 +51,6 @@ export const WeakSpotSummary = ({ summary }: Readonly<WeakSpotSummaryProps>) => 
           </p>
         </div>
       </div>
-    </div>
+    </Surface>
   );
 };

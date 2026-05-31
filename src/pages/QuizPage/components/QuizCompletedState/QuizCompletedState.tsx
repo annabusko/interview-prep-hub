@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/Button/Button";
+import { Surface } from "@/components/ui/Surface/Surface";
 import { PATHS } from "@/routes/paths";
 
 type QuizCompletedStateProps = {
@@ -22,7 +23,7 @@ export const QuizCompletedState = ({
   const navigate = useNavigate();
 
   return (
-    <div className="rounded-3xl bg-white ring-1 ring-slate-200/80 p-8">
+    <Surface padding="none" className="p-8">
       <div className="text-center">
         <p className="text-lg font-semibold text-slate-900">
           {t("quiz.completed")}
@@ -70,6 +71,6 @@ export const QuizCompletedState = ({
           {t("quiz.restart")}
         </Button>
       </div>
-    </div>
+    </Surface>
   );
 };
