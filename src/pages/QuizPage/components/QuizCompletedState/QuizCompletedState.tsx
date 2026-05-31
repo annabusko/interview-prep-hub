@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/Button/Button";
 import { PATHS } from "@/routes/paths";
 
 type QuizCompletedStateProps = {
@@ -55,20 +56,19 @@ export const QuizCompletedState = ({
       </div>
 
       <div className="mt-6 flex justify-center gap-3">
-        <button
+        <Button
           type="button"
           onClick={() => navigate(PATHS.quiz)}
-          className="rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-800 cursor-pointer"
         >
           {t("quiz.backToQuizList")}
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
+          variant="secondary"
           onClick={onRestart}
-          className="rounded-xl bg-white px-5 py-2.5 text-sm font-medium text-slate-700 ring-1 ring-slate-200 transition-colors hover:bg-slate-50 cursor-pointer"
         >
           {t("quiz.restart")}
-        </button>
+        </Button>
       </div>
     </div>
   );

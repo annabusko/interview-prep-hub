@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { ButtonLink } from "@/components/ui/Button/ButtonLink";
 import { PATHS } from "@/routes/paths";
 import { BookOpenIcon, PlayIcon } from "../icons/DashboardIcons";
 
@@ -15,20 +15,14 @@ export const ContinueLearningRecommendation = () => {
         {t("dashboard.continueLearning.description")}
       </p>
       <div className="mt-6 flex flex-wrap justify-center gap-3">
-        <Link
-          to={PATHS.topics}
-          className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-800"
-        >
+        <ButtonLink to={PATHS.topics} className="inline-flex items-center gap-2">
           <BookOpenIcon className="h-4 w-4" />
           {t("dashboard.continueLearning.goToTopics")}
-        </Link>
-        <Link
-          to={PATHS.quiz}
-          className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-50"
-        >
+        </ButtonLink>
+        <ButtonLink to={PATHS.quiz} variant="secondary" className="inline-flex items-center gap-2">
           <PlayIcon className="h-4 w-4" />
           {t("dashboard.continueLearning.takeQuiz")}
-        </Link>
+        </ButtonLink>
       </div>
     </div>
   );
