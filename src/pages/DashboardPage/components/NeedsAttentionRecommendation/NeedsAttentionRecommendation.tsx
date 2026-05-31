@@ -4,8 +4,8 @@ import { Badge } from "@/components/ui/Badge";
 import { TopicCardShell } from "@/components/ui/TopicCardShell/TopicCardShell";
 import type { ReviewReason } from "@/domain/reviewReason";
 import { PATHS } from "@/routes/paths";
-import { getCategoryAccent } from "@/styles/categoryAccent";
-import type { BadgeVariant } from "@/styles/badgeVariants";
+import { getCategoryAccent } from "@/theme";
+import type { BadgeVariant } from "@/theme";
 import type { NeedsAttentionRecommendationProps } from "./NeedsAttentionRecommendation.types";
 
 const REASON_BADGE_VARIANT: Record<ReviewReason, BadgeVariant> = {

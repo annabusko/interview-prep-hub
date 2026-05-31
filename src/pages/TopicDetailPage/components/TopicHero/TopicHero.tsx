@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Badge } from "@/components/ui/Badge";
-import { getCategoryAccent } from "@/styles/categoryAccent";
+import { getCategoryAccent } from "@/theme";
 import type { TopicHeroProps } from "@/pages/TopicDetailPage/TopicDetailPage.types";
 
 export const TopicHero = ({ topic, categoryTitle, language }: Readonly<TopicHeroProps>) => {

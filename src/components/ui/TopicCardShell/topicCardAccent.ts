@@ -1,1 +1,1 @@
-export { getCategoryAccent } from '@/styles/categoryAccent';
+export { getCategoryAccent } from '@/theme';
