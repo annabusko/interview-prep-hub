@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { getSurfaceClassName } from "@/theme";
 
 export type TopicCardShellDensity = "compact" | "comfortable" | "rich";
 
@@ -23,15 +24,18 @@ export const TopicCardShell = ({
   interactive = false,
   className,
 }: TopicCardShellProps) => {
-  const base = "flex flex-col rounded-3xl bg-white ring-1 ring-slate-200/80";
-  const densityCls = densityClasses[density];
   const interactiveCls = interactive
     ? "transition-all hover:bg-slate-50/40 hover:ring-slate-300"
     : "";
 
-  const combined = [base, densityCls, interactiveCls, accentClassName, className]
-    .filter(Boolean)
-    .join(" ");
+  const combined = getSurfaceClassName({
+    variant: "card",
+    radius: "3xl",
+    padding: "none",
+    className: ["flex flex-col", densityClasses[density], interactiveCls, accentClassName, className]
+      .filter(Boolean)
+      .join(" "),
+  });
 
   return <div className={combined}>{children}</div>;
 };

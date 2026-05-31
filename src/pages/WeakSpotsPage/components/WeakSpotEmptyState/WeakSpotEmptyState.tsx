@@ -1,12 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { ButtonLink } from "@/components/ui/Button/ButtonLink";
+import { Surface } from "@/components/ui/Surface/Surface";
 import { PATHS } from "@/routes/paths";
 
 export const WeakSpotEmptyState = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="rounded-3xl bg-white px-8 py-12 text-center ring-1 ring-slate-200/80">
+    <Surface padding="none" className="px-8 py-12 text-center">
       <p className="text-base font-semibold text-slate-900">
         {t("weakSpots.emptyTitle")}
       </p>
@@ -18,6 +19,6 @@ export const WeakSpotEmptyState = () => {
           {t("weakSpots.startQuiz")}
         </ButtonLink>
       </div>
-    </div>
+    </Surface>
   );
 };

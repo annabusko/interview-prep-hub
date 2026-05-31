@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Surface } from "@/components/ui/Surface/Surface";
 import type { TopicContentProps } from "@/pages/TopicDetailPage/TopicDetailPage.types";
 
 export const TopicContent = ({ topic, language }: Readonly<TopicContentProps>) => {
@@ -7,7 +8,7 @@ export const TopicContent = ({ topic, language }: Readonly<TopicContentProps>) =
   const interviewTips = topic.interviewTips?.[language] ?? [];
 
   return (
-    <section className="rounded-3xl bg-white p-6 ring-1 ring-slate-200/80">
+    <Surface padding="lg">
       <h2 className="mb-4 text-lg font-semibold text-slate-900">
         {t("topicDetails.pageTitle")}
       </h2>
@@ -46,6 +47,6 @@ export const TopicContent = ({ topic, language }: Readonly<TopicContentProps>) =
           </ul>
         </div>
       )}
-    </section>
+    </Surface>
   );
 };

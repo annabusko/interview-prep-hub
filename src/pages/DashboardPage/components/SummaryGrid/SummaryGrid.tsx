@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Surface } from "@/components/ui/Surface/Surface";
 import type { SummaryGridProps } from "./SummaryGrid.types";
 
 export const SummaryGrid = ({ summary }: SummaryGridProps) => {
@@ -14,7 +15,7 @@ export const SummaryGrid = ({ summary }: SummaryGridProps) => {
 
   return (
     <section>
-      <div className="w-full rounded-2xl bg-white px-5 py-3 ring-1 ring-slate-200/70">
+      <Surface variant="panel" radius="2xl" padding="none" className="w-full px-5 py-3">
         <div className="flex flex-wrap items-center gap-8">
           {metrics.map(({ label, value }) => (
             <div key={label}>
@@ -27,7 +28,7 @@ export const SummaryGrid = ({ summary }: SummaryGridProps) => {
             </div>
           ))}
         </div>
-      </div>
+      </Surface>
     </section>
   );
 };

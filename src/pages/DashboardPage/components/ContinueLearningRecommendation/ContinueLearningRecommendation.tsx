@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { ButtonLink } from "@/components/ui/Button/ButtonLink";
+import { Surface } from "@/components/ui/Surface/Surface";
 import { PATHS } from "@/routes/paths";
 import { BookOpenIcon, PlayIcon } from "../icons/DashboardIcons";
 
@@ -7,7 +8,7 @@ export const ContinueLearningRecommendation = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="rounded-3xl bg-white px-8 py-10 text-center ring-1 ring-slate-200/80">
+    <Surface padding="none" className="px-8 py-10 text-center">
       <p className="text-base font-semibold text-slate-900">
         {t("dashboard.needsAttention.emptyState")}
       </p>
@@ -24,7 +25,7 @@ export const ContinueLearningRecommendation = () => {
           {t("dashboard.continueLearning.takeQuiz")}
         </ButtonLink>
       </div>
-    </div>
+    </Surface>
   );
 };
 
