@@ -1,3 +1,5 @@
+import { FOCUS_RING_CLASS } from "./focus";
+
 export type ButtonVariant = "primary" | "secondary" | "ghost";
 
 export type ButtonSize = "sm" | "md";
@@ -32,6 +34,7 @@ export const getButtonClassName = ({
     BUTTON_VARIANT_CLASSES[variant],
     BUTTON_SIZE_CLASSES[size],
     BUTTON_DISABLED_CLASSES,
+    FOCUS_RING_CLASS,
     className,
   ]
     .filter(Boolean)

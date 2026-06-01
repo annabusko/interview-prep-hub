@@ -1,3 +1,5 @@
+import { FOCUS_RING_MUTED_CLASS } from "@/theme";
+
 type HeaderSegmentedControlOption<T extends string> = {
   value: T;
   label: string;
@@ -31,6 +33,7 @@ export const HeaderSegmentedControl = <T extends string>({
           onClick={() => onChange(value)}
           className={[
             "rounded-full px-3 py-1.5 text-sm font-medium transition-all cursor-pointer",
+            FOCUS_RING_MUTED_CLASS,
             uppercase ? "uppercase" : "",
             selectedValue === value
               ? "bg-white text-slate-900"
