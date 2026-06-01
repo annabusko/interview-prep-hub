@@ -1,3 +1,5 @@
+import { FOCUS_RING_CLASS } from "@/theme";
+
 export type CategoryFilterItem = Readonly<{
   id: string;
   label: string;
@@ -36,14 +38,15 @@ export const CategoryFilterBar = ({
             key={id}
             type="button"
             onClick={() => onChange(id)}
-            className={base + " " + (selectedId === id ? active : inactive)}
+            className={[base, FOCUS_RING_CLASS, selectedId === id ? active : inactive]
+              .join(" ")}
           >
             {dotClassName && (
               <span
-                className={
-                  "h-1.5 w-1.5 rounded-full opacity-80 " +
-                  (selectedId === id ? "bg-white/80" : dotClassName)
-                }
+                className={[
+                  "h-1.5 w-1.5 rounded-full opacity-80",
+                  selectedId === id ? "bg-white/80" : dotClassName,
+                ].join(" ")}
               />
             )}
             {label}
