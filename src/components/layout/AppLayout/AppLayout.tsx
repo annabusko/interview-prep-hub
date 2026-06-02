@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
+import { APP_BACKGROUND_CLASS } from "@/theme";
 import { AppHeader } from "../AppHeader/AppHeader";
 import { AppSidebar } from "../AppSidebar/AppSidebar";
 
 export const AppLayout = () => {
   return (
-    <div className="flex min-h-screen bg-slate-50 text-slate-900">
+    <div className={`flex min-h-screen ${APP_BACKGROUND_CLASS} text-slate-900`}>
       <AppSidebar />
       <div className="flex min-h-0 min-w-0 flex-1 flex-col">
         <AppHeader />

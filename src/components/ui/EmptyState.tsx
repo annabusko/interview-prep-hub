@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
+import { EMPTY_STATE_CLASS } from "@/theme";
 
 export const EmptyState = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
-    <div className="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-500">
+    <div className={EMPTY_STATE_CLASS}>
       {children}
     </div>
   );
