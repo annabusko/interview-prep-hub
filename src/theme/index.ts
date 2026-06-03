@@ -4,3 +4,4 @@ export * from "./categoryAccent";
 export * from "./focus";
 export * from "./layout";
 export * from "./surfaceVariants";
+export * from "./typography";
