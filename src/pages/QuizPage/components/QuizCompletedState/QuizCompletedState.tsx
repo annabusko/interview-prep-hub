@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { TEXT_METRIC_VALUE_CLASS } from "@/theme";
 import { Button } from "@/components/ui/Button/Button";
 import { Surface } from "@/components/ui/Surface/Surface";
 import { PATHS } from "@/routes/paths";
+
+const STAT_CARD_CLASS = "rounded-2xl bg-slate-50 px-5 py-4 ring-1 ring-slate-200/70";
 
 type QuizCompletedStateProps = {
   answeredCount: number;
@@ -34,25 +37,25 @@ export const QuizCompletedState = ({
       </div>
 
       <div className="mt-6 grid gap-3 sm:grid-cols-3">
-        <div className="rounded-2xl bg-slate-50 px-5 py-4 ring-1 ring-slate-200/70">
+        <div className={STAT_CARD_CLASS}>
           <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
             {t("quiz.summaryAnswered")}
           </p>
-          <p className="mt-1 text-2xl font-semibold text-slate-900">
+          <p className={`mt-1 ${TEXT_METRIC_VALUE_CLASS}`}>
             {answeredCount} / {questionCount}
           </p>
         </div>
-        <div className="rounded-2xl bg-slate-50 px-5 py-4 ring-1 ring-slate-200/70">
+        <div className={STAT_CARD_CLASS}>
           <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
             {t("quiz.summaryCorrect")}
           </p>
-          <p className="mt-1 text-2xl font-semibold text-slate-900">{correctCount}</p>
+          <p className={`mt-1 ${TEXT_METRIC_VALUE_CLASS}`}>{correctCount}</p>
         </div>
-        <div className="rounded-2xl bg-slate-50 px-5 py-4 ring-1 ring-slate-200/70">
+        <div className={STAT_CARD_CLASS}>
           <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
             {t("quiz.summaryAccuracy")}
           </p>
-          <p className="mt-1 text-2xl font-semibold text-slate-900">{accuracy}%</p>
+          <p className={`mt-1 ${TEXT_METRIC_VALUE_CLASS}`}>{accuracy}%</p>
         </div>
       </div>
 

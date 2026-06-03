@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { TEXT_METRIC_LABEL_CLASS, TEXT_METRIC_VALUE_CLASS } from "@/theme";
 import { Surface } from "@/components/ui/Surface/Surface";
 import type { WeakSpotsSummary } from "@/pages/WeakSpotsPage/WeakSpotsPage.types";
 
@@ -14,10 +15,10 @@ export const WeakSpotSummary = ({ summary }: Readonly<WeakSpotSummaryProps>) => 
       <div className="flex items-center gap-10">
         {/* Primary: Quiz mistakes */}
         <div>
-          <p className="text-[11px] font-medium uppercase tracking-wide text-slate-400">
+          <p className={TEXT_METRIC_LABEL_CLASS}>
             {t("weakSpots.summary.quizMistakes")}
           </p>
-          <p className="mt-0.5 text-2xl font-semibold text-slate-900">
+          <p className={`mt-0.5 ${TEXT_METRIC_VALUE_CLASS}`}>
             {summary.totalMistakes}
           </p>
           <p className="text-xs text-slate-500">
@@ -27,10 +28,10 @@ export const WeakSpotSummary = ({ summary }: Readonly<WeakSpotSummaryProps>) => 
 
         {/* Secondary: Weak topics */}
         <div>
-          <p className="text-[11px] font-medium uppercase tracking-wide text-slate-400">
+          <p className={TEXT_METRIC_LABEL_CLASS}>
             {t("weakSpots.summary.weakTopics")}
           </p>
-          <p className="mt-0.5 text-2xl font-semibold text-slate-900">
+          <p className={`mt-0.5 ${TEXT_METRIC_VALUE_CLASS}`}>
             {summary.weakTopicCount}
           </p>
           <p className="text-xs text-slate-500">
@@ -40,10 +41,10 @@ export const WeakSpotSummary = ({ summary }: Readonly<WeakSpotSummaryProps>) => 
 
         {/* Tertiary: Needs review */}
         <div>
-          <p className="text-[11px] font-medium uppercase tracking-wide text-slate-400">
+          <p className={TEXT_METRIC_LABEL_CLASS}>
             {t("weakSpots.summary.needsReview")}
           </p>
-          <p className="mt-0.5 text-2xl font-semibold text-slate-900">
+          <p className={`mt-0.5 ${TEXT_METRIC_VALUE_CLASS}`}>
             {summary.needsReviewCount}
           </p>
           <p className="text-xs text-slate-500">

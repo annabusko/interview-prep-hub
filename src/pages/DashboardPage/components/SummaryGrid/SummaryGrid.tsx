@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { TEXT_METRIC_LABEL_CLASS, TEXT_METRIC_VALUE_CLASS } from "@/theme";
 import { Surface } from "@/components/ui/Surface/Surface";
 import type { SummaryGridProps } from "./SummaryGrid.types";
 
@@ -19,10 +20,10 @@ export const SummaryGrid = ({ summary }: SummaryGridProps) => {
         <div className="flex flex-wrap items-center gap-8">
           {metrics.map(({ label, value }) => (
             <div key={label}>
-              <p className="text-[11px] font-medium uppercase tracking-wide text-slate-400">
+              <p className={TEXT_METRIC_LABEL_CLASS}>
                 {label}
               </p>
-              <p className="mt-0.5 text-2xl font-semibold text-slate-900">
+              <p className={`mt-0.5 ${TEXT_METRIC_VALUE_CLASS}`}>
                 {value}
               </p>
             </div>
