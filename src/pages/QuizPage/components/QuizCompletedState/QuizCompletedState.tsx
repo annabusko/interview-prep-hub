@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { TEXT_TITLE_SECTION_CLASS } from "@/theme";
 import { Button } from "@/components/ui/Button/Button";
 import { Surface } from "@/components/ui/Surface/Surface";
 import { MetricItem } from "@/components/ui/Metric/MetricItem";
@@ -26,7 +27,7 @@ export const QuizCompletedState = ({
   return (
     <Surface padding="none" className="p-8">
       <div className="text-center">
-        <p className="text-lg font-semibold text-slate-900">
+        <p className={TEXT_TITLE_SECTION_CLASS}>
           {t("quiz.completed")}
         </p>
         <p className="mt-1.5 text-sm text-slate-500">

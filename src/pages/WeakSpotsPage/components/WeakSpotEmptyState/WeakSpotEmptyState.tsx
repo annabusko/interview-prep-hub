@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { TEXT_TITLE_CARD_CLASS } from "@/theme";
 import { ButtonLink } from "@/components/ui/Button/ButtonLink";
 import { Surface } from "@/components/ui/Surface/Surface";
 import { PATHS } from "@/routes/paths";
@@ -8,7 +9,7 @@ export const WeakSpotEmptyState = () => {
 
   return (
     <Surface padding="none" className="px-8 py-12 text-center">
-      <p className="text-base font-semibold text-slate-900">
+      <p className={TEXT_TITLE_CARD_CLASS}>
         {t("weakSpots.emptyTitle")}
       </p>
       <p className="mt-2 text-sm text-slate-500">
