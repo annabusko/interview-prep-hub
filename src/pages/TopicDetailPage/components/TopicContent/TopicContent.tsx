@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { TEXT_TITLE_SECTION_CLASS } from "@/theme";
 import { Surface } from "@/components/ui/Surface/Surface";
 import type { TopicContentProps } from "@/pages/TopicDetailPage/TopicDetailPage.types";
 
@@ -9,7 +10,7 @@ export const TopicContent = ({ topic, language }: Readonly<TopicContentProps>) =
 
   return (
     <Surface padding="lg">
-      <h2 className="mb-4 text-lg font-semibold text-slate-900">
+      <h2 className={`mb-4 ${TEXT_TITLE_SECTION_CLASS}`}>
         {t("topicDetails.pageTitle")}
       </h2>
       <article className="max-w-3xl whitespace-pre-line text-base leading-8 text-slate-700">

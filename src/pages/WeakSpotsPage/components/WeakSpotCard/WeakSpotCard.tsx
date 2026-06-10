@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button/ButtonLink";
 import { TopicCardShell } from "@/components/ui/TopicCardShell/TopicCardShell";
 import { PATHS } from "@/routes/paths";
-import { getCategoryAccent } from "@/theme";
+import { getCategoryAccent, TEXT_TITLE_CARD_CLASS } from "@/theme";
 import type { ReviewTopic } from "@/pages/WeakSpotsPage/WeakSpotsPage.types";
 
 type WeakSpotCardProps = {
@@ -52,7 +52,7 @@ export const WeakSpotCard = ({ item }: Readonly<WeakSpotCardProps>) => {
 
       {/* Middle: title + summary */}
       <div>
-        <h2 className="text-base font-semibold text-slate-900">{item.title}</h2>
+        <h2 className={TEXT_TITLE_CARD_CLASS}>{item.title}</h2>
         <p className="mt-1 line-clamp-2 text-sm text-slate-500">{item.summary}</p>
       </div>
 
