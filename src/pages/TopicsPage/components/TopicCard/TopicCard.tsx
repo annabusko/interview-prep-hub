@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Badge } from "@/components/ui/Badge";
+import { CategoryBadge } from "@/components/ui/CategoryBadge/CategoryBadge";
 import { TopicCardShell } from "@/components/ui/TopicCardShell/TopicCardShell";
 import { PATHS } from "@/routes/paths";
 import { getCategoryAccent } from "@/theme";
@@ -12,7 +12,7 @@ export const TopicCard = ({
   language,
   openDetailsLabel,
 }: Readonly<TopicCardProps>) => {
-  const { dot, border } = getCategoryAccent(topic.categoryId);
+  const { border } = getCategoryAccent(topic.categoryId);
 
   return (
     <li className="flex">
@@ -28,12 +28,7 @@ export const TopicCard = ({
           className="w-full hover:-translate-y-1"
         >
           <div className="flex flex-wrap items-center gap-2">
-            <Badge variant="outline">
-              <span className="inline-flex items-center gap-1.5">
-                <span className={`h-1.5 w-1.5 rounded-full opacity-80 ${dot}`} />
-                {categoryTitle}
-              </span>
-            </Badge>
+            <CategoryBadge label={categoryTitle} categoryId={topic.categoryId} />
           </div>
           <h2 className="text-lg font-semibold leading-snug text-slate-900">
             {topic.title[language]}
