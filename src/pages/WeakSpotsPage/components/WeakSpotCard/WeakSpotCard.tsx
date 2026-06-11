@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Badge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button/ButtonLink";
+import { CategoryBadge } from "@/components/ui/CategoryBadge/CategoryBadge";
 import { TopicCardShell } from "@/components/ui/TopicCardShell/TopicCardShell";
 import { PATHS } from "@/routes/paths";
 import { getCategoryAccent, TEXT_TITLE_CARD_CLASS } from "@/theme";
@@ -18,7 +19,7 @@ const getDaysAgo = (isoString: string): number => {
 export const WeakSpotCard = ({ item }: Readonly<WeakSpotCardProps>) => {
   const { t } = useTranslation();
   const { metrics } = item;
-  const { dot, border } = getCategoryAccent(item.categoryId);
+  const { border } = getCategoryAccent(item.categoryId);
 
   const lastReviewedDisplay = metrics.lastReviewedAt
     ? t("weakSpots.metrics.daysAgo", { days: getDaysAgo(metrics.lastReviewedAt) })
@@ -39,12 +40,7 @@ export const WeakSpotCard = ({ item }: Readonly<WeakSpotCardProps>) => {
     <TopicCardShell density="rich" accentClassName={border}>
       {/* Top: category + signal badge */}
       <div className="flex flex-wrap items-center gap-2">
-        <Badge variant="subtle">
-          <span className="inline-flex items-center gap-1.5">
-            <span className={`h-1.5 w-1.5 rounded-full opacity-80 ${dot}`} />
-            {item.categoryTitle}
-          </span>
-        </Badge>
+        <CategoryBadge label={item.categoryTitle} categoryId={item.categoryId} variant="subtle" />
         <Badge variant="muted">
           {signalBadge}
         </Badge>
