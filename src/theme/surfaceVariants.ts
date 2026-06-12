@@ -4,21 +4,21 @@ export type SurfaceRadius = "lg" | "xl" | "2xl" | "3xl";
 
 export type SurfacePadding = "none" | "sm" | "md" | "lg";
 
-export const SURFACE_VARIANT_CLASSES: Record<SurfaceVariant, string> = {
+const SURFACE_VARIANT_CLASSES: Record<SurfaceVariant, string> = {
   card: "bg-white ring-1 ring-slate-200/80",
   panel: "bg-white ring-1 ring-slate-200/70",
   subtle: "bg-slate-50 ring-1 ring-slate-200/70",
   inset: "bg-slate-50",
 };
 
-export const SURFACE_RADIUS_CLASSES: Record<SurfaceRadius, string> = {
+const SURFACE_RADIUS_CLASSES: Record<SurfaceRadius, string> = {
   lg: "rounded-lg",
   xl: "rounded-xl",
   "2xl": "rounded-2xl",
   "3xl": "rounded-3xl",
 };
 
-export const SURFACE_PADDING_CLASSES: Record<SurfacePadding, string> = {
+const SURFACE_PADDING_CLASSES: Record<SurfacePadding, string> = {
   none: "",
   sm: "p-4",
   md: "p-5",

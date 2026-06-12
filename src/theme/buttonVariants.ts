@@ -4,7 +4,7 @@ export type ButtonVariant = "primary" | "secondary" | "ghost";
 
 export type ButtonSize = "sm" | "md";
 
-export const BUTTON_VARIANT_CLASSES: Record<ButtonVariant, string> = {
+const BUTTON_VARIANT_CLASSES: Record<ButtonVariant, string> = {
   primary:
     "rounded-xl bg-slate-900 text-white transition-colors hover:bg-slate-800 cursor-pointer",
   secondary:
@@ -13,12 +13,12 @@ export const BUTTON_VARIANT_CLASSES: Record<ButtonVariant, string> = {
     "rounded-xl text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 cursor-pointer",
 };
 
-export const BUTTON_SIZE_CLASSES: Record<ButtonSize, string> = {
+const BUTTON_SIZE_CLASSES: Record<ButtonSize, string> = {
   sm: "px-4 py-2 text-sm font-medium",
   md: "px-5 py-2.5 text-sm font-medium",
 };
 
-export const BUTTON_DISABLED_CLASSES =
+const BUTTON_DISABLED_CLASSES =
   "disabled:cursor-not-allowed disabled:bg-slate-200 disabled:text-slate-500 disabled:ring-0";
 
 export const getButtonClassName = ({
