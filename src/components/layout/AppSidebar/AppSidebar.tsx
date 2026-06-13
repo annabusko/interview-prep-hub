@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { NavLink, useLocation } from "react-router-dom";
-import { FOCUS_RING_CLASS, SIDEBAR_ACTIVE_CLASS } from "@/theme";
+import { FOCUS_RING_CLASS, SIDEBAR_ACTIVE_CLASS, SIDEBAR_INACTIVE_CLASS } from "@/theme";
 import { PATHS } from "@/routes/paths";
 import { NAV_ICON_SRC } from "./AppSidebar.icons";
 import { NAV_ITEMS } from "./navConfig";
@@ -42,7 +42,7 @@ export const AppSidebar = () => {
                 FOCUS_RING_CLASS,
                 isActive
                   ? SIDEBAR_ACTIVE_CLASS
-                  : "font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900",
+                  : SIDEBAR_INACTIVE_CLASS,
               ].join(" ")}
             >
               <img

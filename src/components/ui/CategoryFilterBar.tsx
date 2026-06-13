@@ -1,4 +1,4 @@
-import { FOCUS_RING_CLASS } from "@/theme";
+import { FOCUS_RING_CLASS, FILTER_CHIP_BASE_CLASS, FILTER_CHIP_ACTIVE_CLASS, FILTER_CHIP_INACTIVE_CLASS } from "@/theme";
 
 export type CategoryFilterItem = Readonly<{
   id: string;
@@ -27,18 +27,12 @@ export const CategoryFilterBar = ({
         { id: allId, label: allLabel, dotClassName: undefined },
         ...items,
       ].map(({ id, label, dotClassName }) => {
-        const base =
-          "rounded-lg px-3 py-1 text-sm font-medium transition-all cursor-pointer inline-flex items-center gap-1.5";
-        const active = "bg-slate-900 text-white hover:bg-slate-800 hover:scale-[1.02]";
-        const inactive =
-          "bg-slate-50 text-slate-700 ring-1 ring-slate-200/70 hover:bg-slate-100 hover:text-slate-900";
-
         return (
           <button
             key={id}
             type="button"
             onClick={() => onChange(id)}
-            className={[base, FOCUS_RING_CLASS, selectedId === id ? active : inactive]
+            className={[FILTER_CHIP_BASE_CLASS, FOCUS_RING_CLASS, selectedId === id ? FILTER_CHIP_ACTIVE_CLASS : FILTER_CHIP_INACTIVE_CLASS]
               .join(" ")}
           >
             {dotClassName && (
