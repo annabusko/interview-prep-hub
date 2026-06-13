@@ -5,3 +5,6 @@ export const APP_BACKGROUND_CLASS = "bg-slate-50";
 
 export const SIDEBAR_ACTIVE_CLASS =
   "border-l-2 border-slate-900 bg-slate-200 pl-2.5 font-medium text-slate-900";
+
+export const SIDEBAR_INACTIVE_CLASS =
+  "font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900";
