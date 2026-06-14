@@ -1,5 +1,5 @@
 import type { ContentLanguage, QuestionOption } from "@/domain/models";
-import { FOCUS_RING_CLASS } from "@/theme";
+import { currentTheme } from "@/theme";
 
 type AnswerOptionProps = {
   option: QuestionOption;
@@ -38,7 +38,7 @@ export const AnswerOption = ({
         type="button"
         disabled={submitted}
         onClick={() => onSelect(option.id)}
-        className={[base, FOCUS_RING_CLASS, getStateClass()].join(" ")}
+        className={[base, currentTheme.focus.default, getStateClass()].join(" ")}
       >
         {option.text[selectedLanguage]}
       </button>

@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import type { TopicStatus } from "@/domain/models";
-import { FOCUS_RING_CLASS } from "@/theme";
+import { currentTheme } from "@/theme";
 import type { TopicProgressProps } from "@/pages/TopicDetailPage/TopicDetailPage.types";
 
 const TOPIC_STATUSES: TopicStatus[] = ["new", "learning", "strong", "weak"];
@@ -23,7 +23,7 @@ export const TopicProgress = ({ currentStatus, onStatusChange }: Readonly<TopicP
               onClick={() => onStatusChange(status)}
               className={[
                 "rounded-lg px-3 py-1.5 text-sm font-medium transition-colors cursor-pointer",
-                FOCUS_RING_CLASS,
+                currentTheme.focus.default,
                 isActive
                   ? "bg-slate-900 text-white"
                   : "bg-white text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50",

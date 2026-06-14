@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { TEXT_TITLE_SECTION_CLASS } from "@/theme";
+import { currentTheme } from "@/theme";
 import { ContinueLearningRecommendation } from "../ContinueLearningRecommendation/ContinueLearningRecommendation";
 import { NeedsAttentionRecommendation } from "../NeedsAttentionRecommendation/NeedsAttentionRecommendation";
 import type { RecommendationSectionProps } from "./RecommendationSection.types";
@@ -12,7 +12,7 @@ export const RecommendationSection = ({
 
   return (
     <section className="space-y-4">
-      <h2 className={TEXT_TITLE_SECTION_CLASS}>
+      <h2 className={currentTheme.typography.titleSection}>
         {hasAttention
           ? t("dashboard.needsAttention.title")
           : t("dashboard.continueLearning.title")}

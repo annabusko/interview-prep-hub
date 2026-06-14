@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/Badge";
-import { getCategoryAccent } from "@/theme";
+import { currentTheme } from "@/theme";
 import type { BadgeVariant } from "@/theme";
 
 type CategoryBadgeProps = Readonly<{
@@ -9,7 +9,7 @@ type CategoryBadgeProps = Readonly<{
 }>;
 
 export const CategoryBadge = ({ label, categoryId, variant = "outline" }: CategoryBadgeProps) => {
-  const { dot } = getCategoryAccent(categoryId);
+  const { dot } = currentTheme.category.getAccent(categoryId);
   return (
     <Badge variant={variant}>
       <span className="inline-flex items-center gap-1.5">

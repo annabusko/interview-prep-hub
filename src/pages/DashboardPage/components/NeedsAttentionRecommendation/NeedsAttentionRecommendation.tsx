@@ -5,7 +5,7 @@ import { CategoryBadge } from "@/components/ui/CategoryBadge/CategoryBadge";
 import { TopicCardShell } from "@/components/ui/TopicCardShell/TopicCardShell";
 import type { ReviewReason } from "@/domain/reviewReason";
 import { PATHS } from "@/routes/paths";
-import { getCategoryAccent, TEXT_TITLE_CARD_CLASS } from "@/theme";
+import { currentTheme } from "@/theme";
 import type { BadgeVariant } from "@/theme";
 import type { NeedsAttentionRecommendationProps } from "./NeedsAttentionRecommendation.types";
 
@@ -19,7 +19,7 @@ export const NeedsAttentionRecommendation = ({
   item,
 }: NeedsAttentionRecommendationProps) => {
   const { t } = useTranslation();
-  const { border } = getCategoryAccent(item.categoryId);
+  const { border } = currentTheme.category.getAccent(item.categoryId);
 
   return (
     <TopicCardShell density="rich" accentClassName={border}>
@@ -33,7 +33,7 @@ export const NeedsAttentionRecommendation = ({
 
       {/* Title + summary */}
       <div>
-        <h2 className={TEXT_TITLE_CARD_CLASS}>{item.title}</h2>
+        <h2 className={currentTheme.typography.titleCard}>{item.title}</h2>
         <p className="mt-1 line-clamp-2 text-sm text-slate-500">{item.summary}</p>
       </div>
 

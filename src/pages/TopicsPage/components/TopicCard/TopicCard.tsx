@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { CategoryBadge } from "@/components/ui/CategoryBadge/CategoryBadge";
 import { TopicCardShell } from "@/components/ui/TopicCardShell/TopicCardShell";
 import { PATHS } from "@/routes/paths";
-import { getCategoryAccent } from "@/theme";
+import { currentTheme } from "@/theme";
 import type { TopicCardProps } from "@/pages/TopicsPage/TopicsPage.types";
 
 export const TopicCard = ({
@@ -12,7 +12,7 @@ export const TopicCard = ({
   language,
   openDetailsLabel,
 }: Readonly<TopicCardProps>) => {
-  const { border } = getCategoryAccent(topic.categoryId);
+  const { border } = currentTheme.category.getAccent(topic.categoryId);
 
   return (
     <li className="flex">

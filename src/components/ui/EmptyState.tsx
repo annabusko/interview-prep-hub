@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
-import { EMPTY_STATE_CLASS } from "@/theme";
+import { currentTheme } from "@/theme";
 
 export const EmptyState = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
-    <div className={EMPTY_STATE_CLASS}>
+    <div className={currentTheme.emptyState.container}>
       {children}
     </div>
   );

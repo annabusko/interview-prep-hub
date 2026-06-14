@@ -4,7 +4,7 @@ import { ButtonLink } from "@/components/ui/Button/ButtonLink";
 import { CategoryBadge } from "@/components/ui/CategoryBadge/CategoryBadge";
 import { TopicCardShell } from "@/components/ui/TopicCardShell/TopicCardShell";
 import { PATHS } from "@/routes/paths";
-import { getCategoryAccent, TEXT_TITLE_CARD_CLASS } from "@/theme";
+import { currentTheme } from "@/theme";
 import type { ReviewTopic } from "@/pages/WeakSpotsPage/WeakSpotsPage.types";
 
 type WeakSpotCardProps = {
@@ -19,7 +19,7 @@ const getDaysAgo = (isoString: string): number => {
 export const WeakSpotCard = ({ item }: Readonly<WeakSpotCardProps>) => {
   const { t } = useTranslation();
   const { metrics } = item;
-  const { border } = getCategoryAccent(item.categoryId);
+  const { border } = currentTheme.category.getAccent(item.categoryId);
 
   const lastReviewedDisplay = metrics.lastReviewedAt
     ? t("weakSpots.metrics.daysAgo", { days: getDaysAgo(metrics.lastReviewedAt) })
@@ -48,7 +48,7 @@ export const WeakSpotCard = ({ item }: Readonly<WeakSpotCardProps>) => {
 
       {/* Middle: title + summary */}
       <div>
-        <h2 className={TEXT_TITLE_CARD_CLASS}>{item.title}</h2>
+        <h2 className={currentTheme.typography.titleCard}>{item.title}</h2>
         <p className="mt-1 line-clamp-2 text-sm text-slate-500">{item.summary}</p>
       </div>
 

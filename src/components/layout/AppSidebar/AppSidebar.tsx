@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { NavLink, useLocation } from "react-router-dom";
-import { FOCUS_RING_CLASS, SIDEBAR_ACTIVE_CLASS, SIDEBAR_INACTIVE_CLASS } from "@/theme";
+import { currentTheme } from "@/theme";
 import { PATHS } from "@/routes/paths";
 import { NAV_ICON_SRC } from "./AppSidebar.icons";
 import { NAV_ITEMS } from "./navConfig";
@@ -39,10 +39,10 @@ export const AppSidebar = () => {
               end={item.end}
               className={[
                 "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
-                FOCUS_RING_CLASS,
+                currentTheme.focus.default,
                 isActive
-                  ? SIDEBAR_ACTIVE_CLASS
-                  : SIDEBAR_INACTIVE_CLASS,
+                  ? currentTheme.sidebar.activeItem
+                  : currentTheme.sidebar.inactiveItem,
               ].join(" ")}
             >
               <img

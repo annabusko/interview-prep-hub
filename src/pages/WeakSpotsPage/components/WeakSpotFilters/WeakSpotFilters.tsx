@@ -3,7 +3,7 @@ import { CategoryFilterBar } from "@/components/ui/CategoryFilterBar";
 import type { CategoryFilterItem } from "@/components/ui/CategoryFilterBar";
 import { categories } from "@/data/categories";
 import type { ContentLanguage } from "@/domain/models";
-import { getCategoryAccent } from "@/theme";
+import { currentTheme } from "@/theme";
 
 type WeakSpotFiltersProps = {
   selectedLanguage: ContentLanguage;
@@ -21,7 +21,7 @@ export const WeakSpotFilters = ({
   const categoryItems: CategoryFilterItem[] = categories.map((c) => ({
     id: c.id,
     label: c.title[selectedLanguage],
-    dotClassName: getCategoryAccent(c.id).dot,
+    dotClassName: currentTheme.category.getAccent(c.id).dot,
   }));
 
   return (

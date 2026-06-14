@@ -6,3 +6,5 @@ export * from "./focus";
 export * from "./layout";
 export * from "./surfaceVariants";
 export * from "./typography";
+export type { ThemeContract } from "./themeContract";
+export { currentTheme } from "./themeContract";

@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { FOCUS_RING_CLASS, TEXT_TITLE_SECTION_CLASS } from "@/theme";
+import { currentTheme } from "@/theme";
 import { PATHS } from "@/routes/paths";
 import {
   BookOpenIcon,
@@ -13,12 +13,12 @@ export const QuickActions = () => {
 
   const actionLinkCls = [
     "inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-900 hover:bg-slate-900 hover:text-white",
-    FOCUS_RING_CLASS,
+    currentTheme.focus.default,
   ].join(" ");
 
   return (
     <section className="space-y-4">
-      <h2 className={TEXT_TITLE_SECTION_CLASS}>
+      <h2 className={currentTheme.typography.titleSection}>
         {t("dashboard.quickActions.title")}
       </h2>
       <div className="flex flex-wrap gap-3">
