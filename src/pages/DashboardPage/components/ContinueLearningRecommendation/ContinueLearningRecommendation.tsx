@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { TEXT_TITLE_CARD_CLASS } from "@/theme";
+import { currentTheme } from "@/theme";
 import { ButtonLink } from "@/components/ui/Button/ButtonLink";
 import { Surface } from "@/components/ui/Surface/Surface";
 import { PATHS } from "@/routes/paths";
@@ -10,7 +10,7 @@ export const ContinueLearningRecommendation = () => {
 
   return (
     <Surface padding="none" className="px-8 py-10 text-center">
-      <p className={TEXT_TITLE_CARD_CLASS}>
+      <p className={currentTheme.typography.titleCard}>
         {t("dashboard.needsAttention.emptyState")}
       </p>
       <p className="mt-2 text-sm text-slate-500">

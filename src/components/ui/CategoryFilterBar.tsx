@@ -1,4 +1,4 @@
-import { FOCUS_RING_CLASS, FILTER_CHIP_BASE_CLASS, FILTER_CHIP_ACTIVE_CLASS, FILTER_CHIP_INACTIVE_CLASS } from "@/theme";
+import { currentTheme } from "@/theme";
 
 export type CategoryFilterItem = Readonly<{
   id: string;
@@ -32,7 +32,7 @@ export const CategoryFilterBar = ({
             key={id}
             type="button"
             onClick={() => onChange(id)}
-            className={[FILTER_CHIP_BASE_CLASS, FOCUS_RING_CLASS, selectedId === id ? FILTER_CHIP_ACTIVE_CLASS : FILTER_CHIP_INACTIVE_CLASS]
+            className={[currentTheme.filterChip.base, currentTheme.focus.default, selectedId === id ? currentTheme.filterChip.active : currentTheme.filterChip.inactive]
               .join(" ")}
           >
             {dotClassName && (

@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { CategoryFilterBar } from "@/components/ui/CategoryFilterBar";
 import type { CategoryFilterItem } from "@/components/ui/CategoryFilterBar";
 import { categories } from "@/data/categories";
-import { getCategoryAccent } from "@/theme";
+import { currentTheme } from "@/theme";
 import type { QuizFiltersProps } from "@/pages/QuizGeneralPage/QuizGeneralPage.types";
 
 export const QuizFilters = ({
@@ -17,7 +17,7 @@ export const QuizFilters = ({
   const categoryItems: CategoryFilterItem[] = categories.map((c) => ({
     id: c.id,
     label: c.title[selectedLanguage],
-    dotClassName: getCategoryAccent(c.id).dot,
+    dotClassName: currentTheme.category.getAccent(c.id).dot,
   }));
 
   return (

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { CategoryBadge } from "@/components/ui/CategoryBadge/CategoryBadge";
 import { TopicCardShell } from "@/components/ui/TopicCardShell/TopicCardShell";
 import { PATHS } from "@/routes/paths";
-import { getCategoryAccent } from "@/theme";
+import { currentTheme } from "@/theme";
 import type { QuizTopicCardProps } from "@/pages/QuizGeneralPage/QuizGeneralPage.types";
 
 export const QuizTopicCard = ({
@@ -12,7 +12,7 @@ export const QuizTopicCard = ({
   language,
 }: Readonly<QuizTopicCardProps>) => {
   const { t } = useTranslation();
-  const { border } = getCategoryAccent(topic.categoryId);
+  const { border } = currentTheme.category.getAccent(topic.categoryId);
 
   return (
     <li className="flex">

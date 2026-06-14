@@ -1,4 +1,4 @@
-import { FOCUS_RING_MUTED_CLASS } from "@/theme";
+import { currentTheme } from "@/theme";
 
 type HeaderSegmentedControlOption<T extends string> = {
   value: T;
@@ -33,7 +33,7 @@ export const HeaderSegmentedControl = <T extends string>({
           onClick={() => onChange(value)}
           className={[
             "rounded-full px-3 py-1.5 text-sm font-medium transition-all cursor-pointer",
-            FOCUS_RING_MUTED_CLASS,
+            currentTheme.focus.subtle,
             uppercase ? "uppercase" : "",
             selectedValue === value
               ? "bg-white text-slate-900"
