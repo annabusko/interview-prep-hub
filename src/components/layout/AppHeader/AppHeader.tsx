@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
+import { productConfig } from "@/config/productConfig";
 import { usePreferences } from "@/app/providers/preferences/usePreferences";
 import { LANGUAGES, LEVELS } from "./AppHeader.constants";
 import { getHeaderTitleKey } from "./AppHeader.utils";
@@ -13,7 +14,7 @@ export const AppHeader = () => {
   const { selectedLevel, selectedLanguage } = preferences;
 
   const titleKey = getHeaderTitleKey(pathname);
-  const title = titleKey ? t(titleKey) : t("nav.appName");
+  const title = titleKey ? t(titleKey) : productConfig.appName;
 
   const levelOptions = LEVELS.map((level) => ({
     value: level,

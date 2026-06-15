@@ -1,4 +1,4 @@
-import { PATHS } from "@/routes/paths";
+import { productConfig } from "@/config/productConfig";
 
 export type NavItem = {
   to: string;
@@ -7,9 +7,4 @@ export type NavItem = {
   end?: boolean;
 };
 
-export const NAV_ITEMS: readonly NavItem[] = [
-  { to: PATHS.dashboard, label: "nav.dashboard", end: true },
-  { to: PATHS.topics, label: "nav.topics" },
-  { to: PATHS.quiz, label: "nav.quiz" },
-  { to: PATHS.weakSpots, label: "nav.weakSpots" },
-] as const;
+export const NAV_ITEMS: readonly NavItem[] = productConfig.navItems;

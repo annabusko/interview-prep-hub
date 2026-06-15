@@ -1,5 +1,5 @@
-import type { ContentLanguage, InterviewLevel } from "@/domain/models";
 import { PATHS } from "@/routes/paths";
+import { productConfig } from "@/config/productConfig";
 
 export const ROUTE_TITLE_KEYS: Record<string, string> = {
   [PATHS.dashboard]: "nav.dashboard",
@@ -8,6 +8,6 @@ export const ROUTE_TITLE_KEYS: Record<string, string> = {
   [PATHS.weakSpots]: "nav.weakSpots",
 };
 
-export const LEVELS: InterviewLevel[] = ["junior", "middle", "senior"];
+export const LEVELS = productConfig.availableLevels;
 
-export const LANGUAGES: ContentLanguage[] = ["en", "ru"];
+export const LANGUAGES = productConfig.availableLanguages;

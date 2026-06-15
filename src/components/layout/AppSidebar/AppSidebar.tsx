@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { NavLink, useLocation } from "react-router-dom";
 import { currentTheme } from "@/theme";
+import { productConfig } from "@/config/productConfig";
 import { PATHS } from "@/routes/paths";
 import { NAV_ICON_SRC } from "./AppSidebar.icons";
 import { NAV_ITEMS } from "./navConfig";
@@ -25,7 +26,7 @@ export const AppSidebar = () => {
     <aside className="flex w-56 shrink-0 flex-col border-r border-slate-200 bg-slate-50 py-6 px-4">
       <div className="mb-6">
         <span className="text-sm font-semibold text-slate-900">
-          {t("nav.appName")}
+          {productConfig.appName}
         </span>
         <p className="mt-1 text-xs text-slate-500">{t("nav.appTagline")}</p>
       </div>
