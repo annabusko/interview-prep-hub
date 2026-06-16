@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { usePreferences } from "@/app/providers/preferences/usePreferences";
 import { ButtonLink } from "@/components/ui/Button/ButtonLink";
-import { questions as allQuestions } from "@/data/questions";
+import { questions as allQuestions } from "@/content/interviewPrepContentPack";
 import { PATHS } from "@/routes/paths";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { QuizSession } from "./components/QuizSession/QuizSession";

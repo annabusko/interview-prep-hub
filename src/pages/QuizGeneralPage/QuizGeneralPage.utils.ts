@@ -1,5 +1,4 @@
-import { categories } from "@/data/categories";
-import { topics } from "@/data/topics";
+import { categories, topics } from "@/content/interviewPrepContentPack";
 import type { ContentLanguage, Topic } from "@/domain/models";
 
 export const buildQuizCategoryMap = (language: ContentLanguage): Map<string, string> =>
