@@ -1,6 +1,5 @@
 import type { ContentLanguage, Topic } from "@/domain/models";
-import { categories } from "@/data/categories";
-import { topics } from "@/data/topics";
+import { categories, topics } from "@/content/interviewPrepContentPack";
 
 export const findTopic = (topicId: string): Topic | undefined =>
   topics.find((item) => item.id === topicId);

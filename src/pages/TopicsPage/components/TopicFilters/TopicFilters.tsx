@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { CategoryFilterBar } from "@/components/ui/CategoryFilterBar";
 import type { CategoryFilterItem } from "@/components/ui/CategoryFilterBar";
-import { categories } from "@/data/categories";
+import { categories } from "@/content/interviewPrepContentPack";
 import type { ContentLanguage } from "@/domain/models";
 import { currentTheme } from "@/theme";
 

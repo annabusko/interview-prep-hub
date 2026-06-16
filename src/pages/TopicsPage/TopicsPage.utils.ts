@@ -1,5 +1,4 @@
-import { categories } from "@/data/categories";
-import { topics } from "@/data/topics";
+import { categories, topics } from "@/content/interviewPrepContentPack";
 import type { ContentLanguage, InterviewLevel, Topic } from "@/domain/models";
 
 export const buildCategoryMap = (selectedLanguage: ContentLanguage): Map<string, string> =>
