@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { usePreferences } from "@/app/providers/preferences/usePreferences";
+import { useContentPack } from "@/content/useContentPack";
 import { WeakSpotEmptyState } from "./components/WeakSpotEmptyState/WeakSpotEmptyState";
 import { WeakSpotFilters } from "./components/WeakSpotFilters/WeakSpotFilters";
 import { WeakSpotSummary } from "./components/WeakSpotSummary/WeakSpotSummary";
@@ -15,11 +16,12 @@ export const WeakSpotsPage = () => {
   const { t } = useTranslation();
   const { preferences } = usePreferences();
   const { selectedLevel, selectedLanguage } = preferences;
+  const { categories, topics, questions } = useContentPack();
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>("all");
 
   const reviewTopics = useMemo(
-    () => buildReviewTopics(selectedLevel, selectedLanguage),
-    [selectedLevel, selectedLanguage],
+    () => buildReviewTopics(categories, topics, questions, selectedLevel, selectedLanguage),
+    [categories, topics, questions, selectedLevel, selectedLanguage],
   );
 
   const filteredReviewTopics = useMemo(

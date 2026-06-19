@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { usePreferences } from "@/app/providers/preferences/usePreferences";
+import { useContentPack } from "@/content/useContentPack";
 import { QuizFilters } from "./components/QuizFilters/QuizFilters";
 import { QuizTopicList } from "./components/QuizTopicList/QuizTopicList";
 import { buildQuizCategoryMap, filterQuizTopics } from "./QuizGeneralPage.utils";
@@ -10,20 +11,21 @@ export const QuizGeneralPage = () => {
   const {
     preferences: { selectedLanguage },
   } = usePreferences();
+  const { categories, topics } = useContentPack();
 
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>("all");
   const [search, setSearch] = useState<string>("");
 
   const categoryMap = useMemo(
-    () => buildQuizCategoryMap(selectedLanguage),
-    [selectedLanguage],
+    () => buildQuizCategoryMap(categories, selectedLanguage),
+    [categories, selectedLanguage],
   );
 
   const normalizedSearch = search.trim().toLocaleLowerCase();
 
   const filteredTopics = useMemo(
-    () => filterQuizTopics(selectedLanguage, selectedCategoryId, normalizedSearch),
-    [selectedLanguage, selectedCategoryId, normalizedSearch],
+    () => filterQuizTopics(topics, selectedLanguage, selectedCategoryId, normalizedSearch),
+    [topics, selectedLanguage, selectedCategoryId, normalizedSearch],
   );
 
   return (

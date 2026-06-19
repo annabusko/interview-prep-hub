@@ -1,10 +1,13 @@
-import { categories, topics } from "@/content/interviewPrepContentPack";
-import type { ContentLanguage, Topic } from "@/domain/models";
+import type { Category, ContentLanguage, Topic } from "@/domain/models";
 
-export const buildQuizCategoryMap = (language: ContentLanguage): Map<string, string> =>
+export const buildQuizCategoryMap = (
+  categories: readonly Category[],
+  language: ContentLanguage,
+): Map<string, string> =>
   new Map(categories.map((c) => [c.id, c.title[language]]));
 
 export const filterQuizTopics = (
+  topics: readonly Topic[],
   language: ContentLanguage,
   selectedCategoryId: string,
   normalizedSearch: string,
