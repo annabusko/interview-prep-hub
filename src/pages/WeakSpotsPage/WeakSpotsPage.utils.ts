@@ -1,13 +1,13 @@
 import { readQuizAttempts } from "@/app/quiz/quizAttempts.storage";
 import { readTopicProgress } from "@/app/topic-progress/topicProgress.storage";
-import { categories, questions, topics } from "@/content/interviewPrepContentPack";
-import type { ContentLanguage } from "@/domain/models";
+import type { Category, ContentLanguage, Question, Topic } from "@/domain/models";
 import type { ReviewReason } from "@/domain/reviewReason";
 import type { ReviewTopic, WeakSpotsSummary } from "./WeakSpotsPage.types";
 
 type TopicAttemptStats = { correct: number; total: number };
 
 const aggregateAttemptsByTopic = (
+  questions: readonly Question[],
   selectedLevel: string,
 ): Map<string, TopicAttemptStats> => {
   const attempts = readQuizAttempts();
@@ -32,6 +32,9 @@ const resolveReason = (isWeak: boolean, hasMistake: boolean): ReviewReason => {
 };
 
 export const buildReviewTopics = (
+  categories: readonly Category[],
+  topics: readonly Topic[],
+  questions: readonly Question[],
   selectedLevel: string,
   selectedLanguage: ContentLanguage,
 ): ReviewTopic[] => {
@@ -44,7 +47,7 @@ export const buildReviewTopics = (
     categories.map((c) => [c.id, c.title[selectedLanguage]]),
   );
 
-  const attemptsByTopic = aggregateAttemptsByTopic(selectedLevel);
+  const attemptsByTopic = aggregateAttemptsByTopic(questions, selectedLevel);
   const topicsWithMistakes = new Set(
     [...attemptsByTopic.entries()]
       .filter(([, v]) => v.total - v.correct > 0)

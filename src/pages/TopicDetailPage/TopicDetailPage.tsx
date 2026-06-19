@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import type { TopicStatus } from "@/domain/models";
 import { usePreferences } from "@/app/providers/preferences/usePreferences";
 import { useTopicProgress } from "@/app/topic-progress/useTopicProgress";
+import { useContentPack } from "@/content/useContentPack";
 import { ButtonLink } from "@/components/ui/Button/ButtonLink";
 import { PATHS } from "@/routes/paths";
 import { findTopic, getCategoryTitle } from "./TopicDetailPage.utils";
@@ -19,9 +20,10 @@ export const TopicDetailPage = () => {
     preferences: { selectedLanguage },
   } = usePreferences();
   const { getTopicStatus, setTopicStatus } = useTopicProgress();
+  const { categories, topics } = useContentPack();
 
-  const topic = topicId ? findTopic(topicId) : undefined;
-  const categoryTitle = topic ? getCategoryTitle(topic, selectedLanguage) : "";
+  const topic = topicId ? findTopic(topics, topicId) : undefined;
+  const categoryTitle = topic ? getCategoryTitle(categories, topic, selectedLanguage) : "";
 
   const [currentStatus, setCurrentStatus] = useState<TopicStatus>(() =>
     topicId ? getTopicStatus(topicId) : "new",

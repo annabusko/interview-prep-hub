@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { CategoryFilterBar } from "@/components/ui/CategoryFilterBar";
 import type { CategoryFilterItem } from "@/components/ui/CategoryFilterBar";
-import { categories } from "@/content/interviewPrepContentPack";
+import { useContentPack } from "@/content/useContentPack";
 import { currentTheme } from "@/theme";
 import type { QuizFiltersProps } from "@/pages/QuizGeneralPage/QuizGeneralPage.types";
 
@@ -13,6 +13,7 @@ export const QuizFilters = ({
   onSearchChange,
 }: Readonly<QuizFiltersProps>) => {
   const { t } = useTranslation();
+  const { categories } = useContentPack();
 
   const categoryItems: CategoryFilterItem[] = categories.map((c) => ({
     id: c.id,

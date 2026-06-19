@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { CategoryFilterBar } from "@/components/ui/CategoryFilterBar";
 import type { CategoryFilterItem } from "@/components/ui/CategoryFilterBar";
-import { categories } from "@/content/interviewPrepContentPack";
+import { useContentPack } from "@/content/useContentPack";
 import type { ContentLanguage } from "@/domain/models";
 import { currentTheme } from "@/theme";
 
@@ -17,6 +17,7 @@ export const WeakSpotFilters = ({
   onCategoryChange,
 }: Readonly<WeakSpotFiltersProps>) => {
   const { t } = useTranslation();
+  const { categories } = useContentPack();
 
   const categoryItems: CategoryFilterItem[] = categories.map((c) => ({
     id: c.id,

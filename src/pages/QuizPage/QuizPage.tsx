@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { usePreferences } from "@/app/providers/preferences/usePreferences";
+import { useContentPack } from "@/content/useContentPack";
 import { ButtonLink } from "@/components/ui/Button/ButtonLink";
-import { questions as allQuestions } from "@/content/interviewPrepContentPack";
 import { PATHS } from "@/routes/paths";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { QuizSession } from "./components/QuizSession/QuizSession";
@@ -11,6 +11,7 @@ export const QuizPage = () => {
   const { t } = useTranslation();
   const { preferences } = usePreferences();
   const { selectedLevel, selectedLanguage } = preferences;
+  const { questions: allQuestions } = useContentPack();
 
   // Use a session key to reset session state on selectedLevel change
   const [completedSessionKey, setCompletedSessionKey] = useState<string | null>(null);
